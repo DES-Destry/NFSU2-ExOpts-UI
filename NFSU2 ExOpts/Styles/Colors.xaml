@@ -5,8 +5,8 @@
     <SolidColorBrush x:Key="BlackBrush" Color="#000000"/>
     <Color x:Key="BlackColor">#000000</Color>
 
-    <SolidColorBrush x:Key="ActiveBgBrush" Color="#1D1F20"/>
-    <Color x:Key="ActiveBgColor">#1D1F20</Color>
+    <SolidColorBrush x:Key="ActiveBgBrush" Color="#3F3F46"/>
+    <Color x:Key="ActiveBgColor">#3F3F46</Color>
 
     <SolidColorBrush x:Key="StaticBgBrush" Color="#181A1B"/>
     <Color x:Key="StaticBgColor">#181A1B</Color>
