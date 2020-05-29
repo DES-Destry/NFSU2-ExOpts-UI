@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:NFSU2_ExOpts"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="ColorStyles" Source="Styles/Colors.xaml"/>
+                <ResourceDictionary x:Name="FontStyles" Source="Styles/Font.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

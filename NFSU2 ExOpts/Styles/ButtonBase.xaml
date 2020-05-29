@@ -3,10 +3,10 @@
                     xmlns:local="clr-namespace:NFSU2_ExOpts.Styles">
 
     <Style x:Key="ButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource StaticBgColor}"/>
+        <Setter Property="Background" Value="{StaticResource StaticBgBrush}"/>
         <Setter Property="FontFamily" Value="{StaticResource BaseFont}"/>
-        <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource MainColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource MainBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource MainBrush}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
@@ -23,21 +23,21 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" Value="{StaticResource MainColor}"/>
-                            <Setter Property="Foreground" Value="{StaticResource WhiteColor}"/>
+                            <Setter Property="Background" Value="{StaticResource MainBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource MainBrush}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" Value="{StaticResource ActiveBgColor}"/>
-                            <Setter Property="Foreground" Value="{StaticResource WhiteColor}"/>
+                            <Setter Property="Background" Value="{StaticResource ActiveBgBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource WhiteBrush}"/>
                         </Trigger>
                         <Trigger Property="IsDefaulted" Value="true">
-                            <Setter Property="Background" Value="{StaticResource StaticBgColor}"/>
-                            <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
+                            <Setter Property="Background" Value="{StaticResource StaticBgBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource MainBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" Value="{StaticResource RedColor}"/>
-                            <Setter Property="Foreground" Value="{StaticResource WhiteColor}"/>
-                            <Setter Property="BorderBrush" Value="{StaticResource RedColor}"/>
+                            <Setter Property="Background" Value="{StaticResource DisabledButtonBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource WhiteBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource DisabledButtonBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
 
