@@ -121,7 +121,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Resource Include="Views\Images\exit_gray.png" />
+    <Resource Include="Views\Images\exit_red.png" />
+    <Resource Include="Views\Images\exit_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
