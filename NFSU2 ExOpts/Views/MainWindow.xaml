@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NFSU2_ExOpts"
+        xmlns:controls="clr-namespace:NFSU2_ExOpts.Controls"
+        xmlns:CorLib="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -27,12 +29,12 @@
                 <Grid Background="Transparent"
                        Height="20"
                        Width="950">
-                    
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="17*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <TextBlock Text="Need for speed underground 2 - Extra Options"
                            FontFamily="{StaticResource BaseFont}"
                            Foreground="{StaticResource WhiteBrush}"
@@ -46,27 +48,27 @@
                             Click="ExitButton_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
-                                
+
                                 <Grid>
                                     <Image x:Name="ButtonImage" 
-                                        Source="Images/exit_white.png"/>
+                                        Source="/NFSU2 ExOpts;component/Images/exit_white.png"/>
                                 </Grid>
 
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="ButtonImage" Property="Source" Value="Images/exit_red.png"/>
+                                        <Setter TargetName="ButtonImage" Property="Source" Value="/NFSU2 ExOpts;component/Images/exit_red.png"/>
                                     </Trigger>
                                     <Trigger Property="IsPressed" Value="True">
-                                        <Setter TargetName="ButtonImage" Property="Source" Value="Images/exit_gray.png"/>
+                                        <Setter TargetName="ButtonImage" Property="Source" Value="/NFSU2 ExOpts;component/Images/exit_gray.png"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
-                                
+
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
                 </Grid>
             </Border>
-
+            
             <Frame Height="574"/>
         </StackPanel>
     </Border>

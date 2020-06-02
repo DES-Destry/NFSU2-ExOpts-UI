@@ -1,3 +1,4 @@
+using NFSU2_ExOpts.ViewModels;
 using System.Windows;
 using System.Windows.Input;
 
@@ -9,6 +10,7 @@ namespace NFSU2_ExOpts.Views
         {
             InitializeComponent();
         }
+
 
         private void ExitButton_Click(object sender, RoutedEventArgs e) => Close();
 
