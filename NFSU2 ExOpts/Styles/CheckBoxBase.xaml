@@ -5,6 +5,7 @@
     <Style x:Key="ToggleButtonBase" TargetType="{x:Type CheckBox}">
         <Setter Property="Width" Value="70"/>
         <Setter Property="Height" Value="55"/>
+        <Setter Property="Content" Value="On"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
@@ -57,6 +58,7 @@
                                 <StopStoryboard BeginStoryboardName="OffStoryBoard"/>
                             </Trigger.ExitActions>
                             <Setter TargetName="ToggleBody" Property="Background" Value="{StaticResource ToggleButtonNotCheckedBrush}"/>
+                            <Setter Property="Content" Value="Off"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Trigger.EnterActions>
@@ -102,6 +104,7 @@
                                 <StopStoryboard BeginStoryboardName="NullStoryBoard"/>
                             </Trigger.ExitActions>
                             <Setter TargetName="ToggleBody" Property="Background" Value="{StaticResource ToggleButtonNullValueBrush}"/>
+                            <Setter Property="Content" Value="NULL"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="ToggleBody" Property="BorderBrush" Value="{StaticResource ToggleButtonHoldBrush}"/>

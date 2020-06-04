@@ -49,12 +49,19 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.0\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\CheckBoxSlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Selector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -91,6 +98,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\CheckBoxSlot.xaml.cs">
+      <DependentUpon>CheckBoxSlot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Selector.xaml.cs">
       <DependentUpon>Selector.xaml</DependentUpon>
     </Compile>
@@ -119,6 +129,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -128,11 +139,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\arrow_pressed_u2.dds" />
-    <Content Include="Images\arrow_default_u2.dds" />
+    <Resource Include="Images\arrow_default_u2.png" />
+    <Resource Include="Images\arrow_pressed_u2.png" />
     <Resource Include="Images\exit_white.png" />
     <Resource Include="Images\exit_red.png" />
     <Resource Include="Images\exit_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\image_border_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\image_border_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\test_car.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

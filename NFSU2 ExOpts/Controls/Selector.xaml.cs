@@ -1,6 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace NFSU2_ExOpts.Controls
 {
@@ -70,7 +72,7 @@ namespace NFSU2_ExOpts.Controls
             try
             {
                 SelectorStage.Maximum = ItemSource.Count;
-                SelectorStage.Value = CurrentItem + 1;
+                SmoothProgressTo(CurrentItem + 1);
 
                 SelectorTextContent.Text = ItemSource[CurrentItem];
             }
@@ -79,6 +81,17 @@ namespace NFSU2_ExOpts.Controls
                 SelectorTextContent.Text = "NULL";
                 SelectorStage.Value = 0;
             }
+        }
+
+        private void SmoothProgressTo(int value)
+        {
+            CircleEase backEase = new CircleEase();
+            backEase.EasingMode = EasingMode.EaseIn;
+
+            var animation = new DoubleAnimation((double)value, TimeSpan.FromSeconds(0.5));
+            animation.EasingFunction = backEase;
+
+            SelectorStage.BeginAnimation(ProgressBar.ValueProperty, animation);
         }
     }
 }

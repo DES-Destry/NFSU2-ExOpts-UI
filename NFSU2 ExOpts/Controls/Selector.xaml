@@ -17,14 +17,14 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        
+
                         <Image x:Name="InnerImage" 
-                           Source="D:/My programms and projects/C#/PC/NFSU2 ExOpts/NFSU2 ExOpts/Images/arrow_default_u2.dds"/>
+                               Source="/NFSU2 ExOpts;component/Images/arrow_default_u2.png"/>
 
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="InnerImage" Property="Source" 
-                                    Value="D:/My programms and projects/C#/PC/NFSU2 ExOpts/NFSU2 ExOpts/Images/arrow_pressed_u2.dds"/>
+                                <Setter TargetName="InnerImage" Property="Source"
+                                        Value="/NFSU2 ExOpts;component/Images/arrow_pressed_u2.png"/>
                                 <Trigger.EnterActions>
                                     <BeginStoryboard x:Name="ClickStoryBoard">
                                         <Storyboard>
@@ -38,7 +38,7 @@
                                 </Trigger.ExitActions>
                             </Trigger>
                         </ControlTemplate.Triggers>
-                        
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

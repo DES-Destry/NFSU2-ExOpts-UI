@@ -70,6 +70,7 @@
             </Border>
             
             <Frame Height="574"/>
+            
         </StackPanel>
     </Border>
 </Window>
