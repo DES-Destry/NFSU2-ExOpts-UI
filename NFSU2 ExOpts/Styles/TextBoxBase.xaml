@@ -4,8 +4,9 @@
 
     <Style x:Key="TextBoxBase" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{StaticResource StaticBgBrush}"/>
-        <Setter Property="FontFamily" Value="{StaticResource BaseFont}"/>
         <Setter Property="Foreground" Value="{StaticResource WhiteBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource BaseFont}"/>
+        <Setter Property="FontSize" Value="{StaticResource Small}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">

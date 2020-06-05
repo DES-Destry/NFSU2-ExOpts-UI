@@ -1,13 +1,9 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using WpfAnimatedGif;
 
 namespace NFSU2_ExOpts.Controls
 {
-    public partial class CheckBoxSlot : UserControl
+    public partial class CheckBoxSlot : UserControl, ISlot
     {
         public string SlotImageSource
         {
@@ -72,31 +68,11 @@ namespace NFSU2_ExOpts.Controls
         public CheckBoxSlot()
         {
             InitializeComponent();
-            this.Height = 64;
         }
 
         private void ShowInfoButton_Click(object sender, RoutedEventArgs e)
         {
-            CircleEase circleEase = new CircleEase();
-            circleEase.EasingMode = EasingMode.EaseIn;
-
-            var animation = new DoubleAnimation();
-            animation.Duration = TimeSpan.FromSeconds(0.8);
-            animation.EasingFunction = circleEase;
-            animation.From = this.Height;
-
-            if ((string)ShowInfoButton.Content == "  What is it?  ")
-            {
-                ShowInfoButton.Content = "  Hide  ";
-                animation.To = 160;
-            }
-            else
-            {
-                ShowInfoButton.Content = "  What is it?  ";
-                animation.To = 64;
-            }
-
-            this.BeginAnimation(HeightProperty, animation);
+            BeginAnimation(HeightProperty, BaseSlotsMethods.OpenCloseAnimations(sender as Button, this));
         }
 
         private void SlotCheckBox_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -104,15 +80,10 @@ namespace NFSU2_ExOpts.Controls
             SlotIsChecked = (bool)(sender as CheckBox).IsChecked;
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e) => Draw();
-
-        private void Draw()
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            this.SlotImage.Source = new BitmapImage(new Uri(SlotImageSource, UriKind.Relative));
-            ImageBehavior.SetAnimatedSource(this.InfoGif, new BitmapImage(new Uri(SlotInfoGif, UriKind.Relative)));
-            this.SlotName.Text = SlotHeader;
-            this.TextInformation.Text = SlotInfo;
-            this.SlotCheckBox.IsChecked = SlotIsChecked;
+            BaseSlotsMethods.DrawBase(this);
+            SlotCheckBox.IsChecked = SlotIsChecked;
         }
     }
 }

@@ -66,6 +66,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TextBoxSlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ButtonBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,11 +102,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\BaseSlotsMethods.cs" />
     <Compile Include="Controls\CheckBoxSlot.xaml.cs">
       <DependentUpon>CheckBoxSlot.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ISlot.cs" />
     <Compile Include="Controls\Selector.xaml.cs">
       <DependentUpon>Selector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextBoxSlot.xaml.cs">
+      <DependentUpon>TextBoxSlot.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
