@@ -56,10 +56,14 @@
 
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="ButtonImage" Property="Source" Value="/NFSU2 ExOpts;component/Images/exit_red.png"/>
+                                        <Setter TargetName="ButtonImage" 
+                                                Property="Source" 
+                                                Value="/NFSU2 ExOpts;component/Images/exit_red.png"/>
                                     </Trigger>
                                     <Trigger Property="IsPressed" Value="True">
-                                        <Setter TargetName="ButtonImage" Property="Source" Value="/NFSU2 ExOpts;component/Images/exit_gray.png"/>
+                                        <Setter TargetName="ButtonImage" 
+                                                Property="Source" 
+                                                Value="/NFSU2 ExOpts;component/Images/exit_gray.png"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
 
@@ -68,7 +72,7 @@
                     </Button>
                 </Grid>
             </Border>
-            
+
             <Frame Height="574"/>
             
         </StackPanel>

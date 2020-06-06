@@ -66,6 +66,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\SelectorSlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TextBoxSlot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +113,9 @@
     <Compile Include="Controls\ISlot.cs" />
     <Compile Include="Controls\Selector.xaml.cs">
       <DependentUpon>Selector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SelectorSlot.xaml.cs">
+      <DependentUpon>SelectorSlot.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TextBoxSlot.xaml.cs">
       <DependentUpon>TextBoxSlot.xaml</DependentUpon>

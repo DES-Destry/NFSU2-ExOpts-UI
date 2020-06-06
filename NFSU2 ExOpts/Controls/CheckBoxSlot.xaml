@@ -72,7 +72,7 @@
         
         <Border.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
-                <BeginStoryboard x:Name="GotFocus">
+                <BeginStoryboard x:Name="MouseInStoryBoard">
                     <Storyboard>
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ImageBorder"
                                                            Storyboard.TargetProperty="Opacity"
@@ -90,7 +90,7 @@
                 </BeginStoryboard>
             </EventTrigger>
             <EventTrigger RoutedEvent="MouseLeave">
-                <StopStoryboard BeginStoryboardName="GotFocus"/>
+                <StopStoryboard BeginStoryboardName="MouseInStoryBoard"/>
             </EventTrigger>
         </Border.Triggers>
 

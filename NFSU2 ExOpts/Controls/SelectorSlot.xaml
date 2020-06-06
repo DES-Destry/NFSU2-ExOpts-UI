@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="NFSU2_ExOpts.Controls.TextBoxSlot"
+﻿<UserControl x:Class="NFSU2_ExOpts.Controls.SelectorSlot"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -26,6 +26,7 @@
                    Opacity="0"/>
 
             <TextBlock x:Name="SlotName"
+                       Text="Maximum LAN Players"
                        TextAlignment="Left"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
@@ -43,14 +44,11 @@
                     FontSize="{StaticResource Small}"
                     Style="{StaticResource ButtonStyle}"/>
 
-            <TextBox x:Name="SlotContent"
-                     TextChanged="SlotContent_TextChanged"
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Right"
-                     Width="80"
-                     Margin="5,15,5,5"
-                     Tag="Value"
-                     Style="{StaticResource TextBoxBase}"/>
+            <local:Selector x:Name="SlotContent"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Width="180"
+                            Margin="5,7,5,5"/>
 
             <Image x:Name="InfoGif"
                    Height="86"
@@ -94,6 +92,6 @@
             </EventTrigger>
         </Border.Triggers>
 
-        </Border>
-    
+    </Border>
+
 </UserControl>

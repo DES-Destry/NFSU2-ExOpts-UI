@@ -76,12 +76,12 @@ namespace NFSU2_ExOpts.Controls
             SlotContent.Text = SlotTextContent;
         }
 
-        private void ShowInfoButton_Click(object sender, RoutedEventArgs e) 
-        { 
-            BeginAnimation(HeightProperty, BaseSlotsMethods.OpenCloseAnimations(sender as Button, this)); 
+        private void ShowInfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            BeginAnimation(HeightProperty, BaseSlotsMethods.OpenCloseAnimations(sender as Button, this));
         }
 
-        private void SlotContent_TextChanged(object sender, TextChangedEventArgs e) 
+        private void SlotContent_TextChanged(object sender, TextChangedEventArgs e)
         {
             SlotTextContent = (sender as TextBox).Text;
         }

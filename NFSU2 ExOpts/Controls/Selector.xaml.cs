@@ -23,12 +23,13 @@ namespace NFSU2_ExOpts.Controls
         public int CurrentItem
         {
             get { return (int)GetValue(CurrentItemProperty); }
-            set { SetValue(CurrentItemProperty, value); SetSelectorValues(); }
+            set { SetValue(CurrentItemProperty, value); SetSelectorValues(); CurrentItemChanged?.Invoke(this); }
         }
 
         public static readonly DependencyProperty CurrentItemProperty =
             DependencyProperty.Register("CurrentItem", typeof(int), typeof(Selector), new PropertyMetadata(0));
 
+        public event Action<object> CurrentItemChanged;
 
 
 
@@ -65,7 +66,10 @@ namespace NFSU2_ExOpts.Controls
             }
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e) => SetSelectorValues();
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetSelectorValues();
+        }
 
         private void SetSelectorValues()
         {

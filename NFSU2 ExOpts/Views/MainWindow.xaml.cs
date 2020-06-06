@@ -11,7 +11,6 @@ namespace NFSU2_ExOpts.Views
             InitializeComponent();
         }
 
-
         private void ExitButton_Click(object sender, RoutedEventArgs e) => Close();
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => DragMove();
