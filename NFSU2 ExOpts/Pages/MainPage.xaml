@@ -1,0 +1,88 @@
+﻿<Page x:Class="NFSU2_ExOpts.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:controls="clr-namespace:NFSU2_ExOpts.Controls"
+      xmlns:local="clr-namespace:NFSU2_ExOpts.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="574" 
+      d:DesignWidth="950"
+      Title="MainPage">
+
+    <Grid>
+
+        <Border HorizontalAlignment="Left"
+                Width="240"
+                Background="{StaticResource StaticBgBrush}"
+                CornerRadius="0,0,0,7">
+            <StackPanel>
+                <controls:LeftMenuItem Height="40"
+                                       Margin="3"
+                                       ItemHeaderText="Game"
+                                       ImageSource="/NFSU2 ExOPts;component/Images/game_left_menu.png"
+                                       IsSelected="{Binding IsGamePageAtScreen}"/>
+                <controls:LeftMenuItem Height="40"
+                                       Margin="3"
+                                       ItemHeaderText="Menu settings"
+                                       ImageSource="/NFSU2 ExOPts;component/Images/menu_left_menu.png"
+                                       IsSelected="{Binding IsMenuPageAtScreen}"/>
+                <controls:LeftMenuItem Height="40"
+                                       Margin="3"
+                                       ItemHeaderText="Gameplay"
+                                       ImageSource="/NFSU2 ExOPts;component/Images/gameplay_left_menu.png"
+                                       IsSelected="{Binding IsGameplayPageAtScreen}"/>
+                <controls:LeftMenuItem Height="40"
+                                       Margin="3"
+                                       ItemHeaderText="Weather settings"
+                                       ImageSource="/NFSU2 ExOPts;component/Images/weather_left_menu.png"
+                                       IsSelected="{Binding IsWeatherPageAtScreen}"/>
+                <controls:LeftMenuItem Height="40"
+                                       Margin="3"
+                                       ItemHeaderText="Laps settings"
+                                       ImageSource="/NFSU2 ExOPts;component/Images/lapcontroller_left_menu.png"
+                                       IsSelected="{Binding IsLapControllersPageAtScreen}"/>
+                <controls:LeftMenuItem Height="40"
+                                       Margin="3"
+                                       ItemHeaderText="Opponents settings"
+                                       ImageSource="/NFSU2 ExOPts;component/Images/opponentcontroller_left_menu.png"
+                                       IsSelected="{Binding IsOpponentsControllersPageAtScreen}"/>
+                <controls:LeftMenuItem Height="40"
+                                       Margin="3"
+                                       ItemHeaderText="Drift settings"
+                                       ImageSource="/NFSU2 ExOPts;component/Images/drift_left_menu.png"
+                                       IsSelected="{Binding IsDriftPageAtScreen}"/>
+                <controls:LeftMenuItem Height="40"
+                                       Margin="3"
+                                       ItemHeaderText="Hotkeys"
+                                       ImageSource="/NFSU2 ExOPts;component/Images/hotkeys_left_menu.png"
+                                       IsSelected="{Binding IsHotkeysPageAtScreen}"/>
+                <controls:LeftMenuItem Height="40"
+                                       Margin="3"
+                                       ItemHeaderText="Misc"
+                                       ImageSource="/NFSU2 ExOPts;component/Images/misc_left_menu.png"
+                                       IsSelected="{Binding IsMiscPageAtScreen}"/>
+                <controls:LeftMenuItem Height="40"
+                                       Margin="3"
+                                       ItemHeaderText="Fixes"
+                                       ImageSource="/NFSU2 ExOPts;component/Images/fixes_left_menu.png"
+                                       IsSelected="{Binding IsFixesPageAtScreen}"/>
+                <controls:LeftMenuItem Height="40"
+                                       Margin="3"
+                                       ItemHeaderText="Settings presets"
+                                       ImageSource="/NFSU2 ExOPts;component/Images/presets_left_menu.png"
+                                       IsSelected="{Binding IsPresetsPageAtScreen}"/>
+            </StackPanel>
+        </Border>
+
+        <Border Background="{StaticResource ActiveBgBrush}"
+                HorizontalAlignment="Right"
+                Width="710"
+                CornerRadius="0,0,7,0">
+            <Frame NavigationUIVisibility="Hidden"
+                   Content="{Binding CurrentPage}"/>
+        </Border>
+
+    </Grid>
+    
+</Page>

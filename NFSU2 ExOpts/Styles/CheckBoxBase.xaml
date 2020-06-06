@@ -42,8 +42,8 @@
                                 <BeginStoryboard x:Name="OffStoryBoard">
                                     <Storyboard>
                                         <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" 
-                                                                              Storyboard.TargetName="InnerDot" 
-                                                                              BeginTime="00:00:00">
+                                                                          Storyboard.TargetName="InnerDot" 
+                                                                          BeginTime="00:00:00">
                                             <SplineThicknessKeyFrame KeyTime="00:00:00" Value="35,0,0,0" />
                                             <EasingThicknessKeyFrame KeyTime="0:0:0.4" Value="0,0,35,0">
                                                 <EasingThicknessKeyFrame.EasingFunction>

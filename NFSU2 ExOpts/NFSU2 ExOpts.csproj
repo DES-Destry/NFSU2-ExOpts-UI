@@ -62,6 +62,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\LeftMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Selector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -71,6 +75,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\TextBoxSlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -111,6 +119,9 @@
       <DependentUpon>CheckBoxSlot.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ISlot.cs" />
+    <Compile Include="Controls\LeftMenuItem.xaml.cs">
+      <DependentUpon>LeftMenuItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Selector.xaml.cs">
       <DependentUpon>Selector.xaml</DependentUpon>
     </Compile>
@@ -120,6 +131,11 @@
     <Compile Include="Controls\TextBoxSlot.xaml.cs">
       <DependentUpon>TextBoxSlot.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -169,6 +185,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\test_car.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\drift_left_menu.png" />
+    <Resource Include="Images\fixes_left_menu.png" />
+    <Resource Include="Images\gameplay_left_menu.png" />
+    <Resource Include="Images\game_left_menu.png" />
+    <Resource Include="Images\hotkeys_left_menu.png" />
+    <Resource Include="Images\lap.png" />
+    <Resource Include="Images\lapcontroller_left_menu.png" />
+    <Resource Include="Images\menu_left_menu.png" />
+    <Resource Include="Images\misc_left_menu.png" />
+    <Resource Include="Images\opponentcontroller_left_menu.png" />
+    <Resource Include="Images\presets_left_menu.png" />
+    <Resource Include="Images\weather_left_menu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,6 +9,7 @@ namespace NFSU2_ExOpts.Views
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e) => Close();

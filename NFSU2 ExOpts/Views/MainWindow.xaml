@@ -23,8 +23,8 @@
 
             <Border CornerRadius="6,6,0,0"
                     BorderThickness="1"
-                    BorderBrush="Black"
-                    Background="Black"
+                    BorderBrush="{StaticResource StaticBgBrush}"
+                    Background="{StaticResource StaticBgBrush}"
                     MouseLeftButtonDown="Border_MouseLeftButtonDown">
                 <Grid Background="Transparent"
                        Height="20"
@@ -73,7 +73,10 @@
                 </Grid>
             </Border>
 
-            <Frame Height="574"/>
+            
+            <Frame Height="574"
+                   NavigationUIVisibility="Hidden"
+                   Content="{Binding CurrentPage}"/>
             
         </StackPanel>
     </Border>
