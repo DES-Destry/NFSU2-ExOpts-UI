@@ -1,5 +1,4 @@
-﻿using NFSU2_ExOpts.ViewModels;
-using System;
+﻿using System;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 

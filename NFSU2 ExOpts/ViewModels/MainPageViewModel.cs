@@ -1,19 +1,15 @@
-﻿using NFSU2_ExOpts.Models;
+﻿using DESTRY.IO.Debuging;
+using NFSU2_ExOpts.Models;
 using NFSU2_ExOpts.Pages;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
 
 namespace NFSU2_ExOpts.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
         private Page gamePage;
+        private Page screenFXPage;
         private Page menuPage;
         private Page gameplayPage;
         private Page weatherPage;
@@ -213,31 +209,40 @@ namespace NFSU2_ExOpts.ViewModels
 
         public MainPageViewModel()
         {
-            gameSplashScreenPage = new SplashScreenPage("Game", "/NFSU2 ExOPts;component/Images/game_left_menu.png");
-            menuSplashScreenPage = new SplashScreenPage("Menu", "/NFSU2 ExOPts;component/Images/menu_left_menu.png");
-            gameplaySplashScreenPage = new SplashScreenPage("Gameplay", "/NFSU2 ExOPts;component/Images/gameplay_left_menu.png");
-            weatherSplashScreenPage = new SplashScreenPage("Weather", "/NFSU2 ExOPts;component/Images/weather_left_menu.png");
-            lapControllersSplashScreenPage = new SplashScreenPage("Lap settings", "/NFSU2 ExOPts;component/Images/lapcontroller_left_menu.png");
-            opponentsControllersSplashScreenPage = new SplashScreenPage("Opponents settings", "/NFSU2 ExOPts;component/Images/opponentcontroller_left_menu.png");
-            driftSplashScreenPage = new SplashScreenPage("Drift settings", "/NFSU2 ExOPts;component/Images/drift_left_menu.png");
-            hotkeysSplashScreenPage = new SplashScreenPage("Hotkeys", "/NFSU2 ExOPts;component/Images/hotkeys_left_menu.png");
-            miscSplashScreenPage = new SplashScreenPage("Misc", "/NFSU2 ExOPts;component/Images/misc_left_menu.png");
-            fixesSplashScreenPage = new SplashScreenPage("Fixes", "/NFSU2 ExOPts;component/Images/fixes_left_menu.png");
-            presetsSplashScreenPage = new SplashScreenPage("Settings presets", "/NFSU2 ExOPts;component/Images/presets_left_menu.png");
+            try
+            {
+                gameSplashScreenPage = new SplashScreenPage("Game", "/NFSU2 ExOPts;component/Images/game_left_menu.png");
+                menuSplashScreenPage = new SplashScreenPage("Menu settings", "/NFSU2 ExOPts;component/Images/menu_left_menu.png");
+                gameplaySplashScreenPage = new SplashScreenPage("Gameplay", "/NFSU2 ExOPts;component/Images/gameplay_left_menu.png");
+                weatherSplashScreenPage = new SplashScreenPage("Weather settings", "/NFSU2 ExOPts;component/Images/weather_left_menu.png");
+                lapControllersSplashScreenPage = new SplashScreenPage("Laps settings", "/NFSU2 ExOPts;component/Images/lapcontroller_left_menu.png");
+                opponentsControllersSplashScreenPage = new SplashScreenPage("Opponents settings", "/NFSU2 ExOPts;component/Images/opponentcontroller_left_menu.png");
+                driftSplashScreenPage = new SplashScreenPage("Drift settings", "/NFSU2 ExOPts;component/Images/drift_left_menu.png");
+                hotkeysSplashScreenPage = new SplashScreenPage("Hotkeys", "/NFSU2 ExOPts;component/Images/hotkeys_left_menu.png");
+                miscSplashScreenPage = new SplashScreenPage("Misc", "/NFSU2 ExOPts;component/Images/misc_left_menu.png");
+                fixesSplashScreenPage = new SplashScreenPage("Fixes", "/NFSU2 ExOPts;component/Images/fixes_left_menu.png");
+                presetsSplashScreenPage = new SplashScreenPage("Settings presets", "/NFSU2 ExOPts;component/Images/presets_left_menu.png");
+                Logs.WriteLog("All splash screens has been loaded", "INFO");
 
-            (gameSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-            (menuSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-            (gameplaySplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-            (weatherSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-            (lapControllersSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-            (opponentsControllersSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-            (driftSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-            (hotkeysSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-            (miscSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-            (fixesSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-            (presetsSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (gameSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (menuSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (gameplaySplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (weatherSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (lapControllersSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (opponentsControllersSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (driftSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (hotkeysSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (miscSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (fixesSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (presetsSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                Logs.WriteLog("All splash screen's next screens parameters has been installed!", "INFO");
 
-            GameOpen();
+                GameOpen();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
 
         private void AtScreenReset()
@@ -258,68 +263,148 @@ namespace NFSU2_ExOpts.ViewModels
         private void OpenSplashScreen(SplashScreenPage splashScreen)
         {
             CurrentPage = splashScreen;
+            Logs.WriteLog($"{splashScreen.SplashScreenText.Text} page has been opened", "INFO");
+
             AtScreenReset();
         }
 
         private void OpenNextPage(Page page)
         {
             CurrentPage = page;
+            Logs.WriteLog("Working page has been loaded!", "INFO");
         }
 
         private void GameOpen()
         {
-            OpenSplashScreen((SplashScreenPage)gameSplashScreenPage);
-            IsGamePageAtScreen = true;
+            try
+            {
+                OpenSplashScreen((SplashScreenPage)gameSplashScreenPage);
+                IsGamePageAtScreen = true;
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
         private void MenuOpen()
         {
-            OpenSplashScreen((SplashScreenPage)menuSplashScreenPage);
-            IsMenuPageAtScreen = true;
+            try
+            {
+                OpenSplashScreen((SplashScreenPage)menuSplashScreenPage);
+                IsMenuPageAtScreen = true;
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
         private void GameplayOpen()
         {
-            OpenSplashScreen((SplashScreenPage)gameplaySplashScreenPage);
-            IsGameplayPageAtScreen = true;
+            try
+            {
+                OpenSplashScreen((SplashScreenPage)gameplaySplashScreenPage);
+                IsGameplayPageAtScreen = true;
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
         private void WeatherOpen()
         {
-            OpenSplashScreen((SplashScreenPage)weatherSplashScreenPage);
-            IsWeatherPageAtScreen = true;
+            try
+            {
+                OpenSplashScreen((SplashScreenPage)weatherSplashScreenPage);
+                IsWeatherPageAtScreen = true;
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
         private void LapControllersOpen()
         {
-            OpenSplashScreen((SplashScreenPage)lapControllersSplashScreenPage);
-            IsLapControllersPageAtScreen = true;
+            try
+            {
+                OpenSplashScreen((SplashScreenPage)lapControllersSplashScreenPage);
+                IsLapControllersPageAtScreen = true;
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
         private void OpponentsControllerOpen()
         {
-            OpenSplashScreen((SplashScreenPage)opponentsControllersSplashScreenPage);
-            IsOpponentsControllersPageAtScreen = true;
+            try
+            {
+                OpenSplashScreen((SplashScreenPage)opponentsControllersSplashScreenPage);
+                IsOpponentsControllersPageAtScreen = true;
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
         private void DriftOpen()
         {
-            OpenSplashScreen((SplashScreenPage)driftSplashScreenPage);
-            IsDriftPageAtScreen = true;
+            try
+            {
+                OpenSplashScreen((SplashScreenPage)driftSplashScreenPage);
+                IsDriftPageAtScreen = true;
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
         private void HotkeysOpen()
         {
-            OpenSplashScreen((SplashScreenPage)hotkeysSplashScreenPage);
-            IsHotkeysPageAtScreen = true;
+            try
+            {
+                OpenSplashScreen((SplashScreenPage)hotkeysSplashScreenPage);
+                IsHotkeysPageAtScreen = true;
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
         private void MiscOpen()
         {
-            OpenSplashScreen((SplashScreenPage)miscSplashScreenPage);
-            IsMiscPageAtScreen = true;
+            try
+            {
+                OpenSplashScreen((SplashScreenPage)miscSplashScreenPage);
+                IsMiscPageAtScreen = true;
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
         private void FixesOpen()
         {
-            OpenSplashScreen((SplashScreenPage)fixesSplashScreenPage);
-            IsFixesPageAtScreen = true;
+            try
+            {
+                OpenSplashScreen((SplashScreenPage)fixesSplashScreenPage);
+                IsFixesPageAtScreen = true;
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
         private void PresetsOpen()
         {
-            OpenSplashScreen((SplashScreenPage)presetsSplashScreenPage);
-            IsPresetsPageAtScreen = true;
+            try
+            {
+                OpenSplashScreen((SplashScreenPage)presetsSplashScreenPage);
+                IsPresetsPageAtScreen = true;
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
     }
 }
