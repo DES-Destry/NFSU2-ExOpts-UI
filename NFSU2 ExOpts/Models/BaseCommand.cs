@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace NFSU2_ExOpts.Models
 {
-    class BaseCommand : ICommand
+    public class BaseCommand : ICommand
     {
         private Action<object> execute;
         private Func<object, bool> canExecute;

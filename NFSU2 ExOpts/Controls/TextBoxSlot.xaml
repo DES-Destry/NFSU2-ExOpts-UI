@@ -30,6 +30,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="128,0,0,0"
+                       FontWeight="Bold"
                        FontSize="{StaticResource Regular}"
                        FontFamily="{StaticResource BaseFont}"
                        Foreground="{StaticResource WhiteBrush}"/>
@@ -65,6 +66,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="154,74,0,0"
+                       FontWeight="Light"
                        Foreground="{StaticResource InformationTextBrush}"
                        FontSize="{StaticResource Mini}"
                        FontFamily="{StaticResource BaseFont}"/>

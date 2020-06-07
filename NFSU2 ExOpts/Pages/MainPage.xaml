@@ -21,57 +21,68 @@
                                        Margin="3"
                                        ItemHeaderText="Game"
                                        ImageSource="/NFSU2 ExOPts;component/Images/game_left_menu.png"
-                                       IsSelected="{Binding IsGamePageAtScreen}"/>
+                                       IsSelected="{Binding IsGamePageAtScreen,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Command="{Binding GameCommand}"/>
                 <controls:LeftMenuItem Height="40"
                                        Margin="3"
                                        ItemHeaderText="Menu settings"
                                        ImageSource="/NFSU2 ExOPts;component/Images/menu_left_menu.png"
-                                       IsSelected="{Binding IsMenuPageAtScreen}"/>
+                                       IsSelected="{Binding IsMenuPageAtScreen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Command="{Binding MenuCommand}"/>
                 <controls:LeftMenuItem Height="40"
                                        Margin="3"
                                        ItemHeaderText="Gameplay"
                                        ImageSource="/NFSU2 ExOPts;component/Images/gameplay_left_menu.png"
-                                       IsSelected="{Binding IsGameplayPageAtScreen}"/>
+                                       IsSelected="{Binding IsGameplayPageAtScreen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Command="{Binding GameplayCommand}"/>
                 <controls:LeftMenuItem Height="40"
                                        Margin="3"
                                        ItemHeaderText="Weather settings"
                                        ImageSource="/NFSU2 ExOPts;component/Images/weather_left_menu.png"
-                                       IsSelected="{Binding IsWeatherPageAtScreen}"/>
+                                       IsSelected="{Binding IsWeatherPageAtScreen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Command="{Binding WeatherCommand}"/>
                 <controls:LeftMenuItem Height="40"
                                        Margin="3"
                                        ItemHeaderText="Laps settings"
                                        ImageSource="/NFSU2 ExOPts;component/Images/lapcontroller_left_menu.png"
-                                       IsSelected="{Binding IsLapControllersPageAtScreen}"/>
+                                       IsSelected="{Binding IsLapControllersPageAtScreen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Command="{Binding LapCommand}"/>
                 <controls:LeftMenuItem Height="40"
                                        Margin="3"
                                        ItemHeaderText="Opponents settings"
                                        ImageSource="/NFSU2 ExOPts;component/Images/opponentcontroller_left_menu.png"
-                                       IsSelected="{Binding IsOpponentsControllersPageAtScreen}"/>
+                                       IsSelected="{Binding IsOpponentsControllersPageAtScreen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Command="{Binding OpponentsCommand}"/>
                 <controls:LeftMenuItem Height="40"
                                        Margin="3"
                                        ItemHeaderText="Drift settings"
                                        ImageSource="/NFSU2 ExOPts;component/Images/drift_left_menu.png"
-                                       IsSelected="{Binding IsDriftPageAtScreen}"/>
+                                       IsSelected="{Binding IsDriftPageAtScreen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Command="{Binding DriftCommand}"/>
                 <controls:LeftMenuItem Height="40"
                                        Margin="3"
                                        ItemHeaderText="Hotkeys"
                                        ImageSource="/NFSU2 ExOPts;component/Images/hotkeys_left_menu.png"
-                                       IsSelected="{Binding IsHotkeysPageAtScreen}"/>
+                                       IsSelected="{Binding IsHotkeysPageAtScreen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Command="{Binding HotkeysCommand}"/>
                 <controls:LeftMenuItem Height="40"
                                        Margin="3"
                                        ItemHeaderText="Misc"
                                        ImageSource="/NFSU2 ExOPts;component/Images/misc_left_menu.png"
-                                       IsSelected="{Binding IsMiscPageAtScreen}"/>
+                                       IsSelected="{Binding IsMiscPageAtScreen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Command="{Binding MiscCommand}"/>
                 <controls:LeftMenuItem Height="40"
                                        Margin="3"
                                        ItemHeaderText="Fixes"
                                        ImageSource="/NFSU2 ExOPts;component/Images/fixes_left_menu.png"
-                                       IsSelected="{Binding IsFixesPageAtScreen}"/>
+                                       IsSelected="{Binding IsFixesPageAtScreen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Command="{Binding FixesCommand}"/>
                 <controls:LeftMenuItem Height="40"
                                        Margin="3"
                                        ItemHeaderText="Settings presets"
                                        ImageSource="/NFSU2 ExOPts;component/Images/presets_left_menu.png"
-                                       IsSelected="{Binding IsPresetsPageAtScreen}"/>
+                                       IsSelected="{Binding IsPresetsPageAtScreen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Command="{Binding PresetsCommand}"/>
             </StackPanel>
         </Border>
 
@@ -80,7 +91,8 @@
                 Width="710"
                 CornerRadius="0,0,7,0">
             <Frame NavigationUIVisibility="Hidden"
-                   Content="{Binding CurrentPage}"/>
+                   Content="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                   Opacity="{Binding PageOpacity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Border>
 
     </Grid>

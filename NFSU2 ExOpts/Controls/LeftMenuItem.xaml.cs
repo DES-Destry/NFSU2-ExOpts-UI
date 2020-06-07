@@ -50,7 +50,12 @@ namespace NFSU2_ExOpts.Controls
         }
 
         public static readonly DependencyProperty IsSelectedProperty =
-            DependencyProperty.Register("IsSelected", typeof(bool), typeof(LeftMenuItem), new PropertyMetadata(false));
+            DependencyProperty.Register("IsSelected", 
+                typeof(bool), 
+                typeof(LeftMenuItem), 
+                new FrameworkPropertyMetadata(false, 
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, 
+                    new PropertyChangedCallback(IsSelectedChangedCallBack)));
 
 
 
@@ -68,6 +73,7 @@ namespace NFSU2_ExOpts.Controls
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Command?.Execute(sender);
+            Draw();
         }
 
         private void Draw()
@@ -85,6 +91,11 @@ namespace NFSU2_ExOpts.Controls
 
             ItemHeader.Text = ItemHeaderText;
             ItemImage.Source = new BitmapImage(new Uri(ImageSource, UriKind.Relative));
+        }
+
+        private static void IsSelectedChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs arg)
+        {
+            (sender as LeftMenuItem).Draw();
         }
     }
 }
