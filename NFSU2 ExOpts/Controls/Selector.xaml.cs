@@ -15,7 +15,9 @@ namespace NFSU2_ExOpts.Controls
         }
 
         public static readonly DependencyProperty ItemSourceProperty =
-            DependencyProperty.Register("ItemSource", typeof(ObservableCollection<string>), typeof(Selector), new PropertyMetadata(new ObservableCollection<string>()));
+            DependencyProperty.Register("ItemSource", typeof(ObservableCollection<string>), typeof(Selector), new FrameworkPropertyMetadata(new ObservableCollection<string>(),
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    new PropertyChangedCallback(SlotContent_ItemSourceChangedCallBack)));
 
 
 
@@ -27,9 +29,11 @@ namespace NFSU2_ExOpts.Controls
         }
 
         public static readonly DependencyProperty CurrentItemProperty =
-            DependencyProperty.Register("CurrentItem", typeof(int), typeof(Selector), new PropertyMetadata(0));
+            DependencyProperty.Register("CurrentItem", typeof(int), typeof(Selector), new FrameworkPropertyMetadata(0,
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    new PropertyChangedCallback(SlotContent_CurrentItemChangedCallBack)));
 
-        public event Action<object> CurrentItemChanged;
+        public Action<object> CurrentItemChanged;
 
 
 
@@ -69,6 +73,16 @@ namespace NFSU2_ExOpts.Controls
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             SetSelectorValues();
+        }
+
+        private static void SlotContent_CurrentItemChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            (sender as Selector).SetSelectorValues();
+        }
+
+        private static void SlotContent_ItemSourceChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            (sender as Selector).SetSelectorValues();
         }
 
         private void SetSelectorValues()

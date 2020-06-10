@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Runtime.Remoting.Channels;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -61,7 +62,9 @@ namespace NFSU2_ExOpts.Controls
         }
 
         public static readonly DependencyProperty ItemSourceProperty =
-            DependencyProperty.Register("ItemSource", typeof(ObservableCollection<string>), typeof(SelectorSlot), new PropertyMetadata(new ObservableCollection<string>()));
+            DependencyProperty.Register("ItemSource", typeof(ObservableCollection<string>), typeof(SelectorSlot), new FrameworkPropertyMetadata(new ObservableCollection<string>(),
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    new PropertyChangedCallback(Slot_ItemSourceChangedCallBack)));
 
 
 
@@ -73,7 +76,9 @@ namespace NFSU2_ExOpts.Controls
         }
 
         public static readonly DependencyProperty CurrentItemProperty =
-            DependencyProperty.Register("CurrentItem", typeof(int), typeof(SelectorSlot), new PropertyMetadata(0));
+            DependencyProperty.Register("CurrentItem", typeof(int), typeof(SelectorSlot), new FrameworkPropertyMetadata(0,
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    new PropertyChangedCallback(Slot_CurrentItemChangedCallBack)));
 
 
 
@@ -94,6 +99,16 @@ namespace NFSU2_ExOpts.Controls
         private void SlotContent_CurrentItemChanged(object sender)
         {
             CurrentItem = SlotContent.CurrentItem;
+        }
+
+        private static void Slot_CurrentItemChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            (sender as SelectorSlot).Grid_Loaded(sender, null);
+        }
+
+        private static void Slot_ItemSourceChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            (sender as SelectorSlot).Grid_Loaded(sender, null);
         }
 
         private void ShowInfoButton_Click(object sender, RoutedEventArgs e)

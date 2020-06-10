@@ -1,6 +1,7 @@
 ﻿using DESTRY.IO.Debuging;
 using NFSU2_ExOpts.Models;
 using NFSU2_ExOpts.Pages;
+using NFSU2_ExOpts.Pages.WorkPages;
 using System;
 using System.Windows.Controls;
 
@@ -224,12 +225,15 @@ namespace NFSU2_ExOpts.ViewModels
                 presetsSplashScreenPage = new SplashScreenPage("Settings presets", "/NFSU2 ExOPts;component/Images/presets_left_menu.png");
                 Logs.WriteLog("All splash screens has been loaded", "INFO");
 
+                opponentsControllersPage = new OpponentsControllersPage();
+                Logs.WriteLog("All work screens has been loaded", "INFO");
+
                 (gameSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
                 (menuSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
                 (gameplaySplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
                 (weatherSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
                 (lapControllersSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-                (opponentsControllersSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                (opponentsControllersSplashScreenPage as SplashScreenPage).SetNextPageSettings(opponentsControllersPage, OpenNextPage);
                 (driftSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
                 (hotkeysSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
                 (miscSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);

@@ -111,6 +111,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WorkPages\OpponentsControllersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ButtonBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,8 +171,12 @@
     <Compile Include="Pages\SplashScreenPage.xaml.cs">
       <DependentUpon>SplashScreenPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkPages\OpponentsControllersPage.xaml.cs">
+      <DependentUpon>OpponentsControllersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\OpponentsControllersPageViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -232,6 +240,12 @@
     <Resource Include="Images\opponentcontroller_left_menu.png" />
     <Resource Include="Images\presets_left_menu.png" />
     <Resource Include="Images\weather_left_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\opponents_ko.png" />
+    <Resource Include="Images\opponents_max.png" />
+    <Resource Include="Images\opponents_max_lan.png" />
+    <Resource Include="Images\opponents_min.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

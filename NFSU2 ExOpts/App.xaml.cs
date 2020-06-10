@@ -35,7 +35,6 @@ namespace NFSU2_ExOpts
 
                 Errors.InitErrorsPath(Path.Combine(ApplicationDataFolder, "error reports"));
 
-
                 if (!Directory.Exists(ApplicationDataFolder) ||
                     !Directory.Exists(Path.Combine(ApplicationDataFolder, "data")) ||
                     !Directory.Exists(Path.Combine(ApplicationDataFolder, "error reports")) ||
