@@ -12,6 +12,8 @@ namespace NFSU2_ExOpts.Pages
         private Page nextPage;
         private Action<Page> splashScreenClosed;
 
+        private bool isAtScreen;
+
         public SplashScreenPage()
         {
             InitializeComponent();
@@ -35,16 +37,17 @@ namespace NFSU2_ExOpts.Pages
         {
             SplashScreenText.Text = text;
             SplashScreenImage.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
+            isAtScreen = true;
         }
 
         private void Grid_Unloaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            splashScreenClosed = null;
+            isAtScreen = false;
         }
 
         private void DoubleAnimationUsingKeyFrames_Completed(object sender, EventArgs e)
         {
-            splashScreenClosed?.Invoke(nextPage);
+            if (isAtScreen) splashScreenClosed?.Invoke(nextPage);
         }
     }
 }

@@ -60,7 +60,9 @@ namespace NFSU2_ExOpts.Controls
         }
 
         public static readonly DependencyProperty SlotTextContentProperty =
-            DependencyProperty.Register("SlotTextContent", typeof(string), typeof(TextBoxSlot), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("SlotTextContent", typeof(string), typeof(TextBoxSlot), new FrameworkPropertyMetadata(string.Empty,
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    new PropertyChangedCallback(Slot_TextChangedChangedCallBack)));
 
 
 
@@ -84,6 +86,11 @@ namespace NFSU2_ExOpts.Controls
         private void SlotContent_TextChanged(object sender, TextChangedEventArgs e)
         {
             SlotTextContent = (sender as TextBox).Text;
+        }
+
+        private static void Slot_TextChangedChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            (sender as TextBoxSlot).Grid_Loaded(sender, null);
         }
     }
 }

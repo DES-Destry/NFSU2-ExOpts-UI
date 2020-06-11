@@ -47,7 +47,8 @@ namespace NFSU2_ExOpts.ViewModels
                 if (maximumCurrentItem >= value)
                 {
                     minimumCurrentItem = value;
-                    App.IniFile["Minimum"] = minimumCurrentItem.ToString();
+                    App.IniFile["Minimum", "OpponentControllers"] = minimumCurrentItem.ToString();
+                    App.IsSavedData = false;
 
                     OnPropertyChanged();
                 }
@@ -68,7 +69,8 @@ namespace NFSU2_ExOpts.ViewModels
                 if (minimumCurrentItem <= value)
                 {
                     maximumCurrentItem = value;
-                    App.IniFile["Maximum"] = maximumCurrentItem.ToString();
+                    App.IniFile["Maximum", "OpponentControllers"] = maximumCurrentItem.ToString();
+                    App.IsSavedData = false;
 
                     OnPropertyChanged();
                 }
@@ -87,7 +89,8 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 koEnabledCurrentItem = value;
-                App.IniFile["KOEnabled"] = koEnabledCurrentItem.ToString();
+                App.IniFile["KOEnabled", "OpponentControllers"] = koEnabledCurrentItem.ToString();
+                App.IsSavedData = false;
 
                 OnPropertyChanged();
             }
@@ -101,7 +104,8 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 maxLanPlayersCurrentItem = value - 2;
-                App.IniFile["MaximumLANPlayers"] = maxLanPlayersCurrentItem.ToString();
+                App.IniFile["MaximumLANPlayers", "OpponentControllers"] = maxLanPlayersCurrentItem.ToString();
+                App.IsSavedData = false;
 
                 OnPropertyChanged();
             }
@@ -115,7 +119,8 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 maxLanPlayersCurrentItem = value;
-                App.IniFile["MaximumLANPlayers"] = maxLanPlayersCurrentItem.ToString();
+                App.IniFile["MaximumLANPlayers", "OpponentControllers"] = maxLanPlayersCurrentItem.ToString();
+                App.IsSavedData = false;
 
                 OnPropertyChanged();
             }

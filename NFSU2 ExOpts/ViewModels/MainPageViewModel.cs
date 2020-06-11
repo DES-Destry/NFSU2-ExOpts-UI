@@ -22,17 +22,17 @@ namespace NFSU2_ExOpts.ViewModels
         private Page fixesPage;
         private Page presetsPage;
 
-        private Page gameSplashScreenPage;
-        private Page menuSplashScreenPage;
-        private Page gameplaySplashScreenPage;
-        private Page weatherSplashScreenPage;
-        private Page lapControllersSplashScreenPage;
-        private Page opponentsControllersSplashScreenPage;
-        private Page driftSplashScreenPage;
-        private Page hotkeysSplashScreenPage;
-        private Page miscSplashScreenPage;
-        private Page fixesSplashScreenPage;
-        private Page presetsSplashScreenPage;
+        private SplashScreenPage gameSplashScreenPage;
+        private SplashScreenPage menuSplashScreenPage;
+        private SplashScreenPage gameplaySplashScreenPage;
+        private SplashScreenPage weatherSplashScreenPage;
+        private SplashScreenPage lapControllersSplashScreenPage;
+        private SplashScreenPage opponentsControllersSplashScreenPage;
+        private SplashScreenPage driftSplashScreenPage;
+        private SplashScreenPage hotkeysSplashScreenPage;
+        private SplashScreenPage miscSplashScreenPage;
+        private SplashScreenPage fixesSplashScreenPage;
+        private SplashScreenPage presetsSplashScreenPage;
 
         private bool isGamePageAtScreen = false;
         private bool isMenuPageAtScreen = false;
@@ -225,20 +225,21 @@ namespace NFSU2_ExOpts.ViewModels
                 presetsSplashScreenPage = new SplashScreenPage("Settings presets", "/NFSU2 ExOPts;component/Images/presets_left_menu.png");
                 Logs.WriteLog("All splash screens has been loaded", "INFO");
 
+                lapControllersPage = new LapsControllerPage();
                 opponentsControllersPage = new OpponentsControllersPage();
                 Logs.WriteLog("All work screens has been loaded", "INFO");
 
-                (gameSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-                (menuSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-                (gameplaySplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-                (weatherSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-                (lapControllersSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-                (opponentsControllersSplashScreenPage as SplashScreenPage).SetNextPageSettings(opponentsControllersPage, OpenNextPage);
-                (driftSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-                (hotkeysSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-                (miscSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-                (fixesSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
-                (presetsSplashScreenPage as SplashScreenPage).SetNextPageSettings(null, OpenNextPage);
+                gameSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                menuSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                gameplaySplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                weatherSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                lapControllersSplashScreenPage.SetNextPageSettings(lapControllersPage, OpenNextPage);
+                opponentsControllersSplashScreenPage.SetNextPageSettings(opponentsControllersPage, OpenNextPage);
+                driftSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                hotkeysSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                miscSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                fixesSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                presetsSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
                 Logs.WriteLog("All splash screen's next screens parameters has been installed!", "INFO");
 
                 GameOpen();
@@ -282,7 +283,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             try
             {
-                OpenSplashScreen((SplashScreenPage)gameSplashScreenPage);
+                OpenSplashScreen(gameSplashScreenPage);
                 IsGamePageAtScreen = true;
             }
             catch (Exception ex)
@@ -294,7 +295,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             try
             {
-                OpenSplashScreen((SplashScreenPage)menuSplashScreenPage);
+                OpenSplashScreen(menuSplashScreenPage);
                 IsMenuPageAtScreen = true;
             }
             catch (Exception ex)
@@ -306,7 +307,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             try
             {
-                OpenSplashScreen((SplashScreenPage)gameplaySplashScreenPage);
+                OpenSplashScreen(gameplaySplashScreenPage);
                 IsGameplayPageAtScreen = true;
             }
             catch (Exception ex)
@@ -318,7 +319,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             try
             {
-                OpenSplashScreen((SplashScreenPage)weatherSplashScreenPage);
+                OpenSplashScreen(weatherSplashScreenPage);
                 IsWeatherPageAtScreen = true;
             }
             catch (Exception ex)
@@ -330,7 +331,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             try
             {
-                OpenSplashScreen((SplashScreenPage)lapControllersSplashScreenPage);
+                OpenSplashScreen(lapControllersSplashScreenPage);
                 IsLapControllersPageAtScreen = true;
             }
             catch (Exception ex)
@@ -342,7 +343,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             try
             {
-                OpenSplashScreen((SplashScreenPage)opponentsControllersSplashScreenPage);
+                OpenSplashScreen(opponentsControllersSplashScreenPage);
                 IsOpponentsControllersPageAtScreen = true;
             }
             catch (Exception ex)
@@ -354,7 +355,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             try
             {
-                OpenSplashScreen((SplashScreenPage)driftSplashScreenPage);
+                OpenSplashScreen(driftSplashScreenPage);
                 IsDriftPageAtScreen = true;
             }
             catch (Exception ex)
@@ -366,7 +367,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             try
             {
-                OpenSplashScreen((SplashScreenPage)hotkeysSplashScreenPage);
+                OpenSplashScreen(hotkeysSplashScreenPage);
                 IsHotkeysPageAtScreen = true;
             }
             catch (Exception ex)
@@ -378,7 +379,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             try
             {
-                OpenSplashScreen((SplashScreenPage)miscSplashScreenPage);
+                OpenSplashScreen(miscSplashScreenPage);
                 IsMiscPageAtScreen = true;
             }
             catch (Exception ex)
@@ -390,7 +391,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             try
             {
-                OpenSplashScreen((SplashScreenPage)fixesSplashScreenPage);
+                OpenSplashScreen(fixesSplashScreenPage);
                 IsFixesPageAtScreen = true;
             }
             catch (Exception ex)
@@ -402,7 +403,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             try
             {
-                OpenSplashScreen((SplashScreenPage)presetsSplashScreenPage);
+                OpenSplashScreen(presetsSplashScreenPage);
                 IsPresetsPageAtScreen = true;
             }
             catch (Exception ex)

@@ -111,6 +111,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WorkPages\LapsControllerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkPages\OpponentsControllersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,9 +175,13 @@
     <Compile Include="Pages\SplashScreenPage.xaml.cs">
       <DependentUpon>SplashScreenPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkPages\LapsControllerPage.xaml.cs">
+      <DependentUpon>LapsControllerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WorkPages\OpponentsControllersPage.xaml.cs">
       <DependentUpon>OpponentsControllersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\LapsControllerPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\OpponentsControllersPageViewModel.cs" />
@@ -233,7 +241,6 @@
     <Resource Include="Images\gameplay_left_menu.png" />
     <Resource Include="Images\game_left_menu.png" />
     <Resource Include="Images\hotkeys_left_menu.png" />
-    <Resource Include="Images\lap.png" />
     <Resource Include="Images\lapcontroller_left_menu.png" />
     <Resource Include="Images\menu_left_menu.png" />
     <Resource Include="Images\misc_left_menu.png" />
@@ -246,6 +253,11 @@
     <Resource Include="Images\opponents_max.png" />
     <Resource Include="Images\opponents_max_lan.png" />
     <Resource Include="Images\opponents_min.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\laps_ko.png" />
+    <Resource Include="Images\laps_max.png" />
+    <Resource Include="Images\laps_min.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,74 @@
+﻿<Page x:Class="NFSU2_ExOpts.Pages.WorkPages.LapsControllerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:controls="clr-namespace:NFSU2_ExOpts.Controls" 
+      xmlns:local="clr-namespace:NFSU2_ExOpts.Pages.WorkPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="574"
+      d:DesignWidth="710"
+      Title="LapsControllerPage">
+
+    <ScrollViewer>
+        <Grid>
+            <Grid Height="128"
+                  VerticalAlignment="Top">
+                <Image Width="256"
+                       HorizontalAlignment="Left"
+                       Source="/NFSU2 ExOpts;component/Images/lapcontroller_left_menu.png"/>
+                <TextBlock Text="Laps settings"
+                           Margin="256,0,0,0"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource WhiteBrush}"
+                           FontSize="{StaticResource H2}"
+                           FontFamily="{StaticResource BaseFont}"/>
+            </Grid>
+            <StackPanel Margin="0,128,0,0">
+                <controls:TextBoxSlot Height="64"
+                                      Margin="5"
+                                      SlotHeader="Minimum"
+                                      SlotInfo="Minimum number of laps can be selected at Quick Race and LAN Race options screen. (0/127)"
+                                      SlotImageSource="/NFSU2 ExOpts;component/Images/laps_min.png"
+                                      SlotInfoGif="/NFSU2 ExOpts;component/Images/laps_min.png"
+                                      SlotTextContent="{Binding Minimum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <controls:TextBoxSlot Height="64"
+                                      Margin="5"
+                                      SlotHeader="Maximum"
+                                      SlotInfo=" Maximum number of laps can be selected at Quick Race and LAN Race options screen. (0/127)"
+                                      SlotImageSource="/NFSU2 ExOpts;component/Images/laps_max.png"
+                                      SlotInfoGif="/NFSU2 ExOpts;component/Images/laps_max.png"
+                                      SlotTextContent="{Binding Maximum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <controls:TextBoxSlot Height="64"
+                                      Margin="5"
+                                      SlotHeader="KO Enabled"
+                                      SlotInfo="Number of laps when Lap KO enabled at Quick Race options screen. (0/127)"
+                                      SlotImageSource="/NFSU2 ExOpts;component/Images/laps_ko.png"
+                                      SlotInfoGif="/NFSU2 ExOpts;component/Images/laps_ko.png"
+                                      SlotTextContent="{Binding KoEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                       BeginTime="0:0:0">
+                                <SplineDoubleKeyFrame KeyTime="0:0:0"
+                                                  Value="0"/>
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.2"
+                                                  Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <QuarticEase EasingMode="EaseOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+        </Grid>
+    </ScrollViewer>
+    
+</Page>

@@ -19,6 +19,9 @@ namespace NFSU2_ExOpts
         public static bool MainScriptExists { get; private set; } = false;
         public static bool GameExeExists { get; private set; } = false;
 
+        public static bool IsCorrectData = true;
+        public static bool IsSavedData = true;
+
         public static IniFile IniFile = new IniFile();
         public static AppSettings Settings = new AppSettings();
 
