@@ -227,6 +227,7 @@ namespace NFSU2_ExOpts.ViewModels
 
                 lapControllersPage = new LapsControllerPage();
                 opponentsControllersPage = new OpponentsControllersPage();
+                driftPage = new DriftPage();
                 Logs.WriteLog("All work screens has been loaded", "INFO");
 
                 gameSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
@@ -235,7 +236,7 @@ namespace NFSU2_ExOpts.ViewModels
                 weatherSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
                 lapControllersSplashScreenPage.SetNextPageSettings(lapControllersPage, OpenNextPage);
                 opponentsControllersSplashScreenPage.SetNextPageSettings(opponentsControllersPage, OpenNextPage);
-                driftSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                driftSplashScreenPage.SetNextPageSettings(driftPage, OpenNextPage);
                 hotkeysSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
                 miscSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
                 fixesSplashScreenPage.SetNextPageSettings(null, OpenNextPage);

@@ -111,6 +111,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WorkPages\DriftPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkPages\LapsControllerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,11 +173,15 @@
       <DependentUpon>TextBoxSlot.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\AppSettings.cs" />
+    <Compile Include="Models\BinaryBoolConverter.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SplashScreenPage.xaml.cs">
       <DependentUpon>SplashScreenPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WorkPages\DriftPage.xaml.cs">
+      <DependentUpon>DriftPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\WorkPages\LapsControllerPage.xaml.cs">
       <DependentUpon>LapsControllerPage.xaml</DependentUpon>
@@ -181,6 +189,7 @@
     <Compile Include="Pages\WorkPages\OpponentsControllersPage.xaml.cs">
       <DependentUpon>OpponentsControllersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DriftPageViewModel.cs" />
     <Compile Include="ViewModels\LapsControllerPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -258,6 +267,11 @@
     <Resource Include="Images\laps_ko.png" />
     <Resource Include="Images\laps_max.png" />
     <Resource Include="Images\laps_min.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\drift_hide_multiplier.png" />
+    <Resource Include="Images\drift_max_multiplier.png" />
+    <Resource Include="Images\drift_plus_sign.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

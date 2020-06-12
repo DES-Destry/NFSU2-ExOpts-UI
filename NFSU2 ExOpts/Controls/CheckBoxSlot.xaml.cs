@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace NFSU2_ExOpts.Controls
@@ -60,7 +61,9 @@ namespace NFSU2_ExOpts.Controls
         }
 
         public static readonly DependencyProperty SlotIsCheckedProperty =
-            DependencyProperty.Register("SlotIsChecked", typeof(bool), typeof(CheckBoxSlot), new PropertyMetadata(false));
+            DependencyProperty.Register("SlotIsChecked", typeof(bool), typeof(CheckBoxSlot), new FrameworkPropertyMetadata(false,
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    new PropertyChangedCallback(Slot_IsSelectedChangedChangedCallBack)));
 
 
 
@@ -84,6 +87,11 @@ namespace NFSU2_ExOpts.Controls
         {
             BaseSlotsMethods.DrawBase(this);
             SlotCheckBox.IsChecked = SlotIsChecked;
+        }
+
+        private static void Slot_IsSelectedChangedChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            (sender as CheckBoxSlot).Grid_Loaded(sender, null);
         }
     }
 }
