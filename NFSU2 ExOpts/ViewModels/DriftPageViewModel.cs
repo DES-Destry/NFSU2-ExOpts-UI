@@ -50,8 +50,10 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 maxMultiplierCurrentItem = value;
-                App.IniFile["MaximumMultiplier", "Drift"] = value.ToString();
+                App.IniFile["MaximumMultiplier", "Drift"] = oneNineCollection[value];
                 App.IsSavedData = false;
+
+                Logs.WriteLog($"MaximumMultiplier(Drift) value has been changed to {oneNineCollection[value]}", "INFO");
 
                 OnPropertyChanged();
             }
@@ -68,6 +70,8 @@ namespace NFSU2_ExOpts.ViewModels
                 App.IniFile["PlusSign", "Drift"] = value;
                 App.IsSavedData = false;
 
+                Logs.WriteLog($"PlusSign(Drift) value has been changed to {value}", "INFO");
+
                 OnPropertyChanged();
             }
         }
@@ -82,6 +86,8 @@ namespace NFSU2_ExOpts.ViewModels
                 hideMultiplierSelected = value;
                 App.IniFile["ShowWithoutMultiplying", "Drift"] = value;
                 App.IsSavedData = false;
+
+                Logs.WriteLog($"ShowWithoutMultiplying(Drift) value has been changed to {value}", "INFO");
 
                 OnPropertyChanged();
             }
@@ -107,8 +113,7 @@ namespace NFSU2_ExOpts.ViewModels
                 else
                 {
                     MaxMultiplierCurrentItem = -1;
-                    PlusSignSelected = null;
-                    HideMultiplierSelected = null;
+                    PlusSignSelected = HideMultiplierSelected = null; 
                 }
             }
             catch (Exception ex)

@@ -119,6 +119,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WorkPages\MiscPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkPages\OpponentsControllersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +190,9 @@
     <Compile Include="Pages\WorkPages\LapsControllerPage.xaml.cs">
       <DependentUpon>LapsControllerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkPages\MiscPage.xaml.cs">
+      <DependentUpon>MiscPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WorkPages\OpponentsControllersPage.xaml.cs">
       <DependentUpon>OpponentsControllersPage.xaml</DependentUpon>
     </Compile>
@@ -193,6 +200,7 @@
     <Compile Include="ViewModels\LapsControllerPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MiscPageViewModel.cs" />
     <Compile Include="ViewModels\OpponentsControllersPageViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -272,6 +280,14 @@
     <Resource Include="Images\drift_hide_multiplier.png" />
     <Resource Include="Images\drift_max_multiplier.png" />
     <Resource Include="Images\drift_plus_sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\misc_game_music.png" />
+    <Resource Include="Images\misc_game_sound.png" />
+    <Resource Include="Images\misc_multiple_instances.png" />
+    <Resource Include="Images\misc_skip_movies.png" />
+    <Resource Include="Images\misc_windowed_mode.png" />
+    <Resource Include="Images\screenFX_left_menu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

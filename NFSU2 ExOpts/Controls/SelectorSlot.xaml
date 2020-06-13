@@ -47,7 +47,7 @@
             <local:Selector x:Name="SlotContent"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Right"
-                            Width="180"
+                            Width="240"
                             Margin="5,7,5,5"/>
 
             <Image x:Name="InfoGif"

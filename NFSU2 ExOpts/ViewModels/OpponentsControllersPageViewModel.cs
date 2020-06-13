@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using DESTRY.IO.Debuging;
+using System;
+using System.Collections.ObjectModel;
 
 namespace NFSU2_ExOpts.ViewModels
 {
@@ -12,9 +14,9 @@ namespace NFSU2_ExOpts.ViewModels
         private int koEnabledCurrentItem;
         private int maxLanPlayersCurrentItem;
 
-        public ObservableCollection<string> ZeroFiveCollection 
-        { 
-            get 
+        public ObservableCollection<string> ZeroFiveCollection
+        {
+            get
             {
                 return zeroFiveCollection;
             }
@@ -50,6 +52,8 @@ namespace NFSU2_ExOpts.ViewModels
                     App.IniFile["Minimum", "OpponentControllers"] = minimumCurrentItem.ToString();
                     App.IsSavedData = false;
 
+                    Logs.WriteLog($"Minimum(OpponentControllers) value has been changed to {value}", "INFO");
+
                     OnPropertyChanged();
                 }
                 else
@@ -72,6 +76,8 @@ namespace NFSU2_ExOpts.ViewModels
                     App.IniFile["Maximum", "OpponentControllers"] = maximumCurrentItem.ToString();
                     App.IsSavedData = false;
 
+                    Logs.WriteLog($"Maximum(OpponentControllers) value has been changed to {value}", "INFO");
+
                     OnPropertyChanged();
                 }
                 else
@@ -92,6 +98,8 @@ namespace NFSU2_ExOpts.ViewModels
                 App.IniFile["KOEnabled", "OpponentControllers"] = koEnabledCurrentItem.ToString();
                 App.IsSavedData = false;
 
+                Logs.WriteLog($"KOEnabled(OpponentControllers) value has been changed to {value}", "INFO");
+
                 OnPropertyChanged();
             }
         }
@@ -104,9 +112,6 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 maxLanPlayersCurrentItem = value - 2;
-                App.IniFile["MaximumLANPlayers", "OpponentControllers"] = maxLanPlayersCurrentItem.ToString();
-                App.IsSavedData = false;
-
                 OnPropertyChanged();
             }
         }
@@ -119,8 +124,10 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 maxLanPlayersCurrentItem = value;
-                App.IniFile["MaximumLANPlayers", "OpponentControllers"] = maxLanPlayersCurrentItem.ToString();
+                App.IniFile["MaximumLANPlayers", "OpponentControllers"] = twoSixCollection[value];
                 App.IsSavedData = false;
+
+                Logs.WriteLog($"MaximumLANPlayers(OpponentControllers) value has been changed to {twoSixCollection[value]}", "INFO");
 
                 OnPropertyChanged();
             }
@@ -133,19 +140,26 @@ namespace NFSU2_ExOpts.ViewModels
 
         private void SetValues()
         {
-            ZeroFiveCollection = new ObservableCollection<string>() { "0", "1", "2", "3", "4", "5" };
-            TwoSixCollection = new ObservableCollection<string>() { "2", "3", "4", "5", "6" };
+            try
+            {
+                ZeroFiveCollection = new ObservableCollection<string>() { "0", "1", "2", "3", "4", "5" };
+                TwoSixCollection = new ObservableCollection<string>() { "2", "3", "4", "5", "6" };
 
-            if (!App.IniFile.IsEmpty)
-            {
-                MinimumCurrentItem = int.Parse(App.IniFile["Minimum", "OpponentControllers"]);
-                MaximumCurrentItem = int.Parse(App.IniFile["Maximum", "OpponentControllers"]);
-                KoEnabledCurrentItem = int.Parse(App.IniFile["KOEnabled", "OpponentControllers"]);
-                MaxLanPlayersCurrentItem = int.Parse(App.IniFile["MaximumLANPlayers", "OpponentControllers"]);
+                if (!App.IniFile.IsEmpty)
+                {
+                    MinimumCurrentItem = int.Parse(App.IniFile["Minimum", "OpponentControllers"]);
+                    MaximumCurrentItem = int.Parse(App.IniFile["Maximum", "OpponentControllers"]);
+                    KoEnabledCurrentItem = int.Parse(App.IniFile["KOEnabled", "OpponentControllers"]);
+                    MaxLanPlayersCurrentItem = int.Parse(App.IniFile["MaximumLANPlayers", "OpponentControllers"]);
+                }
+                else
+                {
+                    MinimumCurrentItem = MaximumCurrentItem = KoEnabledCurrentItem = MaxLanPlayersCurrentItem = -1;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MinimumCurrentItem = MaximumCurrentItem = KoEnabledCurrentItem = MaxLanPlayersCurrentItem = -1;
+                Errors.WriteError(ex);
             }
         }
     }

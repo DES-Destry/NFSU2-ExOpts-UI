@@ -50,11 +50,11 @@ namespace NFSU2_ExOpts.Controls
         }
 
         public static readonly DependencyProperty IsSelectedProperty =
-            DependencyProperty.Register("IsSelected", 
-                typeof(bool), 
-                typeof(LeftMenuItem), 
-                new FrameworkPropertyMetadata(false, 
-                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, 
+            DependencyProperty.Register("IsSelected",
+                typeof(bool),
+                typeof(LeftMenuItem),
+                new FrameworkPropertyMetadata(false,
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     new PropertyChangedCallback(IsSelectedChangedCallBack)));
 
 

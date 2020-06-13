@@ -19,9 +19,9 @@ namespace NFSU2_ExOpts.Views
             Close();
         }
 
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) 
-        { 
-            DragMove(); 
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

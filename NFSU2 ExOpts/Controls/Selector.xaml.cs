@@ -25,7 +25,7 @@ namespace NFSU2_ExOpts.Controls
         public int CurrentItem
         {
             get { return (int)GetValue(CurrentItemProperty); }
-            set { SetValue(CurrentItemProperty, value); SetSelectorValues(); CurrentItemChanged?.Invoke(this); }
+            set { SetValue(CurrentItemProperty, value); CurrentItemChanged?.Invoke(this); }
         }
 
         public static readonly DependencyProperty CurrentItemProperty =
@@ -77,12 +77,12 @@ namespace NFSU2_ExOpts.Controls
 
         private static void SlotContent_CurrentItemChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            (sender as Selector).SetSelectorValues();
+            (sender as Selector).Grid_Loaded(sender, null);
         }
 
         private static void SlotContent_ItemSourceChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            (sender as Selector).SetSelectorValues();
+            (sender as Selector).Grid_Loaded(sender, null);
         }
 
         private void SetSelectorValues()

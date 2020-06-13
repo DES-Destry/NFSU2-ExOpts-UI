@@ -15,22 +15,23 @@
         <models:BinaryBoolConverter x:Key="CheckBoxSlotConverter"/>
     </Page.Resources>
 
-    <ScrollViewer>
-        <Grid>
-            <Grid Height="128"
+    <Grid>
+        <ScrollViewer>
+            <Grid>
+                <Grid Height="128"
                   VerticalAlignment="Top">
-                <Image Width="256"
+                    <Image Width="256"
                        HorizontalAlignment="Left"
                        Source="/NFSU2 ExOpts;component/Images/drift_left_menu.png"/>
-                <TextBlock Text="Drift settings"
+                    <TextBlock Text="Drift settings"
                            Margin="256,0,0,0"
                            FontWeight="Bold"
                            Foreground="{StaticResource WhiteBrush}"
                            FontSize="{StaticResource H2}"
                            FontFamily="{StaticResource BaseFont}"/>
-            </Grid>
-            <StackPanel Margin="0,128,0,0">
-                <controls:SelectorSlot Height="64"
+                </Grid>
+                <StackPanel Margin="0,128,0,0">
+                    <controls:SelectorSlot Height="64"
                                        Margin="5"
                                        SlotHeader="Maximum multiplier"
                                        SlotInfo="Maximum drift multipiler."
@@ -38,43 +39,43 @@
                                        SlotInfoGif="/NFSU2 ExOpts;component/Images/drift_max_multiplier.png"
                                        ItemSource="{Binding OneNineCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        CurrentItem="{Binding MaxMultiplierCurrentItemIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <controls:CheckBoxSlot Height="64"
+                    <controls:CheckBoxSlot Height="64"
                                        Margin="5"
                                        SlotHeader="Plus sign"
                                        SlotInfo="Shows a + sign before drift point while drifting."
                                        SlotImageSource="/NFSU2 ExOpts;component/Images/drift_plus_sign.png"
                                        SlotInfoGif="/NFSU2 ExOpts;component/Images/drift_plus_sign.png"
                                        SlotIsChecked="{Binding PlusSignSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CheckBoxSlotConverter}}"/>
-                <controls:CheckBoxSlot Height="64"
+                    <controls:CheckBoxSlot Height="64"
                                        Margin="5"
                                        SlotHeader="Show without multiplier"
                                        SlotInfo="Shows the drift point as 500x3 instead of 1500 while drifting."
                                        SlotImageSource="/NFSU2 ExOpts;component/Images/drift_hide_multiplier.png"
                                        SlotInfoGif="/NFSU2 ExOpts;component/Images/drift_hide_multiplier.png"
                                        SlotIsChecked="{Binding HideMultiplierSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CheckBoxSlotConverter}}"/>
-            </StackPanel>
-
-            <Grid.Triggers>
-                <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
                                                        BeginTime="0:0:0">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0"
+                            <SplineDoubleKeyFrame KeyTime="0:0:0"
                                                   Value="0"/>
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.2"
+                            <SplineDoubleKeyFrame KeyTime="0:0:0.2"
                                                   Value="0"/>
-                                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1">
-                                    <EasingDoubleKeyFrame.EasingFunction>
-                                        <QuarticEase EasingMode="EaseOut"/>
-                                    </EasingDoubleKeyFrame.EasingFunction>
-                                </EasingDoubleKeyFrame>
-                            </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Grid.Triggers>
-        </Grid>
-    </ScrollViewer>
-    
+                            <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1">
+                                <EasingDoubleKeyFrame.EasingFunction>
+                                    <QuarticEase EasingMode="EaseOut"/>
+                                </EasingDoubleKeyFrame.EasingFunction>
+                            </EasingDoubleKeyFrame>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+    </Grid>
+
 </Page>

@@ -91,8 +91,7 @@
                 Width="710"
                 CornerRadius="0,0,7,0">
             <Frame NavigationUIVisibility="Hidden"
-                   Content="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                   Opacity="{Binding PageOpacity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                   Content="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Border>
 
     </Grid>

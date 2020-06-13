@@ -1,4 +1,5 @@
-﻿using System.IO.Packaging;
+﻿using DESTRY.IO.Debuging;
+using System;
 
 namespace NFSU2_ExOpts.ViewModels
 {
@@ -27,15 +28,19 @@ namespace NFSU2_ExOpts.ViewModels
                         Maximum = minimum;
                     }
 
+                    Logs.WriteLog($"Minimum(LapControllers) value has been changed to {value}", "INFO");
+
                     OnPropertyChanged();
                 }
                 else if (value == string.Empty)
                 {
+                    Logs.WriteLog($"Minimum(LapControllers) value not changed. It's empty. Waiting normal input...", "INFO");
                     OnPropertyChanged();
                 }
                 else
                 {
                     Minimum = minimum.Remove(minimum.Length - 1, 1);
+                    Logs.WriteLog($"Minimum(LapControllers) value not changed. It's bullshit. Waiting normal input...", "INFO");
                     OnPropertyChanged();
                 }
             }
@@ -59,15 +64,19 @@ namespace NFSU2_ExOpts.ViewModels
                         Minimum = maximum;
                     }
 
+                    Logs.WriteLog($"Maximum(LapControllers) value has been changed to {value}", "INFO");
+
                     OnPropertyChanged();
                 }
                 else if (value == string.Empty)
                 {
+                    Logs.WriteLog($"Maximum(LapControllers) value not changed. It's empty. Waiting normal input...", "INFO");
                     OnPropertyChanged();
                 }
                 else
                 {
                     Maximum = maximum.Remove(maximum.Length - 1, 1);
+                    Logs.WriteLog($"Maximum(LapControllers) value not changed. It's bullshit. Waiting normal input...", "INFO");
                     OnPropertyChanged();
                 }
             }
@@ -86,15 +95,19 @@ namespace NFSU2_ExOpts.ViewModels
                     App.IniFile["KOEnabled", "LapControllers"] = koEnabled;
                     App.IsSavedData = false;
 
+                    Logs.WriteLog($"KOEnabled(LapControllers) value has been changed to {value}", "INFO");
+
                     OnPropertyChanged();
                 }
                 else if (value == string.Empty)
                 {
+                    Logs.WriteLog($"KOEnabled(LapControllers) value not changed. It's empty. Waiting normal input...", "INFO");
                     OnPropertyChanged();
                 }
                 else
                 {
                     KoEnabled = koEnabled.Remove(koEnabled.Length - 1, 1);
+                    Logs.WriteLog($"KOEnabled(LapControllers) value not changed. It's bullshit. Waiting normal input...", "INFO");
                     OnPropertyChanged();
                 }
             }
@@ -107,11 +120,22 @@ namespace NFSU2_ExOpts.ViewModels
 
         private void SetValues()
         {
-            if (!App.IniFile.IsEmpty)
+            try
             {
-                Minimum = App.IniFile["Minimum", "LapControllers"];
-                Maximum = App.IniFile["Maximum", "LapControllers"];
-                KoEnabled = App.IniFile["KOEnabled", "LapControllers"];
+                if (!App.IniFile.IsEmpty)
+                {
+                    Minimum = App.IniFile["Minimum", "LapControllers"];
+                    Maximum = App.IniFile["Maximum", "LapControllers"];
+                    KoEnabled = App.IniFile["KOEnabled", "LapControllers"];
+                }
+                else
+                {
+                    Minimum = Maximum = KoEnabled = "NULL";
+                }
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
             }
         }
     }
