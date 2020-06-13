@@ -115,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WorkPages\FixesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkPages\LapsControllerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -187,6 +191,9 @@
     <Compile Include="Pages\WorkPages\DriftPage.xaml.cs">
       <DependentUpon>DriftPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkPages\FixesPage.xaml.cs">
+      <DependentUpon>FixesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WorkPages\LapsControllerPage.xaml.cs">
       <DependentUpon>LapsControllerPage.xaml</DependentUpon>
     </Compile>
@@ -197,6 +204,7 @@
       <DependentUpon>OpponentsControllersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\DriftPageViewModel.cs" />
+    <Compile Include="ViewModels\FixesPageViewModel.cs" />
     <Compile Include="ViewModels\LapsControllerPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -250,9 +258,6 @@
     <Resource Include="Images\image_border_green.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\test_car.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\drift_left_menu.png" />
     <Resource Include="Images\fixes_left_menu.png" />
     <Resource Include="Images\gameplay_left_menu.png" />
@@ -288,6 +293,14 @@
     <Resource Include="Images\misc_skip_movies.png" />
     <Resource Include="Images\misc_windowed_mode.png" />
     <Resource Include="Images\screenFX_left_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fixes_neon_cabin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fixes_hood.png" />
+    <Resource Include="Images\fixes_split_screen.png" />
+    <Resource Include="Images\fixes_wheels.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

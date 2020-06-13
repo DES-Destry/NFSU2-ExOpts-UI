@@ -1,0 +1,87 @@
+﻿<Page x:Class="NFSU2_ExOpts.Pages.WorkPages.FixesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:controls="clr-namespace:NFSU2_ExOpts.Controls" 
+      xmlns:models="clr-namespace:NFSU2_ExOpts.Models"
+      xmlns:local="clr-namespace:NFSU2_ExOpts.Pages.WorkPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="574" 
+      d:DesignWidth="710"
+      Title="FixesPage">
+    <Page.Resources>
+        <models:BinaryBoolConverter x:Key="CheckBoxSlotConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <ScrollViewer>
+            <Grid>
+                <Grid Height="128"
+                      VerticalAlignment="Top">
+                    <Image Width="256"
+                           HorizontalAlignment="Left"
+                           Source="/NFSU2 ExOpts;component/Images/fixes_left_menu.png"/>
+                    <TextBlock Text="Fixes"
+                               Margin="256,0,0,0"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource WhiteBrush}"
+                               FontSize="{StaticResource H2}"
+                               FontFamily="{StaticResource BaseFont}"/>
+                </Grid>
+                <StackPanel Margin="0,128,0,0">
+                    <controls:CheckBoxSlot Height="64"
+                                           Margin="5"
+                                           SlotHeader="Disappearing wheels fix"
+                                           SlotInfo="Fixes disappearing wheels when lost focus. Useful for open-wheel cars."
+                                           SlotImageSource="/NFSU2 ExOpts;component/Images/fixes_wheels.png"
+                                           SlotInfoGif="/NFSU2 ExOpts;component/Images/fixes_wheels.png"
+                                           SlotIsChecked="{Binding DisappearingWheelsFix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CheckBoxSlotConverter}}"/>
+                    <controls:CheckBoxSlot Height="64"
+                                           Margin="5"
+                                           SlotHeader="Experimental split screen fix"
+                                           SlotInfo="Fixes black screen and crash for Split Screen mode. Race behaviours are not fixed yet. (ONLY FOR EXPERTS)"
+                                           SlotImageSource="/NFSU2 ExOpts;component/Images/fixes_split_screen.png"
+                                           SlotInfoGif="/NFSU2 ExOpts;component/Images/fixes_split_screen.png"
+                                           SlotIsChecked="{Binding ExperimentalSplitScreenFix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CheckBoxSlotConverter}}"/>
+                    <controls:CheckBoxSlot Height="64"
+                                           Margin="5"
+                                           SlotHeader="Hood decals fix"
+                                           SlotInfo="Fixes the game code which prevents hood decals from appearing on the car."
+                                           SlotImageSource="/NFSU2 ExOpts;component/Images/fixes_hood.png"
+                                           SlotInfoGif="/NFSU2 ExOpts;component/Images/fixes_hood.png"
+                                           SlotIsChecked="{Binding HoodDecalsFix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CheckBoxSlotConverter}}"/>
+                    <controls:CheckBoxSlot Height="64"
+                                           Margin="5"
+                                           SlotHeader="Cabin neon fix"
+                                           SlotInfo="Fixes the game code which prevents cabin neons from appearing on the car."
+                                           SlotImageSource="/NFSU2 ExOpts;component/Images/fixes_neon_cabin.png"
+                                           SlotInfoGif="/NFSU2 ExOpts;component/Images/fixes_neon_cabin.png"
+                                           SlotIsChecked="{Binding CabinNeonFix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CheckBoxSlotConverter}}"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                       BeginTime="0:0:0">
+                            <SplineDoubleKeyFrame KeyTime="0:0:0"
+                                                  Value="0"/>
+                            <SplineDoubleKeyFrame KeyTime="0:0:0.2"
+                                                  Value="0"/>
+                            <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1">
+                                <EasingDoubleKeyFrame.EasingFunction>
+                                    <QuarticEase EasingMode="EaseOut"/>
+                                </EasingDoubleKeyFrame.EasingFunction>
+                            </EasingDoubleKeyFrame>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+    </Grid>
+    
+</Page>

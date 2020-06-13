@@ -77,11 +77,6 @@ namespace NFSU2_ExOpts.Controls
             BeginAnimation(HeightProperty, BaseSlotsMethods.OpenCloseAnimations(sender as Button, this));
         }
 
-        private void SlotCheckBox_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            SlotIsChecked = (bool)(sender as CheckBox).IsChecked;
-        }
-
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             BaseSlotsMethods.DrawBase(this);
@@ -91,6 +86,11 @@ namespace NFSU2_ExOpts.Controls
         private static void Slot_IsSelectedChangedChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             (sender as CheckBoxSlot).Grid_Loaded(sender, null);
+        }
+
+        private void SlotCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            SlotIsChecked = (bool)(sender as CheckBox).IsChecked;
         }
     }
 }
