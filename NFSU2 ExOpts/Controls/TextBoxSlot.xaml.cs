@@ -56,7 +56,7 @@ namespace NFSU2_ExOpts.Controls
         public string SlotTextContent
         {
             get { return (string)GetValue(SlotTextContentProperty); }
-            set { SetValue(SlotTextContentProperty, value); }
+            set { SetValue(SlotTextContentProperty, value); SlotContent.Text = SlotTextContent; }
         }
 
         public static readonly DependencyProperty SlotTextContentProperty =
@@ -85,12 +85,14 @@ namespace NFSU2_ExOpts.Controls
 
         private void SlotContent_TextChanged(object sender, TextChangedEventArgs e)
         {
-            SlotTextContent = (sender as TextBox).Text;
+            SlotTextContent = SlotContent.Text;
         }
 
         private static void Slot_TextChangedChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            (sender as TextBoxSlot).Grid_Loaded(sender, null);
+            TextBoxSlot slot = sender as TextBoxSlot;
+
+            slot.Grid_Loaded(sender, null);
         }
     }
 }

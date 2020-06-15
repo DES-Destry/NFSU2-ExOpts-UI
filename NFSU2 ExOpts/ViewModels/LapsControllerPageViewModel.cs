@@ -35,12 +35,27 @@ namespace NFSU2_ExOpts.ViewModels
                 else if (value == string.Empty)
                 {
                     Logs.WriteLog($"Minimum(LapControllers) value not changed. It's empty. Waiting normal input...", "INFO");
+                    minimum = value;
                     OnPropertyChanged();
                 }
                 else
                 {
-                    Minimum = minimum.Remove(minimum.Length - 1, 1);
-                    Logs.WriteLog($"Minimum(LapControllers) value not changed. It's bullshit. Waiting normal input...", "INFO");
+                    Logs.WriteLog($"Minimum(LapControllers) value not changed. It's bullshit. Lastest change not applied.", "INFO");
+                    if (result > 127)
+                    {
+                        Minimum = "127";
+                    }
+                    else
+                    {
+                        if (minimum.Length > 0)
+                        {
+                            Minimum = value.Remove(value.Length - 1, 1);
+                        }
+                        else
+                        {
+                            Minimum = string.Empty;
+                        }
+                    }
                     OnPropertyChanged();
                 }
             }
@@ -71,12 +86,27 @@ namespace NFSU2_ExOpts.ViewModels
                 else if (value == string.Empty)
                 {
                     Logs.WriteLog($"Maximum(LapControllers) value not changed. It's empty. Waiting normal input...", "INFO");
+                    maximum = string.Empty;
                     OnPropertyChanged();
                 }
                 else
                 {
-                    Maximum = maximum.Remove(maximum.Length - 1, 1);
                     Logs.WriteLog($"Maximum(LapControllers) value not changed. It's bullshit. Waiting normal input...", "INFO");
+                    if (result > 127)
+                    {
+                        Maximum = "127";
+                    }
+                    else
+                    {
+                        if (maximum.Length > 0)
+                        {
+                            Maximum = value.Remove(value.Length - 1, 1);
+                        }
+                        else
+                        {
+                            Maximum = string.Empty;
+                        }
+                    }
                     OnPropertyChanged();
                 }
             }
@@ -102,12 +132,27 @@ namespace NFSU2_ExOpts.ViewModels
                 else if (value == string.Empty)
                 {
                     Logs.WriteLog($"KOEnabled(LapControllers) value not changed. It's empty. Waiting normal input...", "INFO");
+                    koEnabled = string.Empty;
                     OnPropertyChanged();
                 }
                 else
                 {
-                    KoEnabled = koEnabled.Remove(koEnabled.Length - 1, 1);
                     Logs.WriteLog($"KOEnabled(LapControllers) value not changed. It's bullshit. Waiting normal input...", "INFO");
+                    if (result > 127)
+                    {
+                        KoEnabled = "127";
+                    }
+                    else
+                    {
+                        if (koEnabled.Length > 0)
+                        {
+                            KoEnabled = value.Remove(value.Length - 1, 1);
+                        }
+                        else
+                        {
+                            KoEnabled = string.Empty;
+                        }
+                    }
                     OnPropertyChanged();
                 }
             }

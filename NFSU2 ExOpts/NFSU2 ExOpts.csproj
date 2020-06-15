@@ -131,6 +131,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WorkPages\WeatherPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ButtonBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +207,9 @@
     <Compile Include="Pages\WorkPages\OpponentsControllersPage.xaml.cs">
       <DependentUpon>OpponentsControllersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkPages\WeatherPage.xaml.cs">
+      <DependentUpon>WeatherPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\DriftPageViewModel.cs" />
     <Compile Include="ViewModels\FixesPageViewModel.cs" />
     <Compile Include="ViewModels\LapsControllerPageViewModel.cs" />
@@ -210,6 +217,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MiscPageViewModel.cs" />
     <Compile Include="ViewModels\OpponentsControllersPageViewModel.cs" />
+    <Compile Include="ViewModels\WeatherPageViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -301,6 +309,17 @@
     <Resource Include="Images\fixes_hood.png" />
     <Resource Include="Images\fixes_split_screen.png" />
     <Resource Include="Images\fixes_wheels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\debug.png" />
+    <Resource Include="Images\weather_always_rain.png" />
+    <Resource Include="Images\weather_general_amount.png" />
+    <Resource Include="Images\weather_rain_crossing.png" />
+    <Resource Include="Images\weather_rain_gravity.png" />
+    <Resource Include="Images\weather_rain_intencity.png" />
+    <Resource Include="Images\weather_rain_size.png" />
+    <Resource Include="Images\weather_rain_speed.png" />
+    <Resource Include="Images\weather_road_reflection.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

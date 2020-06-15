@@ -10,6 +10,7 @@
       d:DesignHeight="574" 
       d:DesignWidth="710"
       Title="FixesPage">
+    
     <Page.Resources>
         <models:BinaryBoolConverter x:Key="CheckBoxSlotConverter"/>
     </Page.Resources>
