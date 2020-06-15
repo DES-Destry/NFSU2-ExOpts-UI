@@ -26,6 +26,8 @@ namespace NFSU2_ExOpts.ViewModels
                 App.IniFile["AlwaysRain", "Weather"] = alwaysRain;
                 App.IsSavedData = false;
 
+                Logs.WriteLog($"AlwaysRain(Weather) value has been changed to {value}", "INFO");
+
                 OnPropertyChanged();
             }
         }

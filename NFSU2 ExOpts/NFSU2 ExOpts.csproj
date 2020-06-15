@@ -123,6 +123,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WorkPages\MenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkPages\MiscPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,6 +205,9 @@
     <Compile Include="Pages\WorkPages\LapsControllerPage.xaml.cs">
       <DependentUpon>LapsControllerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkPages\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WorkPages\MiscPage.xaml.cs">
       <DependentUpon>MiscPage.xaml</DependentUpon>
     </Compile>
@@ -215,6 +222,7 @@
     <Compile Include="ViewModels\LapsControllerPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MenuPageViewModel.cs" />
     <Compile Include="ViewModels\MiscPageViewModel.cs" />
     <Compile Include="ViewModels\OpponentsControllersPageViewModel.cs" />
     <Compile Include="ViewModels\WeatherPageViewModel.cs" />
@@ -320,6 +328,22 @@
     <Resource Include="Images\weather_rain_size.png" />
     <Resource Include="Images\weather_rain_speed.png" />
     <Resource Include="Images\weather_road_reflection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu_any_track.png" />
+    <Resource Include="Images\menu_camera.png" />
+    <Resource Include="Images\menu_copyrights.png" />
+    <Resource Include="Images\menu_debug_customization.png" />
+    <Resource Include="Images\menu_debug_id.png" />
+    <Resource Include="Images\menu_free_run.png" />
+    <Resource Include="Images\menu_longer_name.png" />
+    <Resource Include="Images\menu_more_customization.png" />
+    <Resource Include="Images\menu_more_race_options.png" />
+    <Resource Include="Images\menu_online.png" />
+    <Resource Include="Images\menu_outrun.png" />
+    <Resource Include="Images\menu_splash_screen.png" />
+    <Resource Include="Images\menu_subs.png" />
+    <Resource Include="Images\menu_vinyls.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -225,6 +225,7 @@ namespace NFSU2_ExOpts.ViewModels
                 presetsSplashScreenPage = new SplashScreenPage("Settings presets", "/NFSU2 ExOPts;component/Images/presets_left_menu.png");
                 Logs.WriteLog("All splash screens has been loaded", "INFO");
 
+                menuPage = new MenuPage();
                 weatherPage = new WeatherPage();
                 lapControllersPage = new LapsControllerPage();
                 opponentsControllersPage = new OpponentsControllersPage();
@@ -234,7 +235,7 @@ namespace NFSU2_ExOpts.ViewModels
                 Logs.WriteLog("All work screens has been loaded", "INFO");
 
                 gameSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
-                menuSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                menuSplashScreenPage.SetNextPageSettings(menuPage, OpenNextPage);
                 gameplaySplashScreenPage.SetNextPageSettings(null, OpenNextPage);
                 weatherSplashScreenPage.SetNextPageSettings(weatherPage, OpenNextPage);
                 lapControllersSplashScreenPage.SetNextPageSettings(lapControllersPage, OpenNextPage);
