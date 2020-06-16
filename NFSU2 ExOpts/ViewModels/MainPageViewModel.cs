@@ -226,6 +226,7 @@ namespace NFSU2_ExOpts.ViewModels
                 Logs.WriteLog("All splash screens has been loaded", "INFO");
 
                 menuPage = new MenuPage();
+                gameplayPage = new GameplayPage();
                 weatherPage = new WeatherPage();
                 lapControllersPage = new LapsControllerPage();
                 opponentsControllersPage = new OpponentsControllersPage();
@@ -236,7 +237,7 @@ namespace NFSU2_ExOpts.ViewModels
 
                 gameSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
                 menuSplashScreenPage.SetNextPageSettings(menuPage, OpenNextPage);
-                gameplaySplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                gameplaySplashScreenPage.SetNextPageSettings(gameplayPage, OpenNextPage);
                 weatherSplashScreenPage.SetNextPageSettings(weatherPage, OpenNextPage);
                 lapControllersSplashScreenPage.SetNextPageSettings(lapControllersPage, OpenNextPage);
                 opponentsControllersSplashScreenPage.SetNextPageSettings(opponentsControllersPage, OpenNextPage);

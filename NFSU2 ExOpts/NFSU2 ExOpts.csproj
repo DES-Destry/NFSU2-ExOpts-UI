@@ -119,6 +119,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WorkPages\GameplayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkPages\LapsControllerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +206,9 @@
     <Compile Include="Pages\WorkPages\FixesPage.xaml.cs">
       <DependentUpon>FixesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkPages\GameplayPage.xaml.cs">
+      <DependentUpon>GameplayPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WorkPages\LapsControllerPage.xaml.cs">
       <DependentUpon>LapsControllerPage.xaml</DependentUpon>
     </Compile>
@@ -219,6 +226,7 @@
     </Compile>
     <Compile Include="ViewModels\DriftPageViewModel.cs" />
     <Compile Include="ViewModels\FixesPageViewModel.cs" />
+    <Compile Include="ViewModels\GameplayPageViewModel.cs" />
     <Compile Include="ViewModels\LapsControllerPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -344,6 +352,26 @@
     <Resource Include="Images\menu_splash_screen.png" />
     <Resource Include="Images\menu_subs.png" />
     <Resource Include="Images\menu_vinyls.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gameplay_animation_speed.png" />
+    <Resource Include="Images\gameplay_debug_camera.png" />
+    <Resource Include="Images\gameplay_game_speed.png" />
+    <Resource Include="Images\gameplay_headlights.png" />
+    <Resource Include="Images\gameplay_headlights_high.png" />
+    <Resource Include="Images\gameplay_headlights_low.png" />
+    <Resource Include="Images\gameplay_hidden_camera.png" />
+    <Resource Include="Images\gameplay_neon_brightness.png" />
+    <Resource Include="Images\gameplay_nos_trail.png" />
+    <Resource Include="Images\gameplay_remove_bariers.png" />
+    <Resource Include="Images\gameplay_show_percentage.png" />
+    <Resource Include="Images\gameplay_starting_cash.png" />
+    <Resource Include="Images\gameplay_unlock_all.png" />
+    <Resource Include="Images\gameplay_unlock_regional_cars.png" />
+    <Resource Include="Images\gameplay_unlock_world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gameplay_game_region.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

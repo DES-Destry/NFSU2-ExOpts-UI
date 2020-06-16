@@ -32,27 +32,27 @@
                 </Grid>
                 <StackPanel Margin="0,128,0,0">
                     <controls:SelectorSlot Height="64"
-                                       Margin="5"
-                                       SlotHeader="Maximum multiplier"
-                                       SlotInfo="Maximum drift multipiler."
-                                       SlotImageSource="/NFSU2 ExOpts;component/Images/drift_max_multiplier.png"
-                                       SlotInfoGif="/NFSU2 ExOpts;component/Images/drift_max_multiplier.png"
-                                       ItemSource="{Binding OneNineCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                       CurrentItem="{Binding MaxMultiplierCurrentItemIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                           Margin="5"
+                                           SlotHeader="Maximum multiplier"
+                                           SlotInfo="Maximum drift multipiler."
+                                           SlotImageSource="/NFSU2 ExOpts;component/Images/drift_max_multiplier.png"
+                                           SlotInfoGif="/NFSU2 ExOpts;component/Images/drift_max_multiplier.png"
+                                           ItemSource="{Binding OneNineCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           CurrentItem="{Binding MaxMultiplierCurrentItemIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <controls:CheckBoxSlot Height="64"
-                                       Margin="5"
-                                       SlotHeader="Plus sign"
-                                       SlotInfo="Shows a + sign before drift point while drifting."
-                                       SlotImageSource="/NFSU2 ExOpts;component/Images/drift_plus_sign.png"
-                                       SlotInfoGif="/NFSU2 ExOpts;component/Images/drift_plus_sign.png"
-                                       SlotIsChecked="{Binding PlusSignSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CheckBoxSlotConverter}}"/>
+                                           Margin="5"
+                                           SlotHeader="Plus sign"
+                                           SlotInfo="Shows a + sign before drift point while drifting."
+                                           SlotImageSource="/NFSU2 ExOpts;component/Images/drift_plus_sign.png"
+                                           SlotInfoGif="/NFSU2 ExOpts;component/Images/drift_plus_sign.png"
+                                           SlotIsChecked="{Binding PlusSignSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CheckBoxSlotConverter}}"/>
                     <controls:CheckBoxSlot Height="64"
-                                       Margin="5"
-                                       SlotHeader="Show without multiplier"
-                                       SlotInfo="Shows the drift point as 500x3 instead of 1500 while drifting."
-                                       SlotImageSource="/NFSU2 ExOpts;component/Images/drift_hide_multiplier.png"
-                                       SlotInfoGif="/NFSU2 ExOpts;component/Images/drift_hide_multiplier.png"
-                                       SlotIsChecked="{Binding HideMultiplierSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CheckBoxSlotConverter}}"/>
+                                           Margin="5"
+                                           SlotHeader="Show without multiplier"
+                                           SlotInfo="Shows the drift point as 500x3 instead of 1500 while drifting."
+                                           SlotImageSource="/NFSU2 ExOpts;component/Images/drift_hide_multiplier.png"
+                                           SlotInfoGif="/NFSU2 ExOpts;component/Images/drift_hide_multiplier.png"
+                                           SlotIsChecked="{Binding HideMultiplierSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CheckBoxSlotConverter}}"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
