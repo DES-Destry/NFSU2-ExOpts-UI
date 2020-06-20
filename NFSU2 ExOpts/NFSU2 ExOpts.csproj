@@ -91,6 +91,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\PressKeySlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Selector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -183,6 +187,9 @@
     <Compile Include="Controls\LeftMenuItem.xaml.cs">
       <DependentUpon>LeftMenuItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PressKeySlot.xaml.cs">
+      <DependentUpon>PressKeySlot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Selector.xaml.cs">
       <DependentUpon>Selector.xaml</DependentUpon>
     </Compile>
@@ -194,6 +201,7 @@
     </Compile>
     <Compile Include="Models\AppSettings.cs" />
     <Compile Include="Models\BinaryBoolConverter.cs" />
+    <Compile Include="Models\PressKeyState.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -372,6 +380,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\gameplay_game_region.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\enter_key_gray.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

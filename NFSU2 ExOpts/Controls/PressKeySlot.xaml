@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="NFSU2_ExOpts.Controls.PressKeySlot"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NFSU2_ExOpts.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="64" 
+             d:DesignWidth="650"
+             KeyDown="UserControl_KeyDown">
+    
+    <Border Background="{StaticResource StaticBgBrush}"
+            
+            CornerRadius="8">
+        <Grid Loaded="Grid_Loaded">
+            <Image x:Name="SlotImage"
+                   Width="128"
+                   Height="64"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"/>
+
+            <Image x:Name="ImageBorder"
+                   Width="128"
+                   Height="64"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Source="/NFSU2 ExOpts;component/Images/image_border_green.png"
+                   Opacity="0"/>
+
+            <TextBlock x:Name="SlotName"
+                       TextAlignment="Left"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="128,0,0,0"
+                       FontWeight="Bold"
+                       FontSize="{StaticResource Regular}"
+                       FontFamily="{StaticResource BaseFont}"
+                       Foreground="{StaticResource WhiteBrush}"/>
+
+            <Button x:Name="ShowInfoButton"
+                    Click="ShowInfoButton_Click"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="130,37,0,0"
+                    Content="  What is it?  "
+                    FontSize="{StaticResource Small}"
+                    Style="{StaticResource ButtonStyle}"/>
+
+            <TextBlock x:Name="StateText"
+                       Text="Press any key"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="252,38,0,0"
+                       FontSize="{StaticResource Small}"
+                       Foreground="{StaticResource MainBrush}"
+                       FontFamily="{StaticResource BaseFont}"
+                       Visibility="Collapsed"/>
+
+            <TextBox x:Name="SlotContent"
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Right"
+                     Width="80"
+                     Margin="5,15,45,5"
+                     Tag="Value"
+                     IsReadOnly="True"
+                     Style="{StaticResource TextBoxBase}"/>
+
+            <Button x:Name="GetPressKeyButton"
+                    Click="GetPressKeyButton_Click"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Margin="5,15,5,5"
+                    Width="35"
+                    Height="35"
+                    Style="{StaticResource ButtonStyle}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/NFSU2 ExOpts;component/Images/enter_key_gray.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            
+            <Image x:Name="InfoGif"
+                   Height="86"
+                   Width="153"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Margin="0,74,0,0"/>
+
+            <TextBlock x:Name="TextInformation"
+                       TextWrapping="Wrap"
+                       Height="86"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="154,74,0,0"
+                       FontWeight="Light"
+                       Foreground="{StaticResource InformationTextBrush}"
+                       FontSize="{StaticResource Mini}"
+                       FontFamily="{StaticResource BaseFont}"/>
+        </Grid>
+
+        <Border.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard x:Name="MouseInStoryBoard">
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ImageBorder"
+                                                           Storyboard.TargetProperty="Opacity"
+                                                           RepeatBehavior="Forever">
+                            <SplineDoubleKeyFrame KeyTime="0:0:0"
+                                                      Value="0"/>
+                            <SplineDoubleKeyFrame KeyTime="0:0:0.5"
+                                                      Value="1"/>
+                            <SplineDoubleKeyFrame KeyTime="0:0:0.7"
+                                                      Value="1"/>
+                            <SplineDoubleKeyFrame KeyTime="0:0:1"
+                                                      Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave">
+                <StopStoryboard BeginStoryboardName="MouseInStoryBoard"/>
+            </EventTrigger>
+
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard x:Name="StateTextPulsing">
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="StateText"
+                                                           Storyboard.TargetProperty="Opacity"
+                                                           RepeatBehavior="Forever">
+                            <SplineDoubleKeyFrame KeyTime="0:0:0"
+                                                      Value="0"/>
+                            <SplineDoubleKeyFrame KeyTime="0:0:0.5"
+                                                      Value="1"/>
+                            <SplineDoubleKeyFrame KeyTime="0:0:0.7"
+                                                      Value="1"/>
+                            <SplineDoubleKeyFrame KeyTime="0:0:1"
+                                                      Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Border.Triggers>
+
+    </Border>
+    
+</UserControl>
