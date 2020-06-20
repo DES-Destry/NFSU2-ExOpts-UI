@@ -127,6 +127,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WorkPages\HotkeysPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkPages\LapsControllerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +206,7 @@
     <Compile Include="Models\AppSettings.cs" />
     <Compile Include="Models\BinaryBoolConverter.cs" />
     <Compile Include="Models\PressKeyState.cs" />
+    <Compile Include="Models\VirtualKeyCodeConverter.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -216,6 +221,9 @@
     </Compile>
     <Compile Include="Pages\WorkPages\GameplayPage.xaml.cs">
       <DependentUpon>GameplayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WorkPages\HotkeysPage.xaml.cs">
+      <DependentUpon>HotkeysPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\WorkPages\LapsControllerPage.xaml.cs">
       <DependentUpon>LapsControllerPage.xaml</DependentUpon>
@@ -235,6 +243,7 @@
     <Compile Include="ViewModels\DriftPageViewModel.cs" />
     <Compile Include="ViewModels\FixesPageViewModel.cs" />
     <Compile Include="ViewModels\GameplayPageViewModel.cs" />
+    <Compile Include="ViewModels\HotkeysPageViewModel.cs" />
     <Compile Include="ViewModels\LapsControllerPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -383,6 +392,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\enter_key_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\hotkeys_any_track.png" />
+    <Resource Include="Images\hotkeys_autodrive.png" />
+    <Resource Include="Images\hotkeys_freeze_camera.png" />
+    <Resource Include="Images\hotkeys_headlights.png" />
+    <Resource Include="Images\hotkeys_hot_pos.png" />
+    <Resource Include="Images\hotkeys_unlock_all.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,13 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:NFSU2_ExOpts.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="64" 
              d:DesignWidth="650"
              KeyDown="UserControl_KeyDown">
-    
+
     <Border Background="{StaticResource StaticBgBrush}"
             
             CornerRadius="8">
@@ -59,7 +59,7 @@
             <TextBox x:Name="SlotContent"
                      VerticalAlignment="Top"
                      HorizontalAlignment="Right"
-                     Width="80"
+                     Width="100"
                      Margin="5,15,45,5"
                      Tag="Value"
                      IsReadOnly="True"
