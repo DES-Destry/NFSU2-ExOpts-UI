@@ -12,6 +12,7 @@
                 <ResourceDictionary x:Name="CheckBoxStyle" Source="Styles/CheckBoxBase.xaml"/>
                 <ResourceDictionary x:Name="TextBoxStyle" Source="Styles/TextBoxBase.xaml"/>
                 <ResourceDictionary x:Name="RadioButtonStyle" Source="Styles/RadioButtonBase.xaml"/>
+                <ResourceDictionary x:Name="ScrollBarStyle" Source="Styles/ScrollBarBase.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
