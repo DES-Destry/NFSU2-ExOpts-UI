@@ -115,5 +115,11 @@ namespace NFSU2_ExOpts.Controls
         {
             BeginAnimation(HeightProperty, BaseSlotsMethods.OpenCloseAnimations(sender as Button, this));
         }
+
+        private void Border_LostFocus(object sender, RoutedEventArgs e)
+        {
+            state = PressKeyState.None;
+            StateText.Visibility = Visibility.Collapsed;
+        }
     }
 }

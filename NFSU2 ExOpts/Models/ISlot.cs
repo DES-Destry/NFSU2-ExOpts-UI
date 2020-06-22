@@ -1,4 +1,4 @@
-﻿namespace NFSU2_ExOpts.Controls
+﻿namespace NFSU2_ExOpts.Models
 {
     public interface ISlot
     {

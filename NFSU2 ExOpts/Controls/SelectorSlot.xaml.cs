@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using NFSU2_ExOpts.Models;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 

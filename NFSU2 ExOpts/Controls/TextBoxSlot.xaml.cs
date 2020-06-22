@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using NFSU2_ExOpts.Models;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace NFSU2_ExOpts.Controls

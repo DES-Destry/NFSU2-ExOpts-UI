@@ -137,7 +137,7 @@ namespace NFSU2_ExOpts.ViewModels
                 }
                 else
                 {
-                    AnyTrackInAnyMode = EnableSaveLoadHotPos = "NULL";
+                    AnyTrackInAnyMode = Headlights = FreezeCamera = UnlockAllThings = AutoDrive = EnableSaveLoadHotPos = "NULL";
                 }
             }
             catch (Exception ex)

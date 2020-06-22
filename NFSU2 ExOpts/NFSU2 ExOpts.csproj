@@ -183,11 +183,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\BaseSlotsMethods.cs" />
     <Compile Include="Controls\CheckBoxSlot.xaml.cs">
       <DependentUpon>CheckBoxSlot.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ISlot.cs" />
     <Compile Include="Controls\LeftMenuItem.xaml.cs">
       <DependentUpon>LeftMenuItem.xaml</DependentUpon>
     </Compile>
@@ -204,7 +202,9 @@
       <DependentUpon>TextBoxSlot.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\AppSettings.cs" />
+    <Compile Include="Models\BaseSlotsMethods.cs" />
     <Compile Include="Models\BinaryBoolConverter.cs" />
+    <Compile Include="Models\ISlot.cs" />
     <Compile Include="Models\PressKeyState.cs" />
     <Compile Include="Models\VirtualKeyCodeConverter.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
@@ -400,6 +400,9 @@
     <Resource Include="Images\hotkeys_headlights.png" />
     <Resource Include="Images\hotkeys_hot_pos.png" />
     <Resource Include="Images\hotkeys_unlock_all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Movies\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

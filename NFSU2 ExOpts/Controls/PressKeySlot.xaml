@@ -10,8 +10,8 @@
              KeyDown="UserControl_KeyDown">
 
     <Border Background="{StaticResource StaticBgBrush}"
-            
-            CornerRadius="8">
+            CornerRadius="8"
+            LostFocus="Border_LostFocus">
         <Grid Loaded="Grid_Loaded">
             <Image x:Name="SlotImage"
                    Width="128"

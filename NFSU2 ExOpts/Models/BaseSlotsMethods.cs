@@ -5,7 +5,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using WpfAnimatedGif;
 
-namespace NFSU2_ExOpts.Controls
+namespace NFSU2_ExOpts.Models
 {
     public class BaseSlotsMethods
     {
