@@ -20,7 +20,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (int.TryParse(value, out int result) && result >= 0 && result <= 127)
                 {
                     minimum = result.ToString();
-                    App.IniFile["Minimum", "LapControllers"] = minimum;
+                    App.MainConfig["Minimum", "LapControllers"] = minimum;
                     App.IsSavedData = false;
 
                     if (int.Parse(Maximum) < int.Parse(minimum))
@@ -71,7 +71,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (int.TryParse(value, out int result) && result >= 0 && result <= 127)
                 {
                     maximum = result.ToString();
-                    App.IniFile["Maximum", "LapControllers"] = maximum;
+                    App.MainConfig["Maximum", "LapControllers"] = maximum;
                     App.IsSavedData = false;
 
                     if (int.Parse(maximum) < int.Parse(Minimum))
@@ -122,7 +122,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (int.TryParse(value, out int result) && result >= 0 && result <= 127)
                 {
                     koEnabled = result.ToString();
-                    App.IniFile["KOEnabled", "LapControllers"] = koEnabled;
+                    App.MainConfig["KOEnabled", "LapControllers"] = koEnabled;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"KOEnabled(LapControllers) value has been changed to {value}", "INFO");
@@ -160,18 +160,26 @@ namespace NFSU2_ExOpts.ViewModels
 
         public LapsControllerPageViewModel()
         {
-            SetValues();
+            try
+            {
+                App.OnOutDataUpdated += SetValues;
+                SetValues();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
 
         private void SetValues()
         {
             try
             {
-                if (!App.IniFile.IsEmpty)
+                if (!App.MainConfig.IsEmpty)
                 {
-                    Minimum = App.IniFile["Minimum", "LapControllers"];
-                    Maximum = App.IniFile["Maximum", "LapControllers"];
-                    KoEnabled = App.IniFile["KOEnabled", "LapControllers"];
+                    Minimum = App.MainConfig["Minimum", "LapControllers"];
+                    Maximum = App.MainConfig["Maximum", "LapControllers"];
+                    KoEnabled = App.MainConfig["KOEnabled", "LapControllers"];
                 }
                 else
                 {

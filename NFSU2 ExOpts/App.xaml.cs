@@ -10,19 +10,35 @@ namespace NFSU2_ExOpts
 {
     public partial class App : Application
     {
+        private static bool isSavedData = true;
+
+
         public static readonly string ApplicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Destry-Unimaster", "NFSU2 ExOpts");
-        public static readonly string MainScriptPath = "scripts\\NFSU2ExtraOptionsSettings.ini";
         public static readonly string GameExePath = "speed2.exe";
         public static readonly string Version = "null";
+        public static readonly string MainConfigPath = "scripts\\NFSU2ExtraOptionsSettings.ini";
 
-        public static bool IsMainScriptOpened { get; private set; } = false;
-        public static bool MainScriptExists { get; private set; } = false;
+        public static string CustomConfigPath = default;
+
+        public static bool IsMainConfigOpened { get; private set; } = false;
+        public static bool MainConfigExists { get; private set; } = false;
         public static bool GameExeExists { get; private set; } = false;
 
-        public static bool IsSavedData = true;
+        public static bool IsSavedData
+        {
+            get => isSavedData;
+            set
+            {
+                isSavedData = value;
+                OnSavedDataChanged?.Invoke();
+            }
+        }
 
-        public static IniFile IniFile = new IniFile();
+        public static IniFile MainConfig = new IniFile();
         public static AppSettings Settings = new AppSettings();
+
+        public static event Action OnSavedDataChanged;
+        public static event Action OnOutDataUpdated;
 
 
         static App()
@@ -58,7 +74,7 @@ namespace NFSU2_ExOpts
                 AppSettings settings = AppData.ReadJson<AppSettings>();
                 Settings = settings;
 
-                MainScriptPath = Settings.ScriptPath;
+                MainConfigPath = Settings.ScriptPath;
                 GameExePath = Settings.GamePath;
 
                 Logs.WriteLog("Settings are readed and applied", "INFO");
@@ -68,27 +84,29 @@ namespace NFSU2_ExOpts
 
                 if (environmentStrings.Length < 2)
                 {
-                    IsMainScriptOpened = true;
+                    IsMainConfigOpened = true;
 
-                    if (File.Exists(MainScriptPath))
+                    if (File.Exists(MainConfigPath))
                     {
-                        MainScriptExists = true;
-                        IniFile.Load(MainScriptPath);
+                        MainConfigExists = true;
+                        MainConfig.Load(MainConfigPath);
 
-                        Logs.WriteLog($"Ini file has been loaded from {Path.GetFullPath(MainScriptPath)}", "INFO");
+                        Logs.WriteLog($"Ini file has been loaded from {Path.GetFullPath(MainConfigPath)}", "INFO");
                     }
                     else
                     {
-                        MainScriptExists = false;
+                        MainConfigExists = false;
 
                         Logs.WriteLog("Main script not found.", "ERROR");
                     }
                 }
                 else
                 {
-                    IsMainScriptOpened = true;
-                    MainScriptExists = true;
-                    IniFile.Load(environmentStrings[1]);
+                    IsMainConfigOpened = false;
+                    MainConfigExists = true;
+
+                    CustomConfigPath = environmentStrings[1];
+                    MainConfig.Load(environmentStrings[1]);
 
                     Logs.WriteLog($"Ini file has been loaded from {Path.GetFullPath(environmentStrings[1])}", "INFO");
                 }
@@ -97,6 +115,13 @@ namespace NFSU2_ExOpts
             {
                 Errors.WriteError(ex);
             }
+        }
+
+        public static void UpdateConfig()
+        {
+            OnOutDataUpdated?.Invoke();
+
+            Logs.WriteLog("All data was reloaded.", "INFO");
         }
 
         private static void CreateLogFile()

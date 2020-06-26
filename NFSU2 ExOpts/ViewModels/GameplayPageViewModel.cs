@@ -48,7 +48,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 enableHiddenCameraModes = value;
-                App.IniFile["EnableHiddenCameraModes", "Gameplay"] = enableHiddenCameraModes;
+                App.MainConfig["EnableHiddenCameraModes", "Gameplay"] = enableHiddenCameraModes;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"EnableHiddenCameraModes(Gameplay) value has been changed to {value}", "INFO");
@@ -65,7 +65,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 enableDebugCamera = value;
-                App.IniFile["EnableDebugCamera", "Gameplay"] = enableDebugCamera;
+                App.MainConfig["EnableDebugCamera", "Gameplay"] = enableDebugCamera;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"EnableDebugCamera(Gameplay) value has been changed to {value}", "INFO");
@@ -84,7 +84,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (double.TryParse(value.Replace(".", ","), out double result) && result >= 0)
                 {
                     gameSpeed = result.ToString().Replace(",", ".");
-                    App.IniFile["GameSpeed", "Weather"] = value;
+                    App.MainConfig["GameSpeed", "Weather"] = value;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"GameSpeed(Weather) value has been changed to {value}", "INFO");
@@ -110,7 +110,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (double.TryParse(value.Replace(".", ","), out double result) && result >= 0)
                 {
                     worldAnimationSpeed = result.ToString().Replace(",", ".");
-                    App.IniFile["WorldAnimationSpeed", "Weather"] = value;
+                    App.MainConfig["WorldAnimationSpeed", "Weather"] = value;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"WorldAnimationSpeed(Weather) value has been changed to {value}", "INFO");
@@ -134,7 +134,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 headlightsMode = value;
-                App.IniFile["HeadlightsMode", "Gameplay"] = headlightsMode.ToString();
+                App.MainConfig["HeadlightsMode", "Gameplay"] = headlightsMode.ToString();
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"HeadlightsMode(Gameplay) value has been changed to {value}", "INFO");
@@ -153,7 +153,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (double.TryParse(value.Replace(".", ","), out double result) && result >= 0)
                 {
                     lowBeamBrightness = result.ToString().Replace(",", ".");
-                    App.IniFile["LowBeamBrightness", "Weather"] = value;
+                    App.MainConfig["LowBeamBrightness", "Weather"] = value;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"LowBeamBrightness(Weather) value has been changed to {value}", "INFO");
@@ -179,7 +179,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (double.TryParse(value.Replace(".", ","), out double result) && result >= 0)
                 {
                     highBeamBrightness = result.ToString().Replace(",", ".");
-                    App.IniFile["HighBeamBrightness", "Weather"] = value;
+                    App.MainConfig["HighBeamBrightness", "Weather"] = value;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"HighBeamBrightness(Weather) value has been changed to {value}", "INFO");
@@ -203,7 +203,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 removeRaceBarriers = value;
-                App.IniFile["RemoveRaceBarriers", "Gameplay"] = removeRaceBarriers;
+                App.MainConfig["RemoveRaceBarriers", "Gameplay"] = removeRaceBarriers;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"RemoveRaceBarriers(Gameplay) value has been changed to {value}", "INFO");
@@ -220,7 +220,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 removeLockedAreaBarriers = value;
-                App.IniFile["RemoveLockedAreaBarriers", "Gameplay"] = removeLockedAreaBarriers;
+                App.MainConfig["RemoveLockedAreaBarriers", "Gameplay"] = removeLockedAreaBarriers;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"RemoveLockedAreaBarriers(Gameplay) value has been changed to {value}", "INFO");
@@ -237,7 +237,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 showPercentOn1LapRaces = value;
-                App.IniFile["ShowPercentOn1LapRaces", "Gameplay"] = showPercentOn1LapRaces;
+                App.MainConfig["ShowPercentOn1LapRaces", "Gameplay"] = showPercentOn1LapRaces;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ShowPercentOn1LapRaces(Gameplay) value has been changed to {value}", "INFO");
@@ -256,7 +256,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (int.TryParse(value, out int result) && result >= 0 && result <= 127)
                 {
                     gameRegion = result.ToString();
-                    App.IniFile["GameRegion", "Gameplay"] = value;
+                    App.MainConfig["GameRegion", "Gameplay"] = value;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"GameRegion(Gameplay) value has been changed to {value}", "INFO");
@@ -295,7 +295,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (int.TryParse(value, out int result) && result >= 0 && result <= 127)
                 {
                     startingCash = result.ToString();
-                    App.IniFile["StartingCash", "Gameplay"] = value;
+                    App.MainConfig["StartingCash", "Gameplay"] = value;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"StartingCash(Gameplay) value has been changed to {value}", "INFO");
@@ -332,7 +332,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 unlockRegionalCars = value;
-                App.IniFile["UnlockRegionalCars", "Gameplay"] = unlockRegionalCars;
+                App.MainConfig["UnlockRegionalCars", "Gameplay"] = unlockRegionalCars;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"UnlockRegionalCars(Gameplay) value has been changed to {value}", "INFO");
@@ -349,7 +349,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 unlockAllThings = value;
-                App.IniFile["UnlockAllThings", "Gameplay"] = unlockAllThings;
+                App.MainConfig["UnlockAllThings", "Gameplay"] = unlockAllThings;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"UnlockAllThings(Gameplay) value has been changed to {value}", "INFO");
@@ -368,7 +368,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (int.TryParse(value, out int result) && result >= 0 && result <= 127)
                 {
                     neonBrightness = result.ToString();
-                    App.IniFile["NeonBrightness", "Gameplay"] = value;
+                    App.MainConfig["NeonBrightness", "Gameplay"] = value;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"NeonBrightness(Gameplay) value has been changed to {value}", "INFO");
@@ -407,7 +407,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (int.TryParse(value, out int result) && result >= 0 && result <= 127)
                 {
                     nosTrailRepeatCount = result.ToString();
-                    App.IniFile["NosTrailRepeatCount", "Gameplay"] = value;
+                    App.MainConfig["NosTrailRepeatCount", "Gameplay"] = value;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"NosTrailRepeatCount(Gameplay) value has been changed to {value}", "INFO");
@@ -438,7 +438,15 @@ namespace NFSU2_ExOpts.ViewModels
 
         public GameplayPageViewModel()
         {
-            SetValues();
+            try
+            {
+                App.OnOutDataUpdated += SetValues;
+                SetValues();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
 
         private void SetValues()
@@ -447,24 +455,24 @@ namespace NFSU2_ExOpts.ViewModels
             {
                 SettingsCollection = new ObservableCollection<string>() { "Off", "Low", "High" };
 
-                if (!App.IniFile.IsEmpty)
+                if (!App.MainConfig.IsEmpty)
                 {
-                    EnableHiddenCameraModes = App.IniFile["EnableHiddenCameraModes", "Gameplay"];
-                    EnableDebugCamera = App.IniFile["EnableDebugCamera", "Gameplay"];
-                    GameSpeed = App.IniFile["GameSpeed", "Gameplay"];
-                    WorldAnimationSpeed = App.IniFile["WorldAnimationSpeed", "Gameplay"];
-                    HeadlightsMode = int.Parse(App.IniFile["HeadlightsMode", "Gameplay"]);
-                    LowBeamBrightness = App.IniFile["LowBeamBrightness", "Gameplay"];
-                    HighBeamBrightness = App.IniFile["HighBeamBrightness", "Gameplay"];
-                    RemoveRaceBarriers = App.IniFile["RemoveRaceBarriers", "Gameplay"];
-                    RemoveLockedAreaBarriers = App.IniFile["RemoveLockedAreaBarriers", "Gameplay"];
-                    ShowPercentOn1LapRaces = App.IniFile["ShowPercentOn1LapRaces", "Gameplay"];
-                    GameRegion = App.IniFile["GameRegion", "Gameplay"];
-                    StartingCash = App.IniFile["StartingCash", "Gameplay"];
-                    UnlockRegionalCars = App.IniFile["UnlockRegionalCars", "Gameplay"];
-                    UnlockAllThings = App.IniFile["UnlockAllThings", "Gameplay"];
-                    NeonBrightness = App.IniFile["NeonBrightness", "Gameplay"];
-                    NosTrailRepeatCount = App.IniFile["NosTrailRepeatCount", "Gameplay"];
+                    EnableHiddenCameraModes = App.MainConfig["EnableHiddenCameraModes", "Gameplay"];
+                    EnableDebugCamera = App.MainConfig["EnableDebugCamera", "Gameplay"];
+                    GameSpeed = App.MainConfig["GameSpeed", "Gameplay"];
+                    WorldAnimationSpeed = App.MainConfig["WorldAnimationSpeed", "Gameplay"];
+                    HeadlightsMode = int.Parse(App.MainConfig["HeadlightsMode", "Gameplay"]);
+                    LowBeamBrightness = App.MainConfig["LowBeamBrightness", "Gameplay"];
+                    HighBeamBrightness = App.MainConfig["HighBeamBrightness", "Gameplay"];
+                    RemoveRaceBarriers = App.MainConfig["RemoveRaceBarriers", "Gameplay"];
+                    RemoveLockedAreaBarriers = App.MainConfig["RemoveLockedAreaBarriers", "Gameplay"];
+                    ShowPercentOn1LapRaces = App.MainConfig["ShowPercentOn1LapRaces", "Gameplay"];
+                    GameRegion = App.MainConfig["GameRegion", "Gameplay"];
+                    StartingCash = App.MainConfig["StartingCash", "Gameplay"];
+                    UnlockRegionalCars = App.MainConfig["UnlockRegionalCars", "Gameplay"];
+                    UnlockAllThings = App.MainConfig["UnlockAllThings", "Gameplay"];
+                    NeonBrightness = App.MainConfig["NeonBrightness", "Gameplay"];
+                    NosTrailRepeatCount = App.MainConfig["NosTrailRepeatCount", "Gameplay"];
                 }
                 else
                 {

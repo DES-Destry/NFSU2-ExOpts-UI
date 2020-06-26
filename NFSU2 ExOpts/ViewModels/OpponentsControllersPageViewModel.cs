@@ -9,10 +9,12 @@ namespace NFSU2_ExOpts.ViewModels
 
         private ObservableCollection<string> zeroFiveCollection;
         private ObservableCollection<string> twoSixCollection;
+
         private int minimumCurrentItem;
         private int maximumCurrentItem;
         private int koEnabledCurrentItem;
         private int maxLanPlayersCurrentItem;
+
 
         public ObservableCollection<string> ZeroFiveCollection
         {
@@ -38,6 +40,7 @@ namespace NFSU2_ExOpts.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public int MinimumCurrentItem
         {
             get
@@ -49,7 +52,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (maximumCurrentItem >= value)
                 {
                     minimumCurrentItem = value;
-                    App.IniFile["Minimum", "OpponentControllers"] = minimumCurrentItem.ToString();
+                    App.MainConfig["Minimum", "OpponentControllers"] = minimumCurrentItem.ToString();
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"Minimum(OpponentControllers) value has been changed to {value}", "INFO");
@@ -73,7 +76,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (minimumCurrentItem <= value)
                 {
                     maximumCurrentItem = value;
-                    App.IniFile["Maximum", "OpponentControllers"] = maximumCurrentItem.ToString();
+                    App.MainConfig["Maximum", "OpponentControllers"] = maximumCurrentItem.ToString();
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"Maximum(OpponentControllers) value has been changed to {value}", "INFO");
@@ -95,7 +98,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 koEnabledCurrentItem = value;
-                App.IniFile["KOEnabled", "OpponentControllers"] = koEnabledCurrentItem.ToString();
+                App.MainConfig["KOEnabled", "OpponentControllers"] = koEnabledCurrentItem.ToString();
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"KOEnabled(OpponentControllers) value has been changed to {value}", "INFO");
@@ -124,7 +127,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 maxLanPlayersCurrentItem = value;
-                App.IniFile["MaximumLANPlayers", "OpponentControllers"] = twoSixCollection[value];
+                App.MainConfig["MaximumLANPlayers", "OpponentControllers"] = twoSixCollection[value];
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"MaximumLANPlayers(OpponentControllers) value has been changed to {twoSixCollection[value]}", "INFO");
@@ -135,7 +138,15 @@ namespace NFSU2_ExOpts.ViewModels
 
         public OpponentsControllersPageViewModel()
         {
-            SetValues();
+            try
+            {
+                App.OnOutDataUpdated += SetValues;
+                SetValues();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
 
         private void SetValues()
@@ -145,12 +156,12 @@ namespace NFSU2_ExOpts.ViewModels
                 ZeroFiveCollection = new ObservableCollection<string>() { "0", "1", "2", "3", "4", "5" };
                 TwoSixCollection = new ObservableCollection<string>() { "2", "3", "4", "5", "6" };
 
-                if (!App.IniFile.IsEmpty)
+                if (!App.MainConfig.IsEmpty)
                 {
-                    MinimumCurrentItem = int.Parse(App.IniFile["Minimum", "OpponentControllers"]);
-                    MaximumCurrentItem = int.Parse(App.IniFile["Maximum", "OpponentControllers"]);
-                    KoEnabledCurrentItem = int.Parse(App.IniFile["KOEnabled", "OpponentControllers"]);
-                    MaxLanPlayersCurrentItem = int.Parse(App.IniFile["MaximumLANPlayers", "OpponentControllers"]);
+                    MinimumCurrentItem = int.Parse(App.MainConfig["Minimum", "OpponentControllers"]);
+                    MaximumCurrentItem = int.Parse(App.MainConfig["Maximum", "OpponentControllers"]);
+                    KoEnabledCurrentItem = int.Parse(App.MainConfig["KOEnabled", "OpponentControllers"]);
+                    MaxLanPlayersCurrentItem = int.Parse(App.MainConfig["MaximumLANPlayers", "OpponentControllers"]);
                 }
                 else
                 {

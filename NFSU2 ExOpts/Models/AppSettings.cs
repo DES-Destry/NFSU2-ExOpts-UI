@@ -12,7 +12,7 @@ namespace NFSU2_ExOpts.Models
 
         public AppSettings()
         {
-            ScriptPath = App.MainScriptPath;
+            ScriptPath = App.MainConfigPath;
             GamePath = App.GameExePath;
         }
 

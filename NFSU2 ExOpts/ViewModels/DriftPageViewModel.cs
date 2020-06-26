@@ -35,7 +35,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 maxMultiplierCurrentItem = value - 1;
-                App.IniFile["MaximumMultiplier", "Drift"] = value.ToString();
+                App.MainConfig["MaximumMultiplier", "Drift"] = value.ToString();
                 App.IsSavedData = false;
 
                 OnPropertyChanged();
@@ -50,7 +50,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 maxMultiplierCurrentItem = value;
-                App.IniFile["MaximumMultiplier", "Drift"] = oneNineCollection[value];
+                App.MainConfig["MaximumMultiplier", "Drift"] = oneNineCollection[value];
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"MaximumMultiplier(Drift) value has been changed to {oneNineCollection[value]}", "INFO");
@@ -67,7 +67,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 plusSignSelected = value;
-                App.IniFile["PlusSign", "Drift"] = value;
+                App.MainConfig["PlusSign", "Drift"] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"PlusSign(Drift) value has been changed to {value}", "INFO");
@@ -84,7 +84,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 hideMultiplierSelected = value;
-                App.IniFile["ShowWithoutMultiplying", "Drift"] = value;
+                App.MainConfig["ShowWithoutMultiplying", "Drift"] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ShowWithoutMultiplying(Drift) value has been changed to {value}", "INFO");
@@ -95,7 +95,15 @@ namespace NFSU2_ExOpts.ViewModels
 
         public DriftPageViewModel()
         {
-            SetValues();
+            try
+            {
+                App.OnOutDataUpdated += SetValues;
+                SetValues();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
 
         private void SetValues()
@@ -104,11 +112,11 @@ namespace NFSU2_ExOpts.ViewModels
             {
                 OneNineCollection = new ObservableCollection<string>() { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
-                if (!App.IniFile.IsEmpty)
+                if (!App.MainConfig.IsEmpty)
                 {
-                    MaxMultiplierCurrentItem = int.Parse(App.IniFile["MaximumMultiplier", "Drift"]);
-                    PlusSignSelected = App.IniFile["PlusSign", "Drift"];
-                    HideMultiplierSelected = App.IniFile["ShowWithoutMultiplying", "Drift"];
+                    MaxMultiplierCurrentItem = int.Parse(App.MainConfig["MaximumMultiplier", "Drift"]);
+                    PlusSignSelected = App.MainConfig["PlusSign", "Drift"];
+                    HideMultiplierSelected = App.MainConfig["ShowWithoutMultiplying", "Drift"];
                 }
                 else
                 {

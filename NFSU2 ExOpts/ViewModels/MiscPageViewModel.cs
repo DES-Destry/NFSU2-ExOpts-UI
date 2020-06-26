@@ -37,7 +37,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 windowedModeIndex = value;
-                App.IniFile["WindowedMode", "Misc"] = value.ToString();
+                App.MainConfig["WindowedMode", "Misc"] = value.ToString();
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"WindowedMode(Misc) value has been changed to {value}", "INFO");
@@ -54,7 +54,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 skipMovies = value;
-                App.IniFile["SkipMovies", "Misc"] = value;
+                App.MainConfig["SkipMovies", "Misc"] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"SkipMovies(Misc) value has been changed to {value}", "INFO");
@@ -71,7 +71,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 enableSound = value;
-                App.IniFile["EnableSound", "Misc"] = value;
+                App.MainConfig["EnableSound", "Misc"] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"EnableSound(Misc) value has been changed to {value}", "INFO");
@@ -88,7 +88,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 enableMusic = value;
-                App.IniFile["EnableMusic", "Misc"] = value;
+                App.MainConfig["EnableMusic", "Misc"] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"EnableMusic(Misc) value has been changed to {value}", "INFO");
@@ -105,7 +105,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 multipleInstances = value;
-                App.IniFile["AllowMultipleInstances", "Misc"] = value;
+                App.MainConfig["AllowMultipleInstances", "Misc"] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"AllowMultipleInstances(Misc) value has been changed to {value}", "INFO");
@@ -116,7 +116,15 @@ namespace NFSU2_ExOpts.ViewModels
 
         public MiscPageViewModel()
         {
-            SetValues();
+            try
+            {
+                App.OnOutDataUpdated += SetValues;
+                SetValues();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
 
         private void SetValues()
@@ -125,13 +133,13 @@ namespace NFSU2_ExOpts.ViewModels
             {
                 WindowedModesCollection = new ObservableCollection<string>() { "Full screen", "Windowed", "Bordered" };
 
-                if (!App.IniFile.IsEmpty)
+                if (!App.MainConfig.IsEmpty)
                 {
-                    WindowedModeIndex = int.Parse(App.IniFile["WindowedMode", "Misc"]);
-                    SkipMovies = App.IniFile["SkipMovies", "Misc"];
-                    EnableSound = App.IniFile["EnableSound", "Misc"];
-                    EnableMusic = App.IniFile["EnableMusic", "Misc"];
-                    MultipleInstances = App.IniFile["AllowMultipleInstances", "Misc"];
+                    WindowedModeIndex = int.Parse(App.MainConfig["WindowedMode", "Misc"]);
+                    SkipMovies = App.MainConfig["SkipMovies", "Misc"];
+                    EnableSound = App.MainConfig["EnableSound", "Misc"];
+                    EnableMusic = App.MainConfig["EnableMusic", "Misc"];
+                    MultipleInstances = App.MainConfig["AllowMultipleInstances", "Misc"];
                 }
                 else
                 {

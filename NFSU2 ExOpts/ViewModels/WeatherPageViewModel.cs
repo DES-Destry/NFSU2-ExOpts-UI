@@ -23,7 +23,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 alwaysRain = value;
-                App.IniFile["AlwaysRain", "Weather"] = alwaysRain;
+                App.MainConfig["AlwaysRain", "Weather"] = alwaysRain;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"AlwaysRain(Weather) value has been changed to {value}", "INFO");
@@ -42,7 +42,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (double.TryParse(value.Replace(".", ","), out double result) && result >= 0)
                 {
                     generalRainAmount = result.ToString().Replace(",", ".");
-                    App.IniFile["GeneralRainAmount", "Weather"] = generalRainAmount;
+                    App.MainConfig["GeneralRainAmount", "Weather"] = generalRainAmount;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"GeneralRainAmount(Weather) value has been changed to {value}", "INFO");
@@ -68,7 +68,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (double.TryParse(value.Replace(".", ","), out double result) && result >= 0)
                 {
                     roadReflectionAmount = result.ToString().Replace(",", ".");
-                    App.IniFile["RoadReflectionAmount", "Weather"] = roadReflectionAmount;
+                    App.MainConfig["RoadReflectionAmount", "Weather"] = roadReflectionAmount;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"RoadReflectionAmount(Weather) value has been changed to {value}", "INFO");
@@ -94,7 +94,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (double.TryParse(value.Replace(".", ","), out double result) && result >= 0)
                 {
                     rainSize = result.ToString().Replace(",", ".");
-                    App.IniFile["RainSize", "Weather"] = rainSize;
+                    App.MainConfig["RainSize", "Weather"] = rainSize;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"RainSize(Weather) value has been changed to {value}", "INFO");
@@ -120,7 +120,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (double.TryParse(value.Replace(".", ","), out double result) && result >= 0)
                 {
                     rainIntensity = result.ToString().Replace(",", ".");
-                    App.IniFile["RainIntensity", "Weather"] = rainIntensity;
+                    App.MainConfig["RainIntensity", "Weather"] = rainIntensity;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"RainIntensity(Weather) value has been changed to {value}", "INFO");
@@ -146,7 +146,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (double.TryParse(value.Replace(".", ","), out double result) && result >= 0)
                 {
                     rainCrossing = result.ToString().Replace(",", ".");
-                    App.IniFile["RainCrossing", "Weather"] = rainCrossing;
+                    App.MainConfig["RainCrossing", "Weather"] = rainCrossing;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"RainCrossing(Weather) value has been changed to {value}", "INFO");
@@ -172,7 +172,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (double.TryParse(value.Replace(".", ","), out double result) && result >= 0)
                 {
                     rainSpeed = result.ToString().Replace(",", ".");
-                    App.IniFile["RainSpeed", "Weather"] = rainSpeed;
+                    App.MainConfig["RainSpeed", "Weather"] = rainSpeed;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"RainSpeed(Weather) value has been changed to {value}", "INFO");
@@ -198,7 +198,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (double.TryParse(value.Replace(".", ","), out double result) && result >= 0)
                 {
                     rainGravity = result.ToString().Replace(",", ".");
-                    App.IniFile["RainGravity", "Weather"] = rainGravity;
+                    App.MainConfig["RainGravity", "Weather"] = rainGravity;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"RainGravity(Weather) value has been changed to {value}", "INFO");
@@ -216,23 +216,31 @@ namespace NFSU2_ExOpts.ViewModels
 
         public WeatherPageViewModel()
         {
-            SetValues();
+            try
+            {
+                App.OnOutDataUpdated += SetValues;
+                SetValues();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
 
         private void SetValues()
         {
             try
             {
-                if (!App.IniFile.IsEmpty)
+                if (!App.MainConfig.IsEmpty)
                 {
-                    AlwaysRain = App.IniFile["AlwaysRain", "Weather"];
-                    GeneralRainAmount = App.IniFile["GeneralRainAmount", "Weather"];
-                    RoadReflectionAmount = App.IniFile["RoadReflectionAmount", "Weather"];
-                    RainSize = App.IniFile["RainSize", "Weather"];
-                    RainIntensity = App.IniFile["RainIntensity", "Weather"];
-                    RainCrossing = App.IniFile["RainCrossing", "Weather"];
-                    RainSpeed = App.IniFile["RainSpeed", "Weather"];
-                    RainGravity = App.IniFile["RainGravity", "Weather"];
+                    AlwaysRain = App.MainConfig["AlwaysRain", "Weather"];
+                    GeneralRainAmount = App.MainConfig["GeneralRainAmount", "Weather"];
+                    RoadReflectionAmount = App.MainConfig["RoadReflectionAmount", "Weather"];
+                    RainSize = App.MainConfig["RainSize", "Weather"];
+                    RainIntensity = App.MainConfig["RainIntensity", "Weather"];
+                    RainCrossing = App.MainConfig["RainCrossing", "Weather"];
+                    RainSpeed = App.MainConfig["RainSpeed", "Weather"];
+                    RainGravity = App.MainConfig["RainGravity", "Weather"];
                 }
                 else
                 {

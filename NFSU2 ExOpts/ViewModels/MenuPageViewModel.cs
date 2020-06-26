@@ -30,7 +30,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 showOutrun = value;
-                App.IniFile["ShowOutrun", "Menu"] = showOutrun;
+                App.MainConfig["ShowOutrun", "Menu"] = showOutrun;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ShowOutrun(Menu) value has been changed to {value}", "INFO");
@@ -47,7 +47,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 showMoreRaceOptions = value;
-                App.IniFile["ShowMoreRaceOptions", "Menu"] = showMoreRaceOptions;
+                App.MainConfig["ShowMoreRaceOptions", "Menu"] = showMoreRaceOptions;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ShowMoreRaceOptions(Menu) value has been changed to {value}", "INFO");
@@ -64,7 +64,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 showMoreCustomizationOptions = value;
-                App.IniFile["ShowMoreCustomizationOptions", "Menu"] = showMoreCustomizationOptions;
+                App.MainConfig["ShowMoreCustomizationOptions", "Menu"] = showMoreCustomizationOptions;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ShowMoreCustomizationOptions(Menu) value has been changed to {value}", "INFO");
@@ -81,7 +81,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 showOnline = value;
-                App.IniFile["ShowOnline", "Menu"] = showOnline;
+                App.MainConfig["ShowOnline", "Menu"] = showOnline;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ShowOnline(Menu) value has been changed to {value}", "INFO");
@@ -98,7 +98,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 showSubs = value;
-                App.IniFile["ShowSubs", "Menu"] = showSubs;
+                App.MainConfig["ShowSubs", "Menu"] = showSubs;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ShowSubs(Menu) value has been changed to {value}", "INFO");
@@ -115,7 +115,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 showSpecialVinyls = value;
-                App.IniFile["ShowSpecialVinyls", "Menu"] = showSpecialVinyls;
+                App.MainConfig["ShowSpecialVinyls", "Menu"] = showSpecialVinyls;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ShowSpecialVinyls(Menu) value has been changed to {value}", "INFO");
@@ -132,7 +132,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 showDebugCarCustomize = value;
-                App.IniFile["ShowDebugCarCustomize", "Menu"] = showDebugCarCustomize;
+                App.MainConfig["ShowDebugCarCustomize", "Menu"] = showDebugCarCustomize;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ShowDebugCarCustomize(Menu) value has been changed to {value}", "INFO");
@@ -149,7 +149,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 showDebugEventID = value;
-                App.IniFile["ShowDebugEventID", "Menu"] = showDebugEventID;
+                App.MainConfig["ShowDebugEventID", "Menu"] = showDebugEventID;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ShowDebugEventID(Menu) value has been changed to {value}", "INFO");
@@ -166,7 +166,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 anyTrackInAnyRaceMode = value;
-                App.IniFile["AnyTrackInAnyRaceMode", "Menu"] = anyTrackInAnyRaceMode;
+                App.MainConfig["AnyTrackInAnyRaceMode", "Menu"] = anyTrackInAnyRaceMode;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"AnyTrackInAnyRaceMode(Menu) value has been changed to {value}", "INFO");
@@ -183,7 +183,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 freeRunTrackSelect = value;
-                App.IniFile["FreeRunTrackSelect", "Menu"] = freeRunTrackSelect;
+                App.MainConfig["FreeRunTrackSelect", "Menu"] = freeRunTrackSelect;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"FreeRunTrackSelect(Menu) value has been changed to {value}", "INFO");
@@ -200,7 +200,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 outrunTrackSelect = value;
-                App.IniFile["OutrunTrackSelect", "Menu"] = outrunTrackSelect;
+                App.MainConfig["OutrunTrackSelect", "Menu"] = outrunTrackSelect;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"OutrunTrackSelect(Menu) value has been changed to {value}", "INFO");
@@ -219,7 +219,7 @@ namespace NFSU2_ExOpts.ViewModels
                 if (int.TryParse(value, out int result) && result >= 0)
                 {
                     splashScreenTimeLimit = result.ToString();
-                    App.IniFile["SplashScreenTimeLimit", "Menu"] = splashScreenTimeLimit;
+                    App.MainConfig["SplashScreenTimeLimit", "Menu"] = splashScreenTimeLimit;
                     App.IsSavedData = false;
 
                     Logs.WriteLog($"SplashScreenTimeLimit(Menu) value has been changed to {value}", "INFO");
@@ -256,7 +256,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 showcaseCamInfiniteYRotation = value;
-                App.IniFile["ShowcaseCamInfiniteYRotation", "Menu"] = showcaseCamInfiniteYRotation;
+                App.MainConfig["ShowcaseCamInfiniteYRotation", "Menu"] = showcaseCamInfiniteYRotation;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ShowcaseCamInfiniteYRotation(Menu) value has been changed to {value}", "INFO");
@@ -273,7 +273,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 allowLongerProfileNames = value;
-                App.IniFile["AllowLongerProfileNames", "Menu"] = allowLongerProfileNames;
+                App.MainConfig["AllowLongerProfileNames", "Menu"] = allowLongerProfileNames;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"AllowLongerProfileNames(Menu) value has been changed to {value}", "INFO");
@@ -290,7 +290,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 disableTakeover = value;
-                App.IniFile["DisableTakeover", "Menu"] = disableTakeover;
+                App.MainConfig["DisableTakeover", "Menu"] = disableTakeover;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"DisableTakeover(Menu) value has been changed to {value}", "INFO");
@@ -302,30 +302,38 @@ namespace NFSU2_ExOpts.ViewModels
 
         public MenuPageViewModel()
         {
-            SetValues();
+            try
+            {
+                App.OnOutDataUpdated += SetValues;
+                SetValues();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
 
         private void SetValues()
         {
             try
             {
-                if (!App.IniFile.IsEmpty)
+                if (!App.MainConfig.IsEmpty)
                 {
-                    ShowOutrun = App.IniFile["ShowOutrun", "Menu"];
-                    ShowMoreRaceOptions = App.IniFile["ShowMoreRaceOptions", "Menu"];
-                    ShowMoreCustomizationOptions = App.IniFile["ShowMoreCustomizationOptions", "Menu"];
-                    ShowOnline = App.IniFile["ShowOnline", "Menu"];
-                    ShowSubs = App.IniFile["ShowSubs", "Menu"];
-                    ShowSpecialVinyls = App.IniFile["ShowSpecialVinyls", "Menu"];
-                    ShowDebugCarCustomize = App.IniFile["ShowDebugCarCustomize", "Menu"];
-                    ShowDebugEventID = App.IniFile["ShowDebugEventID", "Menu"];
-                    AnyTrackInAnyRaceMode = App.IniFile["AnyTrackInAnyRaceMode", "Menu"];
-                    FreeRunTrackSelect = App.IniFile["FreeRunTrackSelect", "Menu"];
-                    OutrunTrackSelect = App.IniFile["OutrunTrackSelect", "Menu"];
-                    SplashScreenTimeLimit = App.IniFile["SplashScreenTimeLimit", "Menu"];
-                    ShowcaseCamInfiniteYRotation = App.IniFile["ShowcaseCamInfiniteYRotation", "Menu"];
-                    AllowLongerProfileNames = App.IniFile["AllowLongerProfileNames", "Menu"];
-                    DisableTakeover = App.IniFile["DisableTakeover", "Menu"];
+                    ShowOutrun = App.MainConfig["ShowOutrun", "Menu"];
+                    ShowMoreRaceOptions = App.MainConfig["ShowMoreRaceOptions", "Menu"];
+                    ShowMoreCustomizationOptions = App.MainConfig["ShowMoreCustomizationOptions", "Menu"];
+                    ShowOnline = App.MainConfig["ShowOnline", "Menu"];
+                    ShowSubs = App.MainConfig["ShowSubs", "Menu"];
+                    ShowSpecialVinyls = App.MainConfig["ShowSpecialVinyls", "Menu"];
+                    ShowDebugCarCustomize = App.MainConfig["ShowDebugCarCustomize", "Menu"];
+                    ShowDebugEventID = App.MainConfig["ShowDebugEventID", "Menu"];
+                    AnyTrackInAnyRaceMode = App.MainConfig["AnyTrackInAnyRaceMode", "Menu"];
+                    FreeRunTrackSelect = App.MainConfig["FreeRunTrackSelect", "Menu"];
+                    OutrunTrackSelect = App.MainConfig["OutrunTrackSelect", "Menu"];
+                    SplashScreenTimeLimit = App.MainConfig["SplashScreenTimeLimit", "Menu"];
+                    ShowcaseCamInfiniteYRotation = App.MainConfig["ShowcaseCamInfiniteYRotation", "Menu"];
+                    AllowLongerProfileNames = App.MainConfig["AllowLongerProfileNames", "Menu"];
+                    DisableTakeover = App.MainConfig["DisableTakeover", "Menu"];
                 }
                 else
                 {

@@ -22,7 +22,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 anyTrackInAnyMode = value;
-                App.IniFile["AnyTrackInAnyMode", "Hotkeys "] = value;
+                App.MainConfig["AnyTrackInAnyMode", "Hotkeys "] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"AnyTrackInAnyMode(Hotkeys) value has been changed to {value}", "INFO");
@@ -39,7 +39,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 headlights = value;
-                App.IniFile["Headlights", "Hotkeys "] = value;
+                App.MainConfig["Headlights", "Hotkeys "] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"Headlights(Hotkeys) value has been changed to {value}", "INFO");
@@ -56,7 +56,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 freezeCamera = value;
-                App.IniFile["FreezeCamera", "Hotkeys "] = value;
+                App.MainConfig["FreezeCamera", "Hotkeys "] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"FreezeCamera(Hotkeys) value has been changed to {value}", "INFO");
@@ -73,7 +73,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 unlockAllThings = value;
-                App.IniFile["UnlockAllThings", "Hotkeys "] = value;
+                App.MainConfig["UnlockAllThings", "Hotkeys "] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"UnlockAllThings(Hotkeys) value has been changed to {value}", "INFO");
@@ -90,7 +90,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 autoDrive = value;
-                App.IniFile["AutoDrive", "Hotkeys "] = value;
+                App.MainConfig["AutoDrive", "Hotkeys "] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"AutoDrive(Hotkeys) value has been changed to {value}", "INFO");
@@ -107,7 +107,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 enableSaveLoadHotPos = value;
-                App.IniFile["EnableSaveLoadHotPos", "Hotkeys "] = value;
+                App.MainConfig["EnableSaveLoadHotPos", "Hotkeys "] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"EnableSaveLoadHotPos(Hotkeys) value has been changed to {value}", "INFO");
@@ -119,21 +119,29 @@ namespace NFSU2_ExOpts.ViewModels
 
         public HotkeysPageViewModel()
         {
-            SetValues();
+            try
+            {
+                App.OnOutDataUpdated += SetValues;
+                SetValues();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
 
         private void SetValues()
         {
             try
             {
-                if (!App.IniFile.IsEmpty)
+                if (!App.MainConfig.IsEmpty)
                 {
-                    AnyTrackInAnyMode = App.IniFile["AnyTrackInAnyMode", "Hotkeys "];
-                    Headlights = App.IniFile["Headlights", "Hotkeys "];
-                    FreezeCamera = App.IniFile["FreezeCamera", "Hotkeys "];
-                    UnlockAllThings = App.IniFile["UnlockAllThings", "Hotkeys "];
-                    AutoDrive = App.IniFile["AutoDrive", "Hotkeys "];
-                    EnableSaveLoadHotPos = App.IniFile["EnableSaveLoadHotPos", "Hotkeys "];
+                    AnyTrackInAnyMode = App.MainConfig["AnyTrackInAnyMode", "Hotkeys "];
+                    Headlights = App.MainConfig["Headlights", "Hotkeys "];
+                    FreezeCamera = App.MainConfig["FreezeCamera", "Hotkeys "];
+                    UnlockAllThings = App.MainConfig["UnlockAllThings", "Hotkeys "];
+                    AutoDrive = App.MainConfig["AutoDrive", "Hotkeys "];
+                    EnableSaveLoadHotPos = App.MainConfig["EnableSaveLoadHotPos", "Hotkeys "];
                 }
                 else
                 {

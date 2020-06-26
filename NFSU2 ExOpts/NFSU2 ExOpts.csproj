@@ -111,6 +111,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\SplashScreenPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,6 +218,9 @@
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SplashScreenPage.xaml.cs">
       <DependentUpon>SplashScreenPage.xaml</DependentUpon>
     </Compile>
@@ -254,6 +261,7 @@
     <Compile Include="ViewModels\MenuPageViewModel.cs" />
     <Compile Include="ViewModels\MiscPageViewModel.cs" />
     <Compile Include="ViewModels\OpponentsControllersPageViewModel.cs" />
+    <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\WeatherPageViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -407,6 +415,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Movies\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\home_gray.png" />
+    <Resource Include="Images\home_green.png" />
+    <Resource Include="Images\home_white.png" />
+    <Resource Include="Images\not_saved_changes.png" />
+    <Resource Include="Images\send_email_gray.png" />
+    <Resource Include="Images\send_email_green.png" />
+    <Resource Include="Images\send_email_white.png" />
+    <Resource Include="Images\settings_gray.png" />
+    <Resource Include="Images\settings_green.png" />
+    <Resource Include="Images\settings_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

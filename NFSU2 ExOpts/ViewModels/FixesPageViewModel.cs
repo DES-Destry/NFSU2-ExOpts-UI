@@ -19,7 +19,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 disappearingWheelsFix = value;
-                App.IniFile["DisappearingWheelsFix", "Fixes"] = value;
+                App.MainConfig["DisappearingWheelsFix", "Fixes"] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"DisappearingWheelsFix(Fixes) value has been changed to {value}", "INFO");
@@ -36,7 +36,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 experimentalSplitScreenFix = value;
-                App.IniFile["ExperimentalSplitScreenFix", "Fixes"] = value;
+                App.MainConfig["ExperimentalSplitScreenFix", "Fixes"] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"ExperimentalSplitScreenFix(Fixes) value has been changed to {value}", "INFO");
@@ -53,7 +53,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 hoodDecalsFix = value;
-                App.IniFile["HoodDecalsFix", "Fixes"] = value;
+                App.MainConfig["HoodDecalsFix", "Fixes"] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"HoodDecalsFix(Fixes) value has been changed to {value}", "INFO");
@@ -70,7 +70,7 @@ namespace NFSU2_ExOpts.ViewModels
             set
             {
                 cabinNeonFix = value;
-                App.IniFile["CabinNeonFix", "Fixes"] = value;
+                App.MainConfig["CabinNeonFix", "Fixes"] = value;
                 App.IsSavedData = false;
 
                 Logs.WriteLog($"CabinNeonFix(Fixes) value has been changed to {value}", "INFO");
@@ -81,19 +81,27 @@ namespace NFSU2_ExOpts.ViewModels
 
         public FixesPageViewModel()
         {
-            SetValues();
+            try
+            {
+                App.OnOutDataUpdated += SetValues;
+                SetValues();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
 
         private void SetValues()
         {
             try
             {
-                if (!App.IniFile.IsEmpty)
+                if (!App.MainConfig.IsEmpty)
                 {
-                    DisappearingWheelsFix = App.IniFile["DisappearingWheelsFix", "Fixes"];
-                    ExperimentalSplitScreenFix = App.IniFile["ExperimentalSplitScreenFix", "Fixes"];
-                    HoodDecalsFix = App.IniFile["HoodDecalsFix", "Fixes"];
-                    CabinNeonFix = App.IniFile["CabinNeonFix", "Fixes"];
+                    DisappearingWheelsFix = App.MainConfig["DisappearingWheelsFix", "Fixes"];
+                    ExperimentalSplitScreenFix = App.MainConfig["ExperimentalSplitScreenFix", "Fixes"];
+                    HoodDecalsFix = App.MainConfig["HoodDecalsFix", "Fixes"];
+                    CabinNeonFix = App.MainConfig["CabinNeonFix", "Fixes"];
                 }
                 else
                 {
