@@ -26,9 +26,9 @@
                     BorderBrush="{StaticResource StaticBgBrush}"
                     Background="{StaticResource StaticBgBrush}"
                     MouseLeftButtonDown="Border_MouseLeftButtonDown">
-                
+
                 <Grid Background="Transparent"
-                      Height="20"
+                      Height="25"
                       Width="950">
 
                     <Grid.ColumnDefinitions>
@@ -55,7 +55,7 @@
 
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal">
-                        
+
                         <Button x:Name="HomeButton"
                                 Margin="27,0,0,0"
                                 Width="17" 
@@ -114,19 +114,26 @@
                                                         Property="Source" 
                                                         Value="/NFSU2 ExOpts;component/Images/settings_gray.png"/>
                                             </Trigger>
-                                    </ControlTemplate.Triggers>
+                                        </ControlTemplate.Triggers>
 
-                                </ControlTemplate>
+                                    </ControlTemplate>
                                 </Button.Template>
 
                             </Button>
-                            <Image Width="11"
-                                   Height="11"
-                                   Margin="0,0,-5,0"
+                            <Image Width="12"
+                                   Height="12"
+                                   Margin="0,0,-6,0"
                                    HorizontalAlignment="Right"
                                    VerticalAlignment="Top"
                                    Source="/NFSU2 ExOPts;component/Images/not_saved_changes.png"
                                    Visibility="{Binding NotSavedVisibility}"/>
+                            <Image Width="12"
+                                   Height="12"
+                                   Margin="0,13,-6,0"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Top"
+                                   Source="/NFSU2 ExOPts;component/Images/downloading_updates.png"
+                                   Visibility="{Binding UpdateAviableVisibility}"/>
                         </Grid>
 
                         <Button x:Name="ContactsButton"
@@ -171,7 +178,7 @@
                             Margin="1,1,7,1"
                             Cursor="Hand"
                             Click="ExitButton_Click">
-                        
+
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
 
@@ -195,16 +202,16 @@
 
                             </ControlTemplate>
                         </Button.Template>
-                        
+
                     </Button>
                 </Grid>
             </Border>
 
-            
-            <Frame Height="574"
+
+            <Frame Height="569"
                    NavigationUIVisibility="Hidden"
                    Content="{Binding CurrentPage}"/>
-            
+
         </StackPanel>
     </Border>
 </Window>

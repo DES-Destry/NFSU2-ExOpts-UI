@@ -19,6 +19,7 @@ namespace NFSU2_ExOpts.ViewModels
         private BitmapImage contactsHeaderImage;
 
         private Visibility notSavedVisibility;
+        private Visibility updateAviableVisibility;
 
         private Page currentPage;
 
@@ -72,6 +73,18 @@ namespace NFSU2_ExOpts.ViewModels
                 OnPropertyChanged();
             }
         }
+        public Visibility UpdateAviableVisibility
+        {
+            get
+            {
+                return updateAviableVisibility;
+            }
+            set
+            {
+                updateAviableVisibility = value;
+                OnPropertyChanged();
+            }
+        }
 
         public Page CurrentPage
         {
@@ -102,6 +115,19 @@ namespace NFSU2_ExOpts.ViewModels
             ContactsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/send_email_white.png", UriKind.Relative));
 
             CurrentPage = mainPage;
+
+            if (!App.ConnectionError &&
+                App.LastVersion != null &&
+                App.ExOptsLastVersion != null &&
+                App.Version != App.LastVersion &&
+                App.ExOptsVersion != App.ExOptsLastVersion)
+            {
+                UpdateAviableVisibility = Visibility.Visible;
+            }
+            else
+            {
+                UpdateAviableVisibility = Visibility.Collapsed;
+            }
 
             NotSavedVisibility = Visibility.Collapsed;
             App.OnSavedDataChanged += InMainSavedChanged;

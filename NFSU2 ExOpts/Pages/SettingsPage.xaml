@@ -82,6 +82,77 @@
                                 Command="{Binding DefaultCommand}"/>
                     </StackPanel>
                 </Grid>
+                <Grid Margin="5"
+                      Height="170">
+                    <TextBlock Text="Version"
+                               TextAlignment="Left"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource WhiteBrush}"
+                               FontSize="{StaticResource H1}"
+                               FontFamily="{StaticResource BaseFont}"/>
+                    <Border Width="840"
+                            Height="3"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Margin="0,17,0,0"
+                            CornerRadius="1"
+                            Background="{StaticResource MainBrush}"/>
+                    <TextBlock Text="{Binding CurrentVersion}"
+                               TextAlignment="Left"
+                               Height="25"
+                               Margin="0,42,0,0"
+                               VerticalAlignment="Top"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource WhiteBrush}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource BaseFont}"/>
+                    <TextBlock Text="{Binding NewVersion}"
+                               TextAlignment="Left"
+                               Height="25"
+                               Margin="0,70,0,0"
+                               VerticalAlignment="Top"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource WhiteBrush}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource BaseFont}"/>
+                    <StackPanel Orientation="Horizontal"
+                                Height="25"
+                                VerticalAlignment="Top"
+                                Margin="0,95,0,0"
+                                Visibility="{Binding UpdateAviableVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                        <Image Source="/NFSU2 ExOPts;component/Images/downloading_updates.png"/>
+                        <TextBlock Text="New update avaible! You can update app in installer. Open installer for more information"
+                                   TextAlignment="Left"
+                                   FontWeight="Medium"
+                                   Margin="10,0,0,0"
+                                   Foreground="{StaticResource UpdateAvaibleBrush}"
+                                   FontSize="{StaticResource Regular}"
+                                   FontFamily="{StaticResource BaseFont}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="25"
+                                VerticalAlignment="Top"
+                                Margin="0,95,0,0"
+                                Visibility="{Binding ConnectionErrorVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                        <Image Source="/NFSU2 ExOPts;component/Images/not_saved_changes.png"/>
+                        <TextBlock Text="Connection error!"
+                                   TextAlignment="Left"
+                                   FontWeight="Medium"
+                                   Margin="10,0,0,0"
+                                   Foreground="{StaticResource RedBrush}"
+                                   FontSize="{StaticResource Regular}"
+                                   FontFamily="{StaticResource BaseFont}"/>
+                    </StackPanel>
+                    <Button Content="Open installer"
+                            Height="40"
+                            Margin="5,125,0,0"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            Width="160"
+                            FontSize="{StaticResource Regular}"
+                            Style="{StaticResource ButtonStyle}"
+                            Command="{Binding InstallerCommand}"/>
+                </Grid>
             </StackPanel>
         </Border>
     </ScrollViewer>

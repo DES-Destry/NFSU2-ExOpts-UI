@@ -4,6 +4,9 @@ using DESTRY.IO.IniFiles;
 using NFSU2_ExOpts.Models;
 using System;
 using System.IO;
+using System.IO.Compression;
+using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace NFSU2_ExOpts
@@ -14,15 +17,21 @@ namespace NFSU2_ExOpts
 
 
         public static readonly string ApplicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Destry-Unimaster", "NFSU2 ExOpts");
+        public static readonly string LastVersionFilePath = Path.Combine(ApplicationDataFolder, "last version", ".version");
         public static readonly string GameExePath = "speed2.exe";
-        public static readonly string Version = "null";
         public static readonly string MainConfigPath = "scripts\\NFSU2ExtraOptionsSettings.ini";
-
         public static string CustomConfigPath = default;
+
+        public static readonly string Version = "v0.8.0";
+        public static readonly string ExOptsVersion = "v5";
+
+        public static string LastVersion = default;
+        public static string ExOptsLastVersion = default;
 
         public static bool IsMainConfigOpened { get; private set; } = false;
         public static bool MainConfigExists { get; private set; } = false;
         public static bool GameExeExists { get; private set; } = false;
+        public static bool ConnectionError { get; private set; } = false;
 
         public static bool IsSavedData
         {
@@ -35,6 +44,7 @@ namespace NFSU2_ExOpts
         }
 
         public static IniFile MainConfig = new IniFile();
+        public static IniFile ScreenFXConfig = new IniFile();
         public static AppSettings Settings = new AppSettings();
 
         public static event Action OnSavedDataChanged;
@@ -45,18 +55,11 @@ namespace NFSU2_ExOpts
         {
             try
             {
-                AppData.InitAppDir(Path.Combine(ApplicationDataFolder, "data"));
-                AppData.InitAppFile("main.json", false);
-
-                Logs.InitLogsDirectory(Path.Combine(ApplicationDataFolder, "logs"));
-                Logs.InitLogFile("main.log", false);
-
-                Errors.InitErrorsPath(Path.Combine(ApplicationDataFolder, "error reports"));
-
                 if (!Directory.Exists(ApplicationDataFolder) ||
                     !Directory.Exists(Path.Combine(ApplicationDataFolder, "data")) ||
                     !Directory.Exists(Path.Combine(ApplicationDataFolder, "error reports")) ||
-                    !Directory.Exists(Path.Combine(ApplicationDataFolder, "logs")))
+                    !Directory.Exists(Path.Combine(ApplicationDataFolder, "logs")) ||
+                    !Directory.Exists(Path.Combine(ApplicationDataFolder, "last version")))
                 {
                     CreateFolders();
                 }
@@ -68,6 +71,16 @@ namespace NFSU2_ExOpts
                 {
                     CreateAppDataFile();
                 }
+
+                GetUpdates();
+
+                AppData.InitAppDir(Path.Combine(ApplicationDataFolder, "data"));
+                AppData.InitAppFile("main.json", false);
+
+                Logs.InitLogsDirectory(Path.Combine(ApplicationDataFolder, "logs"));
+                Logs.InitLogFile("main.log", false);
+
+                Errors.InitErrorsPath(Path.Combine(ApplicationDataFolder, "error reports"));
 
                 Logs.WriteLog("Application working has been started!", "INFO");
 
@@ -149,10 +162,49 @@ namespace NFSU2_ExOpts
         {
             Directory.CreateDirectory(Path.Combine(ApplicationDataFolder, "data"));
             Directory.CreateDirectory(Path.Combine(ApplicationDataFolder, "error reports"));
+            Directory.CreateDirectory(Path.Combine(ApplicationDataFolder, "last version"));
             Directory.CreateDirectory(Path.Combine(ApplicationDataFolder, "logs"));
 
             CreateLogFile();
             CreateAppDataFile();
+        }
+
+        private async static void GetUpdates()
+        {
+            try
+            {
+                if (File.Exists(LastVersionFilePath))
+                {
+                    File.Delete(LastVersionFilePath);
+                    Logs.WriteLog($"{LastVersionFilePath} has been deleted!", "INFO");
+                }
+
+                await Task.Run(async () =>
+                {
+                    WebClient wc = new WebClient();
+                    await wc.DownloadFileTaskAsync("/*There will link to dowload zip file with last version data from github*/", Path.Combine(ApplicationDataFolder, "last version", ".version.zip"));
+
+                    Logs.WriteLog($"{Path.Combine(ApplicationDataFolder, "last version", ".version.zip")} has been downloaded from github!", "INFO");
+
+                    using (ZipArchive archive = ZipFile.OpenRead(Path.Combine(ApplicationDataFolder, "last version", ".version.zip")))
+                    {
+                        foreach (ZipArchiveEntry entry in archive.Entries)
+                        {
+                            entry.ExtractToFile(Path.Combine(Path.Combine(ApplicationDataFolder, "last version"), entry.FullName));
+                        }
+                    }
+
+                    string[] lastVersionData = File.ReadAllLines(LastVersionFilePath);
+
+                    LastVersion = lastVersionData[0];
+                    ExOptsLastVersion = lastVersionData[1];
+                });
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+                ConnectionError = true;
+            }
         }
     }
 }
