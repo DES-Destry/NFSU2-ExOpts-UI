@@ -8,6 +8,9 @@ namespace NFSU2_ExOpts.ViewModels
 {
     class SettingsPageViewModel : BaseViewModel
     {
+        private string lastUIVersion;
+        private string lastExOptsVersion;
+
         private Visibility notSavedVisibility;
         private Visibility connectionErrorVisibility;
         private Visibility updateAviableVisibility;
@@ -31,32 +34,45 @@ namespace NFSU2_ExOpts.ViewModels
                 OnPropertyChanged();
             }
         }
-        public string CurrentVersion
+        public string CurrentUIVersion
         {
             get
             {
-                return $"Current UI version: {App.Version}       Current ExOpts version: {App.ExOptsVersion}";
+                return $"Current UI version: {App.Version}";
             }
             set
             {
                 OnPropertyChanged();
             }
         }
-        public string NewVersion
+        public string CurrentExOptsVersion
         {
             get
             {
-                if (!App.ConnectionError && App.LastVersion != null && App.ExOptsLastVersion != null)
-                {
-                    return $"Last UI version: {App.LastVersion}          Last ExOpts version: {App.ExOptsLastVersion}";
-                }
-                else
-                {
-                    return "Last UI version: error                  Last ExOpts version: error";
-                }
+                return $"Current ExOpts version: {App.ExOptsVersion}";
+            }
+        }
+        public string LastUIVersion
+        {
+            get
+            {
+                return lastUIVersion;
             }
             set
             {
+                lastUIVersion = value;
+                OnPropertyChanged();
+            }
+        }
+        public string LastExOptsVersion
+        {
+            get
+            {
+                return lastExOptsVersion;
+            }
+            set
+            {
+                lastExOptsVersion = value;
                 OnPropertyChanged();
             }
         }
@@ -98,10 +114,10 @@ namespace NFSU2_ExOpts.ViewModels
             }
         }
 
-        public ICommand SaveCommand => new BaseCommand((obj) => Save());
-        public ICommand CancelCommand => new BaseCommand((obj) => Cancel());
-        public ICommand DefaultCommand => new BaseCommand((obj) => Default());
-        public ICommand InstallerCommand => new BaseCommand((obj => OpenInstaller()));
+        public ICommand SaveCommand => new BaseCommand(obj => Save());
+        public ICommand CancelCommand => new BaseCommand(obj => Cancel());
+        public ICommand DefaultCommand => new BaseCommand(obj => Default());
+        public ICommand InstallerCommand => new BaseCommand(obj => OpenInstaller());
 
 
         public SettingsPageViewModel()
@@ -111,11 +127,23 @@ namespace NFSU2_ExOpts.ViewModels
             if (App.ConnectionError) ConnectionErrorVisibility = Visibility.Visible;
             else ConnectionErrorVisibility = Visibility.Collapsed;
 
-            if (!App.ConnectionError && 
-                App.LastVersion != null && 
-                App.ExOptsLastVersion != null && 
-                App.Version != App.LastVersion && 
-                App.ExOptsVersion != App.ExOptsLastVersion)
+            UpdateAviableVisibility = Visibility.Collapsed;
+
+            App.OnSavedDataChanged += SavedChanged;
+            App.OnLastVersionDataGetted += LastVersionInfoGetted;
+        }
+
+        private void SavedChanged()
+        {
+            if (!App.IsSavedData) NotSavedVisibility = Visibility.Visible;
+            else NotSavedVisibility = Visibility.Collapsed;
+        }
+        private void LastVersionInfoGetted()
+        {
+            if (App.ConnectionError) ConnectionErrorVisibility = Visibility.Visible;
+            else ConnectionErrorVisibility = Visibility.Collapsed;
+
+            if ((!App.ConnectionError && App.LastVersion != null && App.ExOptsLastVersion != null) && (App.Version != App.LastVersion || App.ExOptsVersion != App.ExOptsLastVersion))
             {
                 UpdateAviableVisibility = Visibility.Visible;
             }
@@ -124,13 +152,16 @@ namespace NFSU2_ExOpts.ViewModels
                 UpdateAviableVisibility = Visibility.Collapsed;
             }
 
-            App.OnSavedDataChanged += SavedChanged;
-        }
-
-        private void SavedChanged()
-        {
-            if (!App.IsSavedData) NotSavedVisibility = Visibility.Visible;
-            else NotSavedVisibility = Visibility.Collapsed;
+            if (!App.ConnectionError && App.LastVersion != null && App.ExOptsLastVersion != null)
+            {
+                LastUIVersion = $"Last UI version:        {App.LastVersion}";
+                LastExOptsVersion = $"Last ExOpts version:        {App.ExOptsLastVersion}";
+            }
+            else
+            {
+                LastUIVersion = "Last UI version:        error";
+                LastExOptsVersion = "Last ExOpts version:        error";
+            }
         }
 
         private void Save()

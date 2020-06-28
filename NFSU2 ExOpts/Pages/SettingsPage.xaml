@@ -5,14 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NFSU2_ExOpts.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="574" 
+      d:DesignHeight="569" 
       d:DesignWidth="950"
       Title="SettingsPage">
 
-    <ScrollViewer Background="{StaticResource ActiveBgBrush}">
-        <Border HorizontalAlignment="Left"
-                Width="950"
-                CornerRadius="0,0,7,7">
+    <Border HorizontalAlignment="Left"
+            Width="950"
+            CornerRadius="0,0,7,7"
+            Background="{StaticResource ActiveBgBrush}">
+    <ScrollViewer>
             <StackPanel>
                 <TextBlock Text="SETTINGS"
                            TextAlignment="Center"
@@ -28,7 +29,7 @@
                                Foreground="{StaticResource WhiteBrush}"
                                FontSize="{StaticResource H1}"
                                FontFamily="{StaticResource BaseFont}"/>
-                    <Border Width="670"
+                    <Border Width="660"
                             Height="3"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
@@ -90,27 +91,53 @@
                                Foreground="{StaticResource WhiteBrush}"
                                FontSize="{StaticResource H1}"
                                FontFamily="{StaticResource BaseFont}"/>
-                    <Border Width="840"
+                    <Border Width="830"
                             Height="3"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
                             Margin="0,17,0,0"
                             CornerRadius="1"
                             Background="{StaticResource MainBrush}"/>
-                    <TextBlock Text="{Binding CurrentVersion}"
-                               TextAlignment="Left"
+                    <TextBlock Text="{Binding CurrentUIVersion}"
+                               Width="350"
                                Height="25"
                                Margin="0,42,0,0"
                                VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               TextAlignment="Left"
                                FontWeight="Medium"
                                Foreground="{StaticResource WhiteBrush}"
                                FontSize="{StaticResource Regular}"
                                FontFamily="{StaticResource BaseFont}"/>
-                    <TextBlock Text="{Binding NewVersion}"
+                    <TextBlock Text="{Binding CurrentExOptsVersion}"
+                               Width="350"
+                               Height="25"
+                               Margin="350,42,0,0"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
                                TextAlignment="Left"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource WhiteBrush}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource BaseFont}"/>
+                    <TextBlock Text="{Binding LastUIVersion}"
+                               Width="350"
                                Height="25"
                                Margin="0,70,0,0"
                                VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               TextAlignment="Left"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource WhiteBrush}"
+                               FontSize="{StaticResource Regular}"
+                               FontFamily="{StaticResource BaseFont}"/>
+                    <TextBlock Text="{Binding LastExOptsVersion}"
+                               Width="350"
+                               Height="25"
+                               Margin="350,70,0,0"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               TextAlignment="Left"
                                FontWeight="Medium"
                                Foreground="{StaticResource WhiteBrush}"
                                FontSize="{StaticResource Regular}"
@@ -121,7 +148,7 @@
                                 Margin="0,95,0,0"
                                 Visibility="{Binding UpdateAviableVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                         <Image Source="/NFSU2 ExOPts;component/Images/downloading_updates.png"/>
-                        <TextBlock Text="New update avaible! You can update app in installer. Open installer for more information"
+                        <TextBlock Text="New update avaible! You can update app in installer. Open installer for more information..."
                                    TextAlignment="Left"
                                    FontWeight="Medium"
                                    Margin="10,0,0,0"
@@ -148,12 +175,12 @@
                             Margin="5,125,0,0"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Left"
-                            Width="160"
+                            Width="200"
                             FontSize="{StaticResource Regular}"
                             Style="{StaticResource ButtonStyle}"
                             Command="{Binding InstallerCommand}"/>
                 </Grid>
             </StackPanel>
-        </Border>
-    </ScrollViewer>
+        </ScrollViewer>
+    </Border>
 </Page>

@@ -116,11 +116,21 @@ namespace NFSU2_ExOpts.ViewModels
 
             CurrentPage = mainPage;
 
-            if (!App.ConnectionError &&
-                App.LastVersion != null &&
-                App.ExOptsLastVersion != null &&
-                App.Version != App.LastVersion &&
-                App.ExOptsVersion != App.ExOptsLastVersion)
+            NotSavedVisibility = Visibility.Collapsed;
+            UpdateAviableVisibility = Visibility.Collapsed;
+
+            App.OnSavedDataChanged += InMainSavedChanged;
+            App.OnLastVersionDataGetted += InMainLastVersionGetted;
+        }
+
+        private void InMainSavedChanged()
+        {
+            if (!App.IsSavedData) NotSavedVisibility = Visibility.Visible;
+            else NotSavedVisibility = Visibility.Collapsed;
+        }
+        private void InMainLastVersionGetted()
+        {
+            if ((!App.ConnectionError && App.LastVersion != null && App.ExOptsLastVersion != null) && (App.Version != App.LastVersion || App.ExOptsVersion != App.ExOptsLastVersion))
             {
                 UpdateAviableVisibility = Visibility.Visible;
             }
@@ -128,16 +138,6 @@ namespace NFSU2_ExOpts.ViewModels
             {
                 UpdateAviableVisibility = Visibility.Collapsed;
             }
-
-            NotSavedVisibility = Visibility.Collapsed;
-            App.OnSavedDataChanged += InMainSavedChanged;
-
-        }
-
-        private void InMainSavedChanged()
-        {
-            if (!App.IsSavedData) NotSavedVisibility = Visibility.Visible;
-            else NotSavedVisibility = Visibility.Collapsed;
         }
 
         private void OpenMainPage()
@@ -148,7 +148,6 @@ namespace NFSU2_ExOpts.ViewModels
             SettingsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/settings_white.png", UriKind.Relative));
             ContactsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/send_email_white.png", UriKind.Relative));
         }
-
         private void OpenSettingsPage()
         {
             CurrentPage = settingsPage;
@@ -157,7 +156,6 @@ namespace NFSU2_ExOpts.ViewModels
             SettingsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/settings_green.png", UriKind.Relative));
             ContactsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/send_email_white.png", UriKind.Relative));
         }
-
         private void OpenContactsPage()
         {
             HomeHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/home_white.png", UriKind.Relative));

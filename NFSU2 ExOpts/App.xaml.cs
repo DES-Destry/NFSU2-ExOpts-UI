@@ -22,8 +22,8 @@ namespace NFSU2_ExOpts
         public static readonly string MainConfigPath = "scripts\\NFSU2ExtraOptionsSettings.ini";
         public static string CustomConfigPath = default;
 
-        public static readonly string Version = "v0.8.0";
-        public static readonly string ExOptsVersion = "v5";
+        public static readonly string Version = "v0.8.1";
+        public static readonly string ExOptsVersion = "v4.0.0.1337";
 
         public static string LastVersion = default;
         public static string ExOptsLastVersion = default;
@@ -49,6 +49,7 @@ namespace NFSU2_ExOpts
 
         public static event Action OnSavedDataChanged;
         public static event Action OnOutDataUpdated;
+        public static event Action OnLastVersionDataGetted;
 
 
         static App()
@@ -182,7 +183,7 @@ namespace NFSU2_ExOpts
                 await Task.Run(async () =>
                 {
                     WebClient wc = new WebClient();
-                    await wc.DownloadFileTaskAsync("/*There will link to dowload zip file with last version data from github*/", Path.Combine(ApplicationDataFolder, "last version", ".version.zip"));
+                    await wc.DownloadFileTaskAsync(new Uri("https://github.com/DES-Destry/NFSU2-ExOpts-UI/raw/master/NFSU2%20ExOpts/.version.zip"), Path.Combine(ApplicationDataFolder, "last version", ".version.zip"));
 
                     Logs.WriteLog($"{Path.Combine(ApplicationDataFolder, "last version", ".version.zip")} has been downloaded from github!", "INFO");
 
@@ -194,16 +195,22 @@ namespace NFSU2_ExOpts
                         }
                     }
 
+                    File.Delete(Path.Combine(ApplicationDataFolder, "last version", ".version.zip"));
+
                     string[] lastVersionData = File.ReadAllLines(LastVersionFilePath);
 
                     LastVersion = lastVersionData[0];
                     ExOptsLastVersion = lastVersionData[1];
+
+                    OnLastVersionDataGetted?.Invoke();
                 });
             }
             catch (Exception ex)
             {
                 Errors.WriteError(ex);
                 ConnectionError = true;
+
+                OnLastVersionDataGetted?.Invoke();
             }
         }
     }
