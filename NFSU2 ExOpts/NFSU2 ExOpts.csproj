@@ -218,6 +218,7 @@
     <Compile Include="Models\AppSettings.cs" />
     <Compile Include="Models\BaseSlotsMethods.cs" />
     <Compile Include="Models\BinaryBoolConverter.cs" />
+    <Compile Include="Models\GameData.cs" />
     <Compile Include="Models\ISlot.cs" />
     <Compile Include="Models\PressKeyState.cs" />
     <Compile Include="Models\VirtualKeyCodeConverter.cs" />

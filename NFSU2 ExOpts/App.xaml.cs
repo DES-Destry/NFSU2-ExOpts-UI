@@ -3,6 +3,7 @@ using DESTRY.IO.Debuging;
 using DESTRY.IO.IniFiles;
 using NFSU2_ExOpts.Models;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
@@ -18,8 +19,8 @@ namespace NFSU2_ExOpts
 
         public static readonly string ApplicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Destry-Unimaster", "NFSU2 ExOpts");
         public static readonly string LastVersionFilePath = Path.Combine(ApplicationDataFolder, "last version", ".version");
-        public static readonly string GameExePath = "speed2.exe";
-        public static readonly string MainConfigPath = "scripts\\NFSU2ExtraOptionsSettings.ini";
+        public static string GameExePath = "speed2.exe";
+        public static string MainConfigPath = "scripts\\NFSU2ExtraOptionsSettings.ini";
         public static string CustomConfigPath = default;
 
         public static readonly string Version = "v0.8.1";
@@ -45,7 +46,11 @@ namespace NFSU2_ExOpts
 
         public static IniFile MainConfig = new IniFile();
         public static IniFile ScreenFXConfig = new IniFile();
+
         public static AppSettings Settings = new AppSettings();
+        public static GameData GameData = new GameData();
+
+        public static AppDataSource GameDataSource = new AppDataSource();
 
         public static event Action OnSavedDataChanged;
         public static event Action OnOutDataUpdated;
@@ -56,6 +61,16 @@ namespace NFSU2_ExOpts
         {
             try
             {
+                AppData.InitAppDir(Path.Combine(ApplicationDataFolder, "data"));
+                GameDataSource.InitAppDir(Path.Combine(ApplicationDataFolder, "data"));
+                AppData.InitAppFile("main.json", false);
+                GameDataSource.InitAppFile("game.json", false);
+
+                Logs.InitLogsDirectory(Path.Combine(ApplicationDataFolder, "logs"));
+                Logs.InitLogFile("main.log", false);
+
+                Errors.InitErrorsPath(Path.Combine(ApplicationDataFolder, "error reports"));
+
                 if (!Directory.Exists(ApplicationDataFolder) ||
                     !Directory.Exists(Path.Combine(ApplicationDataFolder, "data")) ||
                     !Directory.Exists(Path.Combine(ApplicationDataFolder, "error reports")) ||
@@ -72,26 +87,32 @@ namespace NFSU2_ExOpts
                 {
                     CreateAppDataFile();
                 }
+                else if (!File.Exists(Path.Combine(ApplicationDataFolder, "data", "game.json")))
+                {
+                    CreateGameDataFile();
+                }
 
-                GetUpdates();
-
-                AppData.InitAppDir(Path.Combine(ApplicationDataFolder, "data"));
-                AppData.InitAppFile("main.json", false);
-
-                Logs.InitLogsDirectory(Path.Combine(ApplicationDataFolder, "logs"));
-                Logs.InitLogFile("main.log", false);
-
-                Errors.InitErrorsPath(Path.Combine(ApplicationDataFolder, "error reports"));
+                GetLastVersion();
 
                 Logs.WriteLog("Application working has been started!", "INFO");
 
                 AppSettings settings = AppData.ReadJson<AppSettings>();
                 Settings = settings;
 
+                GameData gameData = GameDataSource.ReadJson<GameData>();
+                GameData = gameData;
+
                 MainConfigPath = Settings.ScriptPath;
                 GameExePath = Settings.GamePath;
 
                 Logs.WriteLog("Settings are readed and applied", "INFO");
+
+
+                if (File.Exists(GameExePath))
+                {
+                    GameExeExists = true;
+                    Logs.WriteLog($"{Path.GetFullPath(GameExePath)} founded!", "INFO");
+                }
 
 
                 string[] environmentStrings = Environment.GetCommandLineArgs();
@@ -124,6 +145,8 @@ namespace NFSU2_ExOpts
 
                     Logs.WriteLog($"Ini file has been loaded from {Path.GetFullPath(environmentStrings[1])}", "INFO");
                 }
+
+                CountGameTime();
             }
             catch (Exception ex)
             {
@@ -159,6 +182,13 @@ namespace NFSU2_ExOpts
 
             Settings = appSettings;
         }
+        private static void CreateGameDataFile()
+        {
+            GameData gameData = new GameData();
+            GameDataSource.WriteJson(gameData);
+
+            GameData = gameData;
+        }
         private static void CreateFolders()
         {
             Directory.CreateDirectory(Path.Combine(ApplicationDataFolder, "data"));
@@ -168,9 +198,10 @@ namespace NFSU2_ExOpts
 
             CreateLogFile();
             CreateAppDataFile();
+            CreateGameDataFile();
         }
 
-        private async static void GetUpdates()
+        private async static void GetLastVersion()
         {
             try
             {
@@ -212,6 +243,26 @@ namespace NFSU2_ExOpts
 
                 OnLastVersionDataGetted?.Invoke();
             }
+        }
+        private async static void CountGameTime()
+        {
+            await Task.Run(async () =>
+            {
+                while (true)
+                {
+                    Process[] processes = Process.GetProcesses();
+                    foreach (var process in processes)
+                    {
+                        if (process.ProcessName.ToLower().Contains("speed2"))
+                        {
+                            GameData.IncreaseTime(5);
+                            GameData.SetLastStartup();
+                            GameDataSource.WriteJson(GameData);
+                        }
+                    }
+                    await Task.Delay(TimeSpan.FromSeconds(5));
+                }
+            });
         }
     }
 }
