@@ -20,6 +20,7 @@ namespace NFSU2_ExOpts
         public static readonly string ApplicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Destry-Unimaster", "NFSU2 ExOpts");
         public static readonly string LastVersionFilePath = Path.Combine(ApplicationDataFolder, "last version", ".version");
         public static string GameExePath = "speed2.exe";
+        public static string TexmodExePath = "Texmod.exe";
         public static string MainConfigPath = "scripts\\NFSU2ExtraOptionsSettings.ini";
         public static string CustomConfigPath = default;
 
@@ -31,7 +32,6 @@ namespace NFSU2_ExOpts
 
         public static bool IsMainConfigOpened { get; private set; } = false;
         public static bool MainConfigExists { get; private set; } = false;
-        public static bool GameExeExists { get; private set; } = false;
         public static bool ConnectionError { get; private set; } = false;
 
         public static bool IsSavedData
@@ -55,6 +55,7 @@ namespace NFSU2_ExOpts
         public static event Action OnSavedDataChanged;
         public static event Action OnOutDataUpdated;
         public static event Action OnLastVersionDataGetted;
+        public static event Action OnGameDataChanged;
 
 
         static App()
@@ -90,7 +91,7 @@ namespace NFSU2_ExOpts
                 else if (!File.Exists(Path.Combine(ApplicationDataFolder, "data", "game.json")))
                 {
                     CreateGameDataFile();
-                }
+                } 
 
                 GetLastVersion();
 
@@ -104,15 +105,9 @@ namespace NFSU2_ExOpts
 
                 MainConfigPath = Settings.ScriptPath;
                 GameExePath = Settings.GamePath;
+                TexmodExePath = Settings.TexmodPath;
 
                 Logs.WriteLog("Settings are readed and applied", "INFO");
-
-
-                if (File.Exists(GameExePath))
-                {
-                    GameExeExists = true;
-                    Logs.WriteLog($"{Path.GetFullPath(GameExePath)} founded!", "INFO");
-                }
 
 
                 string[] environmentStrings = Environment.GetCommandLineArgs();
@@ -258,6 +253,7 @@ namespace NFSU2_ExOpts
                             GameData.IncreaseTime(5);
                             GameData.SetLastStartup();
                             GameDataSource.WriteJson(GameData);
+                            OnGameDataChanged?.Invoke();
                         }
                     }
                     await Task.Delay(TimeSpan.FromSeconds(5));

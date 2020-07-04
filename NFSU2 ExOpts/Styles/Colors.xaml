@@ -34,6 +34,18 @@
     <SolidColorBrush x:Key="UpdateAvaibleBrush" Color="#00C9FF"/>
     <Color x:Key="UpdateAvaibleColor">#00C9FF</Color>
 
+    <SolidColorBrush x:Key="ErrorBackgroundBrush" Color="#33FF0000"/>
+    <Color x:Key="ErrorBackgroundColor">#33FF0000</Color>
+
+    <SolidColorBrush x:Key="AdministratorBorderBrush" Color="#006BC9"/>
+    <Color x:Key="AdministratorBorderColor">#006BC9</Color>
+
+    <SolidColorBrush x:Key="AdministratorBackgroundBrush" Color="#7FFEBD38"/>
+    <Color x:Key="AdministratorBackgroundColor">#7FFEBD38</Color>
+
+    <SolidColorBrush x:Key="AdministratorTextBrush" Color="#FEBD38"/>
+    <Color x:Key="AdministratorTextColor">#FEBD38</Color>
+
     <LinearGradientBrush x:Key="SelectorPropgressBrush">
         <GradientStop Color="#00CA47" Offset="0"/>
         <GradientStop Color="#00AB0E" Offset="1"/>

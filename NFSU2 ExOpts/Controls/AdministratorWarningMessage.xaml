@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="NFSU2_ExOpts.Controls.AdministratorWarningMessage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NFSU2_ExOpts.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="70" 
+      d:DesignWidth="710">
+    <Border CornerRadius="10"
+            BorderThickness="2"
+            BorderBrush="{StaticResource AdministratorBorderBrush}"
+            Background="{StaticResource AdministratorBackgroundBrush}">
+        <Grid>
+            <Image HorizontalAlignment="Left"
+                   Margin="5"
+                   Source="/NFSU2 ExOpts;component/Images/administrator_shield.png"/>
+            <TextBlock x:Name="ErrorTextBlock"
+                       Text="Please start this app as administrator for fully functional."
+                       TextAlignment="Left"
+                       Margin="70,0,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontSize="{StaticResource Regular}"
+                       FontFamily="{StaticResource BaseFont}"
+                       Foreground="{StaticResource AdministratorTextBrush}"/>
+        </Grid>
+    </Border>
+</UserControl>

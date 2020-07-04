@@ -89,7 +89,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\AdministratorWarningMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\CheckBoxSlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ErrorMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\WorkPages\FixesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\WorkPages\GamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,8 +209,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\AdministratorWarningMessage.xaml.cs">
+      <DependentUpon>AdministratorWarningMessage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CheckBoxSlot.xaml.cs">
       <DependentUpon>CheckBoxSlot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ErrorMessage.xaml.cs">
+      <DependentUpon>ErrorMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\LeftMenuItem.xaml.cs">
       <DependentUpon>LeftMenuItem.xaml</DependentUpon>
@@ -237,6 +255,9 @@
     <Compile Include="Pages\WorkPages\FixesPage.xaml.cs">
       <DependentUpon>FixesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkPages\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WorkPages\GameplayPage.xaml.cs">
       <DependentUpon>GameplayPage.xaml</DependentUpon>
     </Compile>
@@ -260,6 +281,7 @@
     </Compile>
     <Compile Include="ViewModels\DriftPageViewModel.cs" />
     <Compile Include="ViewModels\FixesPageViewModel.cs" />
+    <Compile Include="ViewModels\GamePageViewModel.cs" />
     <Compile Include="ViewModels\GameplayPageViewModel.cs" />
     <Compile Include="ViewModels\HotkeysPageViewModel.cs" />
     <Compile Include="ViewModels\LapsControllerPageViewModel.cs" />
@@ -438,6 +460,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\downloading_updates.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\game_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\administrator_shield.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
