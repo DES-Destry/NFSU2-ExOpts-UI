@@ -133,6 +133,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WorkPages\ContactsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkPages\DriftPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -253,6 +257,9 @@
     <Compile Include="Pages\SplashScreenPage.xaml.cs">
       <DependentUpon>SplashScreenPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkPages\ContactsPage.xaml.cs">
+      <DependentUpon>ContactsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WorkPages\DriftPage.xaml.cs">
       <DependentUpon>DriftPage.xaml</DependentUpon>
     </Compile>
@@ -286,6 +293,7 @@
     <Compile Include="Pages\WorkPages\WeatherPage.xaml.cs">
       <DependentUpon>WeatherPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\DriftPageViewModel.cs" />
     <Compile Include="ViewModels\FixesPageViewModel.cs" />
     <Compile Include="ViewModels\GamePageViewModel.cs" />

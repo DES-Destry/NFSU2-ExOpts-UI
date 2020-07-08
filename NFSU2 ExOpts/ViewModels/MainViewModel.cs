@@ -1,5 +1,6 @@
 ﻿using NFSU2_ExOpts.Models;
 using NFSU2_ExOpts.Pages;
+using NFSU2_ExOpts.Pages.WorkPages;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -108,7 +109,7 @@ namespace NFSU2_ExOpts.ViewModels
         {
             mainPage = new MainPage();
             settingsPage = new SettingsPage();
-            contactsPage = null;
+            contactsPage = new ContactsPage();
 
             SetImagesToDefault();
             HomeHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/home_green.png", UriKind.Relative));
@@ -162,6 +163,8 @@ namespace NFSU2_ExOpts.ViewModels
         }
         private void OpenContactsPage()
         {
+            CurrentPage = contactsPage;
+
             SetImagesToDefault();
             ContactsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/send_email_green.png", UriKind.Relative));
         }
