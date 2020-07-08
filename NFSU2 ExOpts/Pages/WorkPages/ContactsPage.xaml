@@ -72,6 +72,103 @@
                                FontSize="{StaticResource H2}"
                                FontFamily="{StaticResource BaseFont}"/>
                 </Grid>
+                <Grid Margin="5"
+                      Height="520">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Authors"
+                               VerticalAlignment="Top"
+                               TextAlignment="Left"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource WhiteBrush}"
+                               FontSize="{StaticResource H1}"
+                               FontFamily="{StaticResource BaseFont}"/>
+                    <Border Width="825"
+                            Height="3"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Margin="0,17,0,0"
+                            CornerRadius="1"
+                            Grid.ColumnSpan="2"
+                            Background="{StaticResource MainBrush}"/>
+                    <StackPanel>
+                        <Image Source="/NFSU2 ExOpts;component/Images/destry_logo.png"
+                               Height="235"
+                               Margin="10,30,0,0"
+                               HorizontalAlignment="Left"
+                               Stretch="Uniform"/>
+                        <TextBlock Text="NFSU2 ExOpts-User Interface from Destry-Unimaster"
+                                   TextWrapping="Wrap"
+                                   Margin="5"
+                                   FontSize="{StaticResource Regular}"
+                                   Foreground="{StaticResource WhiteBrush}"
+                                   FontFamily="{StaticResource BaseFont}"/>
+                        <Button Content="GitHub Profile"
+                                Margin="5"
+                                Command="{Binding OpenLinkCommand}"
+                                CommandParameter="https://github.com/DES-Destry"
+                                FontSize="{StaticResource H1}"
+                                Style="{StaticResource ButtonStyle}"/>
+                        <Button Content="GitHub UI Project"
+                                Margin="5"
+                                Command="{Binding OpenLinkCommand}"
+                                CommandParameter="https://github.com/DES-Destry/NFSU2-ExOpts-UI"
+                                FontSize="{StaticResource H1}"
+                                Style="{StaticResource ButtonStyle}"/>
+                        <Button Content="YouTube"
+                                Margin="5"
+                                Command="{Binding OpenLinkCommand}"
+                                CommandParameter="https://www.youtube.com/channel/UCzByESKwutH9wUBTmsL792Q?"
+                                FontSize="{StaticResource H1}"
+                                Style="{StaticResource ButtonStyle}"/>
+                        <Button Content="VK"
+                                Margin="5"
+                                Command="{Binding OpenLinkCommand}"
+                                CommandParameter="https://vk.com/vk.peoples.kirik"
+                                FontSize="{StaticResource H1}"
+                                Style="{StaticResource ButtonStyle}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <Image Source="/NFSU2 ExOpts;component/Images/nlgzrgn_logo.png"
+                               Height="235"
+                               Margin="10,30,0,0"
+                               HorizontalAlignment="Right"
+                               Stretch="Uniform"/>
+                        <TextBlock Text="Main script for working with NFSU2 from Anıl Gezergen(nlgzrgn)"
+                                   TextWrapping="Wrap"
+                                   Margin="5"
+                                   TextAlignment="Right"
+                                   FontSize="{StaticResource Regular}"
+                                   Foreground="{StaticResource WhiteBrush}"
+                                   FontFamily="{StaticResource BaseFont}"/>
+                        <Button Content="GitHub Profile"
+                                Margin="5"
+                                Command="{Binding OpenLinkCommand}"
+                                CommandParameter="https://github.com/nlgzrgn"
+                                FontSize="{StaticResource H1}"
+                                Style="{StaticResource ButtonStyle}"/>
+                        <Button Content="GitHub Script Project"
+                                Margin="5"
+                                Command="{Binding OpenLinkCommand}"
+                                CommandParameter="https://github.com/ExOptsTeam/NFSU2ExOpts"
+                                FontSize="{StaticResource H1}"
+                                Style="{StaticResource ButtonStyle}"/>
+                        <Button Content="YouTube"
+                                Margin="5"
+                                Command="{Binding OpenLinkCommand}"
+                                CommandParameter="https://www.youtube.com/user/nlgzrgn77"
+                                FontSize="{StaticResource H1}"
+                                Style="{StaticResource ButtonStyle}"/>
+                        <Button Content="Reddit"
+                                Margin="5"
+                                Command="{Binding OpenLinkCommand}"
+                                CommandParameter="https://www.reddit.com/user/nlgzrgn/"
+                                FontSize="{StaticResource H1}"
+                                Style="{StaticResource ButtonStyle}"/>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
         </ScrollViewer>
     </Border>

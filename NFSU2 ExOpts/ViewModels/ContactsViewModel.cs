@@ -2,6 +2,7 @@
 using DESTRY.Net.Emails;
 using NFSU2_ExOpts.Models;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -67,6 +68,7 @@ namespace NFSU2_ExOpts.ViewModels
         }
 
         public ICommand SendEmailCommand => new BaseCommand(obj => SendEmail());
+        public ICommand OpenLinkCommand => new BaseCommand(link => Process.Start((string)link));
 
         private void SendEmail()
         {
@@ -95,11 +97,11 @@ namespace NFSU2_ExOpts.ViewModels
             SendingState = message;
             SendingStateColor = (Brush)colorStyle;
         }
-        private void StartSending(object sender) 
+        private void StartSending(object sender)
         {
             ChangeState("Email sending...", "WhiteBrush");
         }
-        private void SendingEnded(object sender) 
+        private void SendingEnded(object sender)
         {
             ChangeState("Email sended successfully!", "MainBrush");
             Logs.WriteLog($"Mail sended from:{userEmail} with \"{userComment}\" comment.", "INFO");
