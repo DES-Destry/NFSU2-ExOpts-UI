@@ -6,7 +6,6 @@ namespace NFSU2_ExOpts.ViewModels
 {
     class OpponentsControllersPageViewModel : BaseViewModel
     {
-
         private ObservableCollection<string> zeroFiveCollection;
         private ObservableCollection<string> twoSixCollection;
 
