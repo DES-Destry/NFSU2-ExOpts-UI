@@ -9,30 +9,30 @@ namespace NFSU2_ExOpts.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        private Page gamePage;
-        private Page screenFXPage;
-        private Page menuPage;
-        private Page gameplayPage;
-        private Page weatherPage;
-        private Page lapControllersPage;
-        private Page opponentsControllersPage;
-        private Page driftPage;
-        private Page hotkeysPage;
-        private Page miscPage;
-        private Page fixesPage;
-        private Page presetsPage;
+        private readonly Page gamePage;
+        private readonly Page screenFXPage;
+        private readonly Page menuPage;
+        private readonly Page gameplayPage;
+        private readonly Page weatherPage;
+        private readonly Page lapControllersPage;
+        private readonly Page opponentsControllersPage;
+        private readonly Page driftPage;
+        private readonly Page hotkeysPage;
+        private readonly Page miscPage;
+        private readonly Page fixesPage;
+        private readonly Page presetsPage;
 
-        private SplashScreenPage gameSplashScreenPage;
-        private SplashScreenPage menuSplashScreenPage;
-        private SplashScreenPage gameplaySplashScreenPage;
-        private SplashScreenPage weatherSplashScreenPage;
-        private SplashScreenPage lapControllersSplashScreenPage;
-        private SplashScreenPage opponentsControllersSplashScreenPage;
-        private SplashScreenPage driftSplashScreenPage;
-        private SplashScreenPage hotkeysSplashScreenPage;
-        private SplashScreenPage miscSplashScreenPage;
-        private SplashScreenPage fixesSplashScreenPage;
-        private SplashScreenPage presetsSplashScreenPage;
+        private readonly SplashScreenPage gameSplashScreenPage;
+        private readonly SplashScreenPage menuSplashScreenPage;
+        private readonly SplashScreenPage gameplaySplashScreenPage;
+        private readonly SplashScreenPage weatherSplashScreenPage;
+        private readonly SplashScreenPage lapControllersSplashScreenPage;
+        private readonly SplashScreenPage opponentsControllersSplashScreenPage;
+        private readonly SplashScreenPage driftSplashScreenPage;
+        private readonly SplashScreenPage hotkeysSplashScreenPage;
+        private readonly SplashScreenPage miscSplashScreenPage;
+        private readonly SplashScreenPage fixesSplashScreenPage;
+        private readonly SplashScreenPage presetsSplashScreenPage;
 
         private bool isGamePageAtScreen = false;
         private bool isMenuPageAtScreen = false;
@@ -235,6 +235,7 @@ namespace NFSU2_ExOpts.ViewModels
                 hotkeysPage = new HotkeysPage();
                 miscPage = new MiscPage();
                 fixesPage = new FixesPage();
+                presetsPage = new SettingsPresetsPage();
                 Logs.WriteLog("All work screens has been loaded", "INFO");
 
                 gameSplashScreenPage.SetNextPageSettings(gamePage, OpenNextPage);
@@ -247,7 +248,7 @@ namespace NFSU2_ExOpts.ViewModels
                 hotkeysSplashScreenPage.SetNextPageSettings(hotkeysPage, OpenNextPage);
                 miscSplashScreenPage.SetNextPageSettings(miscPage, OpenNextPage);
                 fixesSplashScreenPage.SetNextPageSettings(fixesPage, OpenNextPage);
-                presetsSplashScreenPage.SetNextPageSettings(null, OpenNextPage);
+                presetsSplashScreenPage.SetNextPageSettings(presetsPage, OpenNextPage);
                 Logs.WriteLog("All splash screen's next screens parameters has been installed!", "INFO");
 
                 GameOpen();

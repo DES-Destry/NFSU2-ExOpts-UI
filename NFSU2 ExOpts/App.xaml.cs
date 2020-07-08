@@ -30,7 +30,7 @@ namespace NFSU2_ExOpts
         public static string LastVersion = default;
         public static string ExOptsLastVersion = default;
 
-        public static bool IsMainConfigOpened { get; private set; } = false;
+        public static bool IsMainConfigOpened { get; set; } = false;
         public static bool MainConfigExists { get; private set; } = false;
         public static bool ConnectionError { get; private set; } = false;
 

@@ -116,6 +116,7 @@ namespace NFSU2_ExOpts.ViewModels
             {
                 maxLanPlayersCurrentItem = value - 2;
                 OnPropertyChanged();
+                OnPropertyChanged("MaxLanPlayersCurrentItemIndex");
             }
         }
         public int MaxLanPlayersCurrentItemIndex
@@ -133,6 +134,7 @@ namespace NFSU2_ExOpts.ViewModels
                 Logs.WriteLog($"MaximumLANPlayers(OpponentControllers) value has been changed to {twoSixCollection[value]}", "INFO");
 
                 OnPropertyChanged();
+                OnPropertyChanged("MaxLanPlayersCurrentItem");
             }
         }
 

@@ -7,7 +7,7 @@
       xmlns:models="clr-namespace:NFSU2_ExOpts.Models"
       xmlns:local="clr-namespace:NFSU2_ExOpts.Pages.WorkPages"
       mc:Ignorable="d" 
-      d:DesignHeight="574" 
+      d:DesignHeight="569" 
       d:DesignWidth="710"
       Title="DriftPage">
 

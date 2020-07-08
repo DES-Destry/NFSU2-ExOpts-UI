@@ -169,6 +169,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WorkPages\SettingsPresetsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkPages\WeatherPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -276,6 +280,9 @@
     <Compile Include="Pages\WorkPages\OpponentsControllersPage.xaml.cs">
       <DependentUpon>OpponentsControllersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkPages\SettingsPresetsPage.xaml.cs">
+      <DependentUpon>SettingsPresetsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WorkPages\WeatherPage.xaml.cs">
       <DependentUpon>WeatherPage.xaml</DependentUpon>
     </Compile>
@@ -291,6 +298,7 @@
     <Compile Include="ViewModels\MiscPageViewModel.cs" />
     <Compile Include="ViewModels\OpponentsControllersPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="ViewModels\SettingsPresetsPageViewModel.cs" />
     <Compile Include="ViewModels\WeatherPageViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

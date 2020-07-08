@@ -110,9 +110,8 @@ namespace NFSU2_ExOpts.ViewModels
             settingsPage = new SettingsPage();
             contactsPage = null;
 
+            SetImagesToDefault();
             HomeHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/home_green.png", UriKind.Relative));
-            SettingsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/settings_white.png", UriKind.Relative));
-            ContactsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/send_email_white.png", UriKind.Relative));
 
             CurrentPage = mainPage;
 
@@ -140,26 +139,30 @@ namespace NFSU2_ExOpts.ViewModels
             }
         }
 
+        private void SetImagesToDefault()
+        {
+            HomeHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/home_white.png", UriKind.Relative));
+            SettingsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/settings_white.png", UriKind.Relative));
+            ContactsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/send_email_white.png", UriKind.Relative));
+        }
+
         private void OpenMainPage()
         {
             CurrentPage = mainPage;
 
+            SetImagesToDefault();
             HomeHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/home_green.png", UriKind.Relative));
-            SettingsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/settings_white.png", UriKind.Relative));
-            ContactsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/send_email_white.png", UriKind.Relative));
         }
         private void OpenSettingsPage()
         {
             CurrentPage = settingsPage;
 
-            HomeHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/home_white.png", UriKind.Relative));
+            SetImagesToDefault();
             SettingsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/settings_green.png", UriKind.Relative));
-            ContactsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/send_email_white.png", UriKind.Relative));
         }
         private void OpenContactsPage()
         {
-            HomeHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/home_white.png", UriKind.Relative));
-            SettingsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/settings_white.png", UriKind.Relative));
+            SetImagesToDefault();
             ContactsHeaderImage = new BitmapImage(new Uri("/NFSU2 ExOpts;component/Images/send_email_green.png", UriKind.Relative));
         }
     }

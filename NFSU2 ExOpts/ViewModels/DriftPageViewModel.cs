@@ -39,6 +39,7 @@ namespace NFSU2_ExOpts.ViewModels
                 App.IsSavedData = false;
 
                 OnPropertyChanged();
+                OnPropertyChanged("MaxMultiplierCurrentItemIndex");
             }
         }
         public int MaxMultiplierCurrentItemIndex
@@ -56,6 +57,7 @@ namespace NFSU2_ExOpts.ViewModels
                 Logs.WriteLog($"MaximumMultiplier(Drift) value has been changed to {oneNineCollection[value]}", "INFO");
 
                 OnPropertyChanged();
+                OnPropertyChanged("MaxMultiplierCurrentItem");
             }
         }
         public string PlusSignSelected
