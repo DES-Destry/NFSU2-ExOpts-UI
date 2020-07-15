@@ -99,7 +99,7 @@
                                Margin="10,30,0,0"
                                HorizontalAlignment="Left"
                                Stretch="Uniform"/>
-                        <TextBlock Text="NFSU2 ExOpts-User Interface from Destry-Unimaster"
+                        <TextBlock Text="NFSU2 ExOpts-User Interface from            Destry-Unimaster"
                                    TextWrapping="Wrap"
                                    Margin="5"
                                    FontSize="{StaticResource Regular}"
@@ -136,7 +136,7 @@
                                Margin="10,30,0,0"
                                HorizontalAlignment="Right"
                                Stretch="Uniform"/>
-                        <TextBlock Text="Main script for working with NFSU2 from Anıl Gezergen(nlgzrgn)"
+                        <TextBlock Text="Main mod's asi file for working with NFSU2 from Anıl Gezergen(nlgzrgn)"
                                    TextWrapping="Wrap"
                                    Margin="5"
                                    TextAlignment="Right"
@@ -149,7 +149,7 @@
                                 CommandParameter="https://github.com/nlgzrgn"
                                 FontSize="{StaticResource H1}"
                                 Style="{StaticResource ButtonStyle}"/>
-                        <Button Content="GitHub Script Project"
+                        <Button Content="GitHub ExOpts Project"
                                 Margin="5"
                                 Command="{Binding OpenLinkCommand}"
                                 CommandParameter="https://github.com/ExOptsTeam/NFSU2ExOpts"

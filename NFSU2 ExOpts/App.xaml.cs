@@ -24,7 +24,7 @@ namespace NFSU2_ExOpts
         public static string MainConfigPath = "scripts\\NFSU2ExtraOptionsSettings.ini";
         public static string CustomConfigPath = default;
 
-        public static readonly string Version = "v0.8.5";
+        public static readonly string Version = "v0.8.51";
         public static readonly string ExOptsVersion = "v5.0.0.1337";
 
         public static string LastVersion = default;
