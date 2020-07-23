@@ -19,7 +19,7 @@
     <Border CornerRadius="8"
             BorderThickness="2"
             BorderBrush="{StaticResource MainBrush}">
-        <StackPanel Margin="0">
+        <StackPanel>
 
             <Border CornerRadius="6,6,0,0"
                     BorderThickness="1"

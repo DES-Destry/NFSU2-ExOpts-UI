@@ -1,5 +1,6 @@
 ﻿using DESTRY.IO.Debuging;
 using NFSU2_ExOpts.Models;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -270,7 +271,7 @@ namespace NFSU2_ExOpts.ViewModels
         }
         private void OpenInstaller()
         {
-            //Opening installer app(installer now not created!)
+            Process.Start("ExOpts-Installer.exe");
         }
     }
 }

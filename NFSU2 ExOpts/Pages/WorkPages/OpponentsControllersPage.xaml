@@ -14,50 +14,50 @@
         <ScrollViewer>
             <Grid>
                 <Grid Height="128"
-                  VerticalAlignment="Top">
+                      VerticalAlignment="Top">
                     <Image Width="256"
-                       HorizontalAlignment="Left"
-                       Source="/NFSU2 ExOpts;component/Images/opponentcontroller_left_menu.png"/>
+                           HorizontalAlignment="Left"
+                           Source="/NFSU2 ExOpts;component/Images/opponentcontroller_left_menu.png"/>
                     <TextBlock Text="Opponents settings"
-                           Margin="256,0,0,0"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource WhiteBrush}"
-                           FontSize="{StaticResource H2}"
-                           FontFamily="{StaticResource BaseFont}"/>
+                               Margin="256,0,0,0"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource WhiteBrush}"
+                               FontSize="{StaticResource H2}"
+                               FontFamily="{StaticResource BaseFont}"/>
                 </Grid>
                 <StackPanel Margin="0,128,0,0">
                     <controls:SelectorSlot Height="64"
-                                       Margin="5"
-                                       SlotHeader="Minimum"
-                                       SlotInfo="Minimum number of opponents can be selected at Quick Race options screen."
-                                       SlotImageSource="/NFSU2 ExOpts;component/Images/opponents_min.png"
-                                       SlotInfoGif="/NFSU2 ExOpts;component/Images/opponents_min.png"
-                                       ItemSource="{Binding ZeroFiveCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                       CurrentItem="{Binding MinimumCurrentItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                           Margin="5"
+                                           SlotHeader="Minimum"
+                                           SlotInfo="Minimum number of opponents can be selected at Quick Race options screen."
+                                           SlotImageSource="/NFSU2 ExOpts;component/Images/opponents_min.png"
+                                           SlotInfoGif="/NFSU2 ExOpts;component/Images/opponents_min.png"
+                                           ItemSource="{Binding ZeroFiveCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           CurrentItem="{Binding MinimumCurrentItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <controls:SelectorSlot Height="64"
-                                       Margin="5"
-                                       SlotHeader="Maximum"
-                                       SlotInfo="Maximum number of opponents can be selected at Quick Race options screen."
-                                       SlotImageSource="/NFSU2 ExOpts;component/Images/opponents_max.png"
-                                       SlotInfoGif="/NFSU2 ExOpts;component/Images/opponents_max.png"
-                                       ItemSource="{Binding ZeroFiveCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                       CurrentItem="{Binding MaximumCurrentItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                           Margin="5"
+                                           SlotHeader="Maximum"
+                                           SlotInfo="Maximum number of opponents can be selected at Quick Race options screen."
+                                           SlotImageSource="/NFSU2 ExOpts;component/Images/opponents_max.png"
+                                           SlotInfoGif="/NFSU2 ExOpts;component/Images/opponents_max.png"
+                                           ItemSource="{Binding ZeroFiveCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           CurrentItem="{Binding MaximumCurrentItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <controls:SelectorSlot Height="64"
-                                       Margin="5"
-                                       SlotHeader="Maximum laps for KO race"
-                                       SlotInfo="Number of opponents when Lap KO enabled at Quick Race options screen."
-                                       SlotImageSource="/NFSU2 ExOpts;component/Images/opponents_ko.png"
-                                       SlotInfoGif="/NFSU2 ExOpts;component/Images/opponents_ko.png"
-                                       ItemSource="{Binding ZeroFiveCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                       CurrentItem="{Binding KoEnabledCurrentItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                           Margin="5"
+                                           SlotHeader="Maximum laps for KO race"
+                                           SlotInfo="Number of opponents when Lap KO enabled at Quick Race options screen."
+                                           SlotImageSource="/NFSU2 ExOpts;component/Images/opponents_ko.png"
+                                           SlotInfoGif="/NFSU2 ExOpts;component/Images/opponents_ko.png"
+                                           ItemSource="{Binding ZeroFiveCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           CurrentItem="{Binding KoEnabledCurrentItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <controls:SelectorSlot Height="64"
-                                       Margin="5"
-                                       SlotHeader="Maximum LAN Players"
-                                       SlotInfo="Maximum number of players can be selected at LAN Race options screen."
-                                        SlotImageSource="/NFSU2 ExOpts;component/Images/opponents_max_lan.png"
-                                       SlotInfoGif="/NFSU2 ExOpts;component/Images/opponents_max_lan.png"
-                                       ItemSource="{Binding TwoSixCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                       CurrentItem="{Binding MaxLanPlayersCurrentItemIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                           Margin="5"
+                                           SlotHeader="Maximum LAN Players"
+                                           SlotInfo="Maximum number of players can be selected at LAN Race options screen."
+                                           SlotImageSource="/NFSU2 ExOpts;component/Images/opponents_max_lan.png"
+                                           SlotInfoGif="/NFSU2 ExOpts;component/Images/opponents_max_lan.png"
+                                           ItemSource="{Binding TwoSixCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           CurrentItem="{Binding MaxLanPlayersCurrentItemIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

@@ -1,0 +1,66 @@
+﻿<Page x:Class="ExOpts_Installer.Pages.UpdatesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ExOpts_Installer.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="286" 
+      d:DesignWidth="600"
+      Title="UpdatesPage">
+
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock Text="{Binding UIVersions}"
+                       Margin="5"
+                       Foreground="{Binding UIVersionState}"
+                       FontSize="{StaticResource Regular}"
+                       FontFamily="{StaticResource BaseFont}"/>
+            <TextBlock Text="{Binding ExOptsVersions}"
+                       Margin="5"
+                       Foreground="{Binding ExOptsVersionState}"
+                       FontSize="{StaticResource Regular}"
+                       FontFamily="{StaticResource BaseFont}"/>
+            <TextBox Text="{Binding VersionNotes}"
+                     Margin="5"
+                     Height="100"
+                     TextWrapping="Wrap"
+                     IsReadOnly="True"
+                     Style="{StaticResource TextBoxBase}"/>
+
+            <TextBlock Text="{Binding DownloadingState}"
+                       Margin="5"
+                       FontSize="{StaticResource Mini}"
+                       Foreground="{StaticResource WhiteBrush}"
+                       FontFamily="{StaticResource BaseFont}"/>
+            <ProgressBar Value="{Binding DownloadProgress}"
+                         Maximum="{Binding DownloadMax}"
+                         Margin="5"
+                         Height="7"
+                         Background="Transparent"
+                         Foreground="{StaticResource SelectorPropgressBrush}"/>
+
+            <TextBlock Text="{Binding InstallState}"
+                       Margin="5"
+                       FontSize="{StaticResource Mini}"
+                       Foreground="{StaticResource WhiteBrush}"
+                       FontFamily="{StaticResource BaseFont}"/>
+            <ProgressBar Value="{Binding InstallProgress}"
+                         Maximum="{Binding InstallMax}"
+                         Margin="5"
+                         Height="7"
+                         Background="Transparent"
+                         Foreground="{StaticResource SelectorPropgressBrush}"/>
+
+            <Button Content="Update!"
+                    Width="100"
+                    HorizontalAlignment="Right"
+                    Margin="5"
+                    Command="{Binding UpdateCommand}"
+                    IsEnabled="{Binding UpdateIsEnabled}"
+                    FontSize="{StaticResource Regular}"
+                    Style="{StaticResource ButtonStyle}"/>
+        </StackPanel>
+    </ScrollViewer>
+    
+</Page>

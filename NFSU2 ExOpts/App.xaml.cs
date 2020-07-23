@@ -24,7 +24,7 @@ namespace NFSU2_ExOpts
         public static string MainConfigPath = "scripts\\NFSU2ExtraOptionsSettings.ini";
         public static string CustomConfigPath = default;
 
-        public static readonly string Version = "v0.8.51";
+        public static readonly string Version = "v0.8.6 beta";
         public static readonly string ExOptsVersion = "v5.0.0.1337";
 
         public static string LastVersion = default;
@@ -80,18 +80,30 @@ namespace NFSU2_ExOpts
                 {
                     CreateFolders();
                 }
-                else if (!File.Exists(Path.Combine(ApplicationDataFolder, "logs", "main.log")))
+                if (!File.Exists(Path.Combine(ApplicationDataFolder, "logs", "main.log")))
                 {
                     CreateLogFile();
                 }
-                else if (!File.Exists(Path.Combine(ApplicationDataFolder, "data", "main.json")))
+                if (!File.Exists(Path.Combine(ApplicationDataFolder, "data", "main.json")))
                 {
                     CreateAppDataFile();
                 }
-                else if (!File.Exists(Path.Combine(ApplicationDataFolder, "data", "game.json")))
+                if (!File.Exists(Path.Combine(ApplicationDataFolder, "data", "game.json")))
                 {
                     CreateGameDataFile();
                 } 
+
+                if (Directory.Exists("update"))
+                {
+                    string[] files = Directory.GetFiles("update");
+
+                    foreach (string file in files)
+                    {
+                        File.Move(file, Path.GetFileName(file));
+                    }
+
+                    Directory.Delete("update", true);
+                }
 
                 GetLastVersion();
 
@@ -187,7 +199,7 @@ namespace NFSU2_ExOpts
         private static void CreateFolders()
         {
             Directory.CreateDirectory(Path.Combine(ApplicationDataFolder, "data"));
-            Directory.CreateDirectory(Path.Combine(ApplicationDataFolder, "error reports"));
+            Directory.CreateDirectory(Path.Combine(ApplicationDataFolder, "error reports", "installer"));
             Directory.CreateDirectory(Path.Combine(ApplicationDataFolder, "last version"));
             Directory.CreateDirectory(Path.Combine(ApplicationDataFolder, "logs"));
 
