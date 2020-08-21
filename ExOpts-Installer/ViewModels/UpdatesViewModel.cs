@@ -16,7 +16,9 @@ namespace ExOpts_Installer.ViewModels
     class UpdatesViewModel : BaseViewModel
     {
         private const string FILE_URL = "https://github.com/DES-Destry/NFSU2-ExOpts-UI/raw/master/Releases/LastVersion.zip";
+        private const string UPDATE_ARCHIVE_PATH = "update.zip";
         private const float B_TO_MB_NUM_CONVERT = 1048576;   // *** bytes / 1048576(1024 * 1024) = *** MB
+        private const int COUNT_OF_INSTALL_STAGES = 2;
 
         private string sizeInMB = string.Empty;
 
@@ -33,6 +35,8 @@ namespace ExOpts_Installer.ViewModels
         private int downloadMax = 1;
         private int installProgress = 0;
         private int installMax = 1;
+
+        private int currentInstallStage = 0;
 
         private bool updateIsEnabled = false;
 
@@ -238,12 +242,19 @@ namespace ExOpts_Installer.ViewModels
             }
         }
 
-        private async void UpdateAsync()
+        private async Task UpdateAsync()
         {
-            await KillExOptsTaskAsync();
-            await DownloadAsync();
-            await InstallAsync();
-            await RebootAppAsync();
+            try
+            {
+                await KillExOptsTaskAsync();
+                await DownloadAsync();
+                await InstallAsync();
+                RebootApp();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
 
         private async Task KillExOptsTaskAsync()
@@ -278,95 +289,154 @@ namespace ExOpts_Installer.ViewModels
         }
         private async Task DownloadAsync()
         {
-            DownloadProgress = 0;
-            DownloadMax = 100;
+            try
+            {
+                if (File.Exists(UPDATE_ARCHIVE_PATH))
+                {
+                    File.Delete(UPDATE_ARCHIVE_PATH);
+                }
 
-            WebClient wc = new WebClient();
-            wc.DownloadProgressChanged += OnPercentageChanged;
+                DownloadProgress = 0;
+                DownloadMax = 100;
 
-            await wc.DownloadFileTaskAsync(new Uri(FILE_URL), "update.zip");
+                WebClient wc = new WebClient();
+                wc.DownloadProgressChanged += OnPercentageChanged;
 
-            DownloadingState = "Downloading: done!";
+                await wc.DownloadFileTaskAsync(new Uri(FILE_URL), UPDATE_ARCHIVE_PATH);
+
+                DownloadingState = "Downloading: done!";
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
         private async Task InstallAsync()
         {
-            await Task.Run(() =>
+            try
             {
-                using (ZipArchive archive = ZipFile.OpenRead("update.zip"))
-                {
-                    InstallProgress = 0;
-                    InstallMax = archive.Entries.Count;
-                    InstallState = "Installing(1/2 stage - 0%):";
+                await UnpackArchiveAsync();
 
-                    foreach (ZipArchiveEntry entry in archive.Entries)
-                    {
-                        entry.ExtractToFile(Path.Combine("update", entry.FullName));
-                        InstallProgress += 1;
-                        InstallState = $"Installing(1/2 stage - {((float)installProgress / (float)installMax)*100:###.#}%):";
-                    }
-                }
-                Logs.WriteLog($"\"{Path.GetFullPath("update.zip")}\" has been unpacked.", "INFO");
+                string[] updateFiles = Directory.GetFiles("update", "*.*", SearchOption.AllDirectories);
+                InstallUpdateFiles(updateFiles);
 
-                File.Delete("update.zip");
-
-                InstallProgress = 0;
-                string[] newUIFiles = Directory.GetFiles("update");
-                string[] newExOptsFiles = Directory.GetFiles("update\\scripts");
-                InstallMax = newUIFiles.Length + newExOptsFiles.Length - 1;
-                InstallState = "Installing(2/2 stage - 0%):";
-
-
-                foreach (string file in newUIFiles)
-                {
-                    if (!file.Contains("ExOpts-Installer.exe"))
-                    {
-                        File.Move(file, Path.GetFileName(file));
-                        InstallProgress += 1;
-                        InstallState = $"Installing(2/2 stage - {((float)installProgress / (float)installMax) * 100:###.#}%):";
-                    }
-                }
-
-                Logs.WriteLog("Important UI files has been installed", "INFO");
-
-                foreach (string file in newExOptsFiles)
-                {
-                    if (!file.Contains("NFSU2ExtraOptionsSettings.ini"))
-                    {
-                        File.Move(file, Path.Combine("scripts", Path.GetFileName(file)));
-                        InstallProgress += 1;
-                    }
-                    else
-                    {
-                        IniFile oldConfig = new IniFile();
-                        IniFile newConfig = new IniFile();
-
-                        oldConfig.Load("scripts\\NFSU2ExtraOptionsSettings.ini");
-                        newConfig.Load("update\\scripts\\NFSU2ExtraOptionsSettings.ini");
-
-                        IniFile mergedConfig = IniFile.Merge(oldConfig, newConfig);
-
-                        oldConfig.Clear();
-                        newConfig.Clear();
-                        File.Delete("scripts\\NFSU2ExtraOptionsSettings.ini");
-                        mergedConfig.SaveAs("scripts\\NFSU2ExtraOptionsSettings.ini");
-
-                        InstallProgress += 1;
-                        InstallState = "Installing(2/2 stage - 100%):";
-                    }
-                }
-
-                Logs.WriteLog("Important Extra Options files has been installed", "INFO");
                 Logs.WriteLog("Update has been installed installed", "INFO");
-            });
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
         }
-        private async Task RebootAppAsync()
+        private void RebootApp()
         {
-            await Task.Run(() =>
+            try
             {
                 Process.Start("NFSU2 ExOpts.exe");
                 Logs.WriteLog("Main app lanched. Soon intaller will be shutdown.", "INFO");
                 Application.Current.Shutdown();
+            }
+            catch (Exception ex)
+            {
+                Errors.WriteError(ex);
+            }
+        }
+
+        private async Task UnpackArchiveAsync()
+        {
+            await Task.Run(() =>
+            {
+                if (Directory.Exists("update"))
+                {
+                    Directory.Delete("update", true);
+                }
+
+                using (ZipArchive archive = ZipFile.OpenRead(UPDATE_ARCHIVE_PATH))
+                {
+                    StartNewInstallStage(1, archive.Entries.Count);
+                    Directory.CreateDirectory("update");
+
+                    foreach (ZipArchiveEntry entry in archive.Entries)
+                    {
+                        if (entry.FullName == "scripts/")
+                        {
+                            Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, "update", "scripts"));
+                        }
+                        else
+                        {
+                            entry.ExtractToFile(Path.Combine(Environment.CurrentDirectory, "update", entry.FullName));
+                        }
+                        IncreaseInstallProgress();
+                    }
+                }
+                Logs.WriteLog($"\"{Path.GetFullPath(UPDATE_ARCHIVE_PATH)}\" has been unpacked.", "INFO");
+
+                File.Delete(UPDATE_ARCHIVE_PATH);
             });
+        }
+        private void InstallUpdateFiles(string[] files)
+        {
+            if (files != null)
+            {
+                StartNewInstallStage(2, files.Length);
+                foreach (string file in files)
+                {
+                    bool isScriptFile = new FileInfo(file).Directory.Name == "script";
+
+                    string oldFileName;
+
+                    if (isScriptFile)
+                    {
+                        oldFileName = Path.GetFileName(Path.Combine(Environment.CurrentDirectory, "script", Path.GetFileName(file)));
+                    }
+                    else
+                    {
+                        oldFileName = Path.GetFileName(Path.Combine(Environment.CurrentDirectory, Path.GetFileName(file)));
+                    }
+
+                    if (file.Contains("NFSU2ExtraOptionsSettings.ini"))
+                    {
+                        string oldConfigFile = Path.Combine("scripts", "NFSU2ExtraOptionsSettings.ini");
+                        string updateConfigFile = Path.Combine("update", oldConfigFile);
+
+                        if (File.Exists(oldConfigFile))
+                        {
+                            IniFile oldConfig = new IniFile();
+                            IniFile newConfig = new IniFile();
+
+                            oldConfig.Load(oldConfigFile);
+                            newConfig.Load(updateConfigFile);
+
+                            IniFile mergedConfig = IniFile.Merge(oldConfig, newConfig);
+
+                            File.Delete(oldConfigFile);
+                            mergedConfig.SaveAs(oldConfigFile);
+
+                            oldConfig.Clear();
+                            newConfig.Clear();
+
+                            File.Delete(updateConfigFile);
+                        }
+                        else
+                        {
+                            File.Move(file, oldFileName);
+                        }
+                    }
+                    else if (!file.Contains("ExOpts-Installer.exe") && !file.Contains("DESTRY.dll"))
+                    {
+                        if (File.Exists(oldFileName))
+                        {
+                            File.Delete(oldFileName);
+                        }
+                        File.Move(file, oldFileName);
+                    }
+
+                    IncreaseInstallProgress();
+                }
+
+                Logs.WriteLog("Update files has been installed", "INFO");
+            }
+
+            Logs.WriteLog("Update files has been not installed. Files to install has been null", "ERROR");
         }
 
         private async void CheckSizeAsync()
@@ -390,6 +460,19 @@ namespace ExOpts_Installer.ViewModels
         {
             DownloadProgress = e.ProgressPercentage;
             DownloadingState = $"Downloading ({e.ProgressPercentage}% ({Math.Round((float)e.BytesReceived / B_TO_MB_NUM_CONVERT, 2)} MB/{sizeInMB} MB)):";
+        }
+        private void StartNewInstallStage(int installStage, int maximum)
+        {
+            currentInstallStage = installStage;
+
+            InstallProgress = 0;
+            InstallMax = maximum;
+            InstallState = $"Installing({currentInstallStage}/{COUNT_OF_INSTALL_STAGES} stage - 0%):";
+        }
+        private void IncreaseInstallProgress()
+        {
+            InstallProgress += 1;
+            InstallState = $"Installing({currentInstallStage}/{COUNT_OF_INSTALL_STAGES} stage - {(float)installProgress / (float)installMax * 100:###.#}%):";
         }
     }
 }

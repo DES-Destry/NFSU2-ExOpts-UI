@@ -337,7 +337,7 @@ namespace NFSU2_ExOpts.ViewModels
                 }
                 else
                 {
-                    ShowOutrun = ShowMoreRaceOptions = ShowMoreCustomizationOptions = ShowOnline = ShowSubs = ShowSpecialVinyls = ShowDebugCarCustomize = ShowDebugEventID = AnyTrackInAnyRaceMode = FreeRunTrackSelect = OutrunTrackSelect = SplashScreenTimeLimit = ShowcaseCamInfiniteYRotation = AllowLongerProfileNames = DisableTakeover = "NULL";
+                    ShowOutrun = ShowMoreRaceOptions = ShowMoreCustomizationOptions = ShowOnline = ShowSubs = ShowSpecialVinyls = ShowDebugCarCustomize = ShowDebugEventID = AnyTrackInAnyRaceMode = FreeRunTrackSelect = OutrunTrackSelect = SplashScreenTimeLimit = ShowcaseCamInfiniteYRotation = AllowLongerProfileNames = DisableTakeover = string.Empty;
                 }
             }
             catch (Exception ex)

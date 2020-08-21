@@ -476,7 +476,7 @@ namespace NFSU2_ExOpts.ViewModels
                 }
                 else
                 {
-                    EnableHiddenCameraModes = EnableDebugCamera = GameSpeed = WorldAnimationSpeed = LowBeamBrightness = HighBeamBrightness = RemoveRaceBarriers = RemoveLockedAreaBarriers = ShowPercentOn1LapRaces = GameRegion = StartingCash = UnlockRegionalCars = UnlockAllThings = NeonBrightness = NosTrailRepeatCount = "NULL";
+                    EnableHiddenCameraModes = EnableDebugCamera = GameSpeed = WorldAnimationSpeed = LowBeamBrightness = HighBeamBrightness = RemoveRaceBarriers = RemoveLockedAreaBarriers = ShowPercentOn1LapRaces = GameRegion = StartingCash = UnlockRegionalCars = UnlockAllThings = NeonBrightness = NosTrailRepeatCount = string.Empty;
                     HeadlightsMode = -1;
                 }
             }

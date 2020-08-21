@@ -14,6 +14,7 @@ namespace NFSU2_ExOpts
 {
     public partial class App : Application
     {
+        private static bool isGameProcessRegistred = false;
         private static bool isSavedData = true;
 
 
@@ -24,7 +25,7 @@ namespace NFSU2_ExOpts
         public static string MainConfigPath = "scripts\\NFSU2ExtraOptionsSettings.ini";
         public static string CustomConfigPath = default;
 
-        public static readonly string Version = "v0.8.6 beta";
+        public static readonly string Version = "v0.8.61 beta";
         public static readonly string ExOptsVersion = "v5.0.0.1337";
 
         public static string LastVersion = default;
@@ -62,98 +63,17 @@ namespace NFSU2_ExOpts
         {
             try
             {
-                AppData.InitAppDir(Path.Combine(ApplicationDataFolder, "data"));
-                GameDataSource.InitAppDir(Path.Combine(ApplicationDataFolder, "data"));
-                AppData.InitAppFile("main.json", false);
-                GameDataSource.InitAppFile("game.json", false);
+                InitFiles();
+                DeleteUpdateFiles();
 
-                Logs.InitLogsDirectory(Path.Combine(ApplicationDataFolder, "logs"));
-                Logs.InitLogFile("main.log", false);
-
-                Errors.InitErrorsPath(Path.Combine(ApplicationDataFolder, "error reports"));
-
-                if (!Directory.Exists(ApplicationDataFolder) ||
-                    !Directory.Exists(Path.Combine(ApplicationDataFolder, "data")) ||
-                    !Directory.Exists(Path.Combine(ApplicationDataFolder, "error reports")) ||
-                    !Directory.Exists(Path.Combine(ApplicationDataFolder, "logs")) ||
-                    !Directory.Exists(Path.Combine(ApplicationDataFolder, "last version")))
-                {
-                    CreateFolders();
-                }
-                if (!File.Exists(Path.Combine(ApplicationDataFolder, "logs", "main.log")))
-                {
-                    CreateLogFile();
-                }
-                if (!File.Exists(Path.Combine(ApplicationDataFolder, "data", "main.json")))
-                {
-                    CreateAppDataFile();
-                }
-                if (!File.Exists(Path.Combine(ApplicationDataFolder, "data", "game.json")))
-                {
-                    CreateGameDataFile();
-                } 
-
-                if (Directory.Exists("update"))
-                {
-                    string[] files = Directory.GetFiles("update");
-
-                    foreach (string file in files)
-                    {
-                        File.Move(file, Path.GetFileName(file));
-                    }
-
-                    Directory.Delete("update", true);
-                }
-
-                GetLastVersion();
+                SetLastVersion();
 
                 Logs.WriteLog("Application working has been started!", "INFO");
 
-                AppSettings settings = AppData.ReadJson<AppSettings>();
-                Settings = settings;
+                LoadSettingsFromFiles();
+                LoadMainConfig();
 
-                GameData gameData = GameDataSource.ReadJson<GameData>();
-                GameData = gameData;
-
-                MainConfigPath = Settings.ScriptPath;
-                GameExePath = Settings.GamePath;
-                TexmodExePath = Settings.TexmodPath;
-
-                Logs.WriteLog("Settings are readed and applied", "INFO");
-
-
-                string[] environmentStrings = Environment.GetCommandLineArgs();
-
-                if (environmentStrings.Length < 2)
-                {
-                    IsMainConfigOpened = true;
-
-                    if (File.Exists(MainConfigPath))
-                    {
-                        MainConfigExists = true;
-                        MainConfig.Load(MainConfigPath);
-
-                        Logs.WriteLog($"Ini file has been loaded from {Path.GetFullPath(MainConfigPath)}", "INFO");
-                    }
-                    else
-                    {
-                        MainConfigExists = false;
-
-                        Logs.WriteLog("Main script not found.", "ERROR");
-                    }
-                }
-                else
-                {
-                    IsMainConfigOpened = false;
-                    MainConfigExists = true;
-
-                    CustomConfigPath = environmentStrings[1];
-                    MainConfig.Load(environmentStrings[1]);
-
-                    Logs.WriteLog($"Ini file has been loaded from {Path.GetFullPath(environmentStrings[1])}", "INFO");
-                }
-
-                CountGameTime();
+                StartMonitoringGameProccess();
             }
             catch (Exception ex)
             {
@@ -208,7 +128,116 @@ namespace NFSU2_ExOpts
             CreateGameDataFile();
         }
 
-        private async static void GetLastVersion()
+        private static void InitFiles()
+        {
+            AppData.InitAppDir(Path.Combine(ApplicationDataFolder, "data"));
+            GameDataSource.InitAppDir(Path.Combine(ApplicationDataFolder, "data"));
+            AppData.InitAppFile("main.json", false);
+            GameDataSource.InitAppFile("game.json", false);
+
+            Logs.InitLogsDirectory(Path.Combine(ApplicationDataFolder, "logs"));
+            Logs.InitLogFile("main.log", false);
+
+            Errors.InitErrorsPath(Path.Combine(ApplicationDataFolder, "error reports"));
+
+            if (!Directory.Exists(ApplicationDataFolder) ||
+                !Directory.Exists(Path.Combine(ApplicationDataFolder, "data")) ||
+                !Directory.Exists(Path.Combine(ApplicationDataFolder, "error reports")) ||
+                !Directory.Exists(Path.Combine(ApplicationDataFolder, "logs")) ||
+                !Directory.Exists(Path.Combine(ApplicationDataFolder, "last version")))
+            {
+                CreateFolders();
+            }
+            if (!File.Exists(Path.Combine(ApplicationDataFolder, "logs", "main.log")))
+            {
+                CreateLogFile();
+            }
+            if (!File.Exists(Path.Combine(ApplicationDataFolder, "data", "main.json")))
+            {
+                CreateAppDataFile();
+            }
+            if (!File.Exists(Path.Combine(ApplicationDataFolder, "data", "game.json")))
+            {
+                CreateGameDataFile();
+            }
+        }
+        private static void DeleteUpdateFiles()
+        {
+            if (Directory.Exists("update"))
+            {
+                string[] files = Directory.GetFiles("update");
+
+                foreach (string file in files)
+                {
+                    if (!file.Contains("DESTRY.dll"))
+                    {
+                        string oldFileName = Path.GetFileName(file);
+                        if (File.Exists(oldFileName))
+                        {
+                            File.Delete(oldFileName);
+                        }
+
+                        File.Move(file, oldFileName);
+                    }
+                    else
+                    {
+                        File.Delete(file);
+                    }
+                }
+
+                Directory.Delete("update\\scripts", true);
+                Directory.Delete("update", true);
+            }
+        }
+        private static void LoadSettingsFromFiles()
+        {
+            AppSettings settings = AppData.ReadJson<AppSettings>();
+            Settings = settings;
+
+            GameData gameData = GameDataSource.ReadJson<GameData>();
+            GameData = gameData;
+
+            MainConfigPath = Settings.ScriptPath;
+            GameExePath = Settings.GamePath;
+            TexmodExePath = Settings.TexmodPath;
+
+            Logs.WriteLog("Settings are readed and applied", "INFO");
+        }
+        private static void LoadMainConfig()
+        {
+            string[] environmentStrings = Environment.GetCommandLineArgs();
+
+            if (environmentStrings.Length < 2)
+            {
+                IsMainConfigOpened = true;
+
+                if (File.Exists(MainConfigPath))
+                {
+                    MainConfigExists = true;
+                    MainConfig.Load(MainConfigPath);
+
+                    Logs.WriteLog($"Ini file has been loaded from {Path.GetFullPath(MainConfigPath)}", "INFO");
+                }
+                else
+                {
+                    MainConfigExists = false;
+
+                    Logs.WriteLog("Main script not found.", "ERROR");
+                }
+            }
+            else
+            {
+                IsMainConfigOpened = false;
+                MainConfigExists = true;
+
+                CustomConfigPath = environmentStrings[1];
+                MainConfig.Load(environmentStrings[1]);
+
+                Logs.WriteLog($"Ini file has been loaded from {Path.GetFullPath(environmentStrings[1])}", "INFO");
+            }
+        }
+
+        private async static void SetLastVersion()
         {
             try
             {
@@ -218,30 +247,16 @@ namespace NFSU2_ExOpts
                     Logs.WriteLog($"{LastVersionFilePath} has been deleted!", "INFO");
                 }
 
-                await Task.Run(async () =>
-                {
-                    WebClient wc = new WebClient();
-                    await wc.DownloadFileTaskAsync(new Uri("https://github.com/DES-Destry/NFSU2-ExOpts-UI/raw/master/NFSU2%20ExOpts/.version.zip"), Path.Combine(ApplicationDataFolder, "last version", ".version.zip"));
+                await DownloadLastVersionData();
 
-                    Logs.WriteLog($"{Path.Combine(ApplicationDataFolder, "last version", ".version.zip")} has been downloaded from github!", "INFO");
+                File.Delete(Path.Combine(ApplicationDataFolder, "last version", ".version.zip"));
 
-                    using (ZipArchive archive = ZipFile.OpenRead(Path.Combine(ApplicationDataFolder, "last version", ".version.zip")))
-                    {
-                        foreach (ZipArchiveEntry entry in archive.Entries)
-                        {
-                            entry.ExtractToFile(Path.Combine(Path.Combine(ApplicationDataFolder, "last version"), entry.FullName));
-                        }
-                    }
+                string[] lastVersionData = File.ReadAllLines(LastVersionFilePath);
 
-                    File.Delete(Path.Combine(ApplicationDataFolder, "last version", ".version.zip"));
+                LastVersion = lastVersionData[0];
+                ExOptsLastVersion = lastVersionData[1];
 
-                    string[] lastVersionData = File.ReadAllLines(LastVersionFilePath);
-
-                    LastVersion = lastVersionData[0];
-                    ExOptsLastVersion = lastVersionData[1];
-
-                    OnLastVersionDataGetted?.Invoke();
-                });
+                OnLastVersionDataGetted?.Invoke();
             }
             catch (Exception ex)
             {
@@ -251,26 +266,57 @@ namespace NFSU2_ExOpts
                 OnLastVersionDataGetted?.Invoke();
             }
         }
-        private async static void CountGameTime()
+        private static async Task DownloadLastVersionData()
         {
-            await Task.Run(async () =>
+            string lastVersionArchivePath = Path.Combine(ApplicationDataFolder, "last version", ".version.zip");
+
+            WebClient wc = new WebClient();
+            await wc.DownloadFileTaskAsync(new Uri("https://github.com/DES-Destry/NFSU2-ExOpts-UI/raw/master/NFSU2%20ExOpts/.version.zip"), lastVersionArchivePath);
+
+            Logs.WriteLog($"{lastVersionArchivePath} has been downloaded from github!", "INFO");
+
+            using (ZipArchive archive = ZipFile.OpenRead(lastVersionArchivePath))
             {
-                while (true)
+                foreach (ZipArchiveEntry entry in archive.Entries)
+                {
+                    entry.ExtractToFile(Path.Combine(ApplicationDataFolder, "last version", entry.FullName));
+                }
+            }
+
+            File.Delete(lastVersionArchivePath);
+        }
+
+        private async static void StartMonitoringGameProccess()
+        {
+            await Task.Run(() =>
+            {
+                while (!isGameProcessRegistred)
                 {
                     Process[] processes = Process.GetProcesses();
                     foreach (var process in processes)
                     {
                         if (process.ProcessName.ToLower().Contains("speed2"))
                         {
-                            GameData.IncreaseTime(5);
-                            GameData.SetLastStartup();
-                            GameDataSource.WriteJson(GameData);
-                            OnGameDataChanged?.Invoke();
+                            process.EnableRaisingEvents = true;
+                            process.Exited += CountGameTime;
+                            isGameProcessRegistred = true;
                         }
                     }
-                    await Task.Delay(TimeSpan.FromSeconds(5));
                 }
             });
+        }
+        private static void CountGameTime(object sender, EventArgs e)
+        {
+            Process process = sender as Process;
+            int totalTime = (int)(DateTime.Now - process.StartTime).TotalSeconds;
+
+            GameData.IncreaseTime(totalTime);
+            GameData.SetLastStartup();
+            GameDataSource.WriteJson(GameData);
+            OnGameDataChanged?.Invoke();
+
+            isGameProcessRegistred = false;
+            StartMonitoringGameProccess();
         }
     }
 }

@@ -80,8 +80,8 @@ namespace ExOpts_Installer.ViewModels
             UpdatesSelectedVisibility = Visibility.Visible;
 
             updatesPage = new UpdatesPage();
-            cachePage = null;
-            uninstallPage = null;
+            cachePage = new WIPPage();
+            uninstallPage = new WIPPage();
 
             CurrentPage = updatesPage;
         }
